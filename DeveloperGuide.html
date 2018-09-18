@@ -2063,7 +2063,52 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="meal-planner"><a class="link" href="#meal-planner">C.2. Meal Planner</a></h3>
-
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As a &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">So that I can&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>*</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">meticulous user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the time taken for each recipe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can plan ahead for meal preparations to fit my schedule</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plan my meals for breakfast, lunch and dinner</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can remember my meals for each day</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">health-conscious user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view the nutritional value of each recipe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can choose recipes according to my nutritional needs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">fickle-minded user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">edit my meal plans</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can add different recipes if I change my mind</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">efficient user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">clear the meal planner immediately at the end of the week</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I can save time</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="user-profiling"><a class="link" href="#user-profiling">C.3. User Profiling</a></h3>
@@ -2278,7 +2323,86 @@ Use case ends.</p>
 </div>
 <div class="sect2">
 <h3 id="meal-planner-2"><a class="link" href="#meal-planner-2">D.2. Meal Planner</a></h3>
-
+<h3 id="use-case-add-recipe-to-meal-planner" class="discrete">Use case: Add recipe to meal planner</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to list available recipes</p>
+</li>
+<li>
+<p>System shows list of available recipes</p>
+</li>
+<li>
+<p>User selects desired recipe and adds it to the desired meal slot.</p>
+</li>
+<li>
+<p>System shows the recipe listed under the indicated meal slot.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-delete-recipe-from-meal-planner" class="discrete">Use case: Delete recipe from meal planner</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to view current meal plan</p>
+</li>
+<li>
+<p>System shows current meal plan</p>
+</li>
+<li>
+<p>User requests to delete unwanted recipe</p>
+</li>
+<li>
+<p>System shows specified meal slot as empty</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-view-meal-plan" class="discrete">Use case: View meal plan</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to view current meal plan</p>
+</li>
+<li>
+<p>System shows current full meal plan</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-view-meal-recipe" class="discrete">Use case: View meal recipe</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to view recipe for a specific meal slot</p>
+</li>
+<li>
+<p>System shows the full recipe of the specified meal slot</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
 </div>
 <div class="sect2">
 <h3 id="user-profiling-2"><a class="link" href="#user-profiling-2">D.3. User Profiling</a></h3>
@@ -2525,4 +2649,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-16 11:29:38 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-18 08:41:08 UTC</div></div></div></body></html>
