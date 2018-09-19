@@ -17,31 +17,16 @@
 <li><a href="#recipes-favorite-list-command">3.2. Recipes/Favorite List Command</a></li>
 <li><a href="#recipe-details-command">3.3. Recipe Details Command</a></li>
 <li><a href="#ingredient-manager-command">3.4. Ingredient Manager Command</a></li>
-<li><a href="#add-an-ingredient">3.5. Add an ingredient</a></li>
-<li><a href="#search-ingredient">3.6. Search ingredient</a></li>
-<li><a href="#meal-planner-command">3.7. Meal Planner Command</a></li>
-<li><a href="#cook-mode-command">3.8. Cook-Mode Command</a></li>
+<li><a href="#list-all-ingredients">3.5. List all ingredients</a></li>
+<li><a href="#edit-ingredient-info">3.6. Edit ingredient info</a></li>
+<li><a href="#delete-ingredient">3.7. Delete ingredient</a></li>
+<li><a href="#search-recipes-based-on-ingredients-manager-availability">3.8. Search recipes based on ingredients manager availability</a></li>
+<li><a href="#meal-planner-command">3.9. Meal Planner Command</a></li>
+<li><a href="#cook-mode-command">3.10. Cook-Mode Command</a></li>
 </ul>
 </li>
-<li><a href="#old-to-be-deleted-see-examples-here">4. OLD TO BE DELETED (See examples here)</a>
-<ul class="sectlevel2">
-<li><a href="#adding-a-person-code-add-code">4.1. Adding a person: <code>add</code></a></li>
-<li><a href="#listing-all-persons-code-list-code">4.2. Listing all persons : <code>list</code></a></li>
-<li><a href="#editing-a-person-code-edit-code">4.3. Editing a person : <code>edit</code></a></li>
-<li><a href="#locating-persons-by-name-code-find-code">4.4. Locating persons by name: <code>find</code></a></li>
-<li><a href="#deleting-a-person-code-delete-code">4.5. Deleting a person : <code>delete</code></a></li>
-<li><a href="#selecting-a-person-code-select-code">4.6. Selecting a person : <code>select</code></a></li>
-<li><a href="#listing-entered-commands-code-history-code">4.7. Listing entered commands : <code>history</code></a></li>
-<li><a href="#undoing-previous-command-code-undo-code">4.8. Undoing previous command : <code>undo</code></a></li>
-<li><a href="#redoing-the-previously-undone-command-code-redo-code">4.9. Redoing the previously undone command : <code>redo</code></a></li>
-<li><a href="#clearing-all-entries-code-clear-code">4.10. Clearing all entries : <code>clear</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">4.11. Exiting the program : <code>exit</code></a></li>
-<li><a href="#saving-the-data">4.12. Saving the data</a></li>
-<li><a href="#encrypting-data-files-code-coming-in-v2-0-code">4.13. Encrypting data files <code>[coming in v2.0]</code></a></li>
-</ul>
-</li>
-<li><a href="#faq">5. FAQ</a></li>
-<li><a href="#command-summary">6. Command Summary</a></li>
+<li><a href="#faq">4. FAQ</a></li>
+<li><a href="#command-summary">5. Command Summary</a></li>
 </ul>
 </div>
 </div>
@@ -134,34 +119,284 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="sect2">
 <h3 id="universal-command"><a class="link" href="#universal-command">3.1. Universal Command</a></h3>
 <div class="sect3">
-<h4 id="view-help"><a class="link" href="#view-help">3.1.1. View help</a></h4>
+<h4 id="view-help-code-help-local-code"><a class="link" href="#view-help-code-help-local-code">3.1.1. View help: <code>-help [local]</code></a></h4>
 <div class="paragraph">
 <p>To view the help menu containing all the universal commands.<br>
 <code>local</code> flag display local commands unique to an application page.<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>help</code></p>
+<code>-help [local]</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="navigate-pages-code-back-times-code-code-forward-times-code"><a class="link" href="#navigate-pages-code-back-times-code-code-forward-times-code">3.1.2. Navigate pages: <code>-back [TIMES]</code>/<code>-forward [TIMES]</code></a></h4>
+<div class="paragraph">
+<p>Navigate between past pages.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>TIMES</code> must be a positive integer.</p>
+</li>
+<li>
+<p>If integer exceeds history, navigate to the next navigable history.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>-back [TIMES]</code>/<code>-forward [TIMES]</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="search-and-display-recipes-code-search-keyword-xx-keyword-code"><a class="link" href="#search-and-display-recipes-code-search-keyword-xx-keyword-code">3.1.3. Search and display recipes: <code>-search KEYWORD&#8230;&#8203; [xx KEYWORD&#8230;&#8203;]</code></a></h4>
+<div class="paragraph">
+<p>Show recipes related to the keyword(s).
+Keywords include but not limited to cuisines (Indian, Japanese),
+dietary types (vegan, Keto),
+ingredients (egg, broccoli),
+preparation time (quick, 30mins)
+and difficulty (easy, simple, challenging).<br>
+Recipes with keyword(s) after <code>xx</code> are restricted.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>KEYWORD</code> is case insensitive.</p>
+</li>
+<li>
+<p>The order of keywords does not matter.</p>
+</li>
+<li>
+<p>However, restrictive keywords must be provided behind <code>xx</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>-search KEYWORD&#8230;&#8203; [xx KEYWORD&#8230;&#8203;]</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="display-recipe-suggestion-code-suggest-code"><a class="link" href="#display-recipe-suggestion-code-suggest-code">3.1.4. Display recipe suggestion: <code>-suggest</code></a></h4>
+<div class="paragraph">
+<p>Display system suggestions based on user&#8217;s past navigation history
+and favorites.<br>
+Format:<br>
+<code>-suggest</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="display-new-recipe-code-surprise-code"><a class="link" href="#display-new-recipe-code-surprise-code">3.1.5. Display new recipe: <code>-surprise</code></a></h4>
+<div class="paragraph">
+<p>Display a random recipe for the user who wants to try something bold
+and new but has no idea what they want.<br>
+Format:<br>
+<code>-suggest</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="display-favorites-code-favorite-code"><a class="link" href="#display-favorites-code-favorite-code">3.1.6. Display favorites: <code>-favorite</code></a></h4>
+<div class="paragraph">
+<p>List all the bookmarked favorite recipes of the user.<br>
+Format:<br>
+<code>-favorite</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="display-ingredient-manager-code-ingredientmanager-code"><a class="link" href="#display-ingredient-manager-code-ingredientmanager-code">3.1.7. Display ingredient manager: <code>-ingredientmanager</code></a></h4>
+<div class="paragraph">
+<p>Ingredient manager is an inventory manager that helps stock
+tracking of existing ingredient available at home.<br>
+Format:<br>
+<code>-ingredientmanager</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="display-meal-planner-code-plannerlist-code"><a class="link" href="#display-meal-planner-code-plannerlist-code">3.1.8. Display meal planner: <code>-plannerlist</code></a></h4>
+<div class="paragraph">
+<p>Display current meal plan. shows the planned meals for breakfast,
+lunch and dinner. Displays the calorie count for each meal, as well as the total calorie count
+ for the entire day.<br>
+Format:<br>
+<code>-plannerlist</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-recipe-code-add-n-name-t-time-i-instruction-t-tag-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-t-time-i-instruction-t-tag-end-code">3.1.9. Add a recipe: <code>-add n/NAME t/TIME i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></a></h4>
+<div class="paragraph">
+<p>Add new recipe.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Multi-line command that ends with <code>end</code>.</p>
+</li>
+<li>
+<p><code>i</code> is to be replaced with running numbers for listing of instructions in order.</p>
+</li>
+<li>
+<p>Ingredients can be included in each instruction via <code>#INGREDIENT, QUANTITY</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>-add n/NAME t/TIME i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.10. Exit application: <code>-exit</code></a></h4>
+<div class="paragraph">
+<p>Format:<br>
+<code>-exit</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="recipes-favorite-list-command"><a class="link" href="#recipes-favorite-list-command">3.2. Recipes/Favorite List Command</a></h3>
-
+<div class="sect3">
+<h4 id="display-recipe-details-code-index-code"><a class="link" href="#display-recipe-details-code-index-code">3.2.1. Display recipe details: <code>INDEX</code></a></h4>
+<div class="paragraph">
+<p>View a recipe and its details from the list.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> should be as displayed in the list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="activate-cook-mode-code-cook-index-code"><a class="link" href="#activate-cook-mode-code-cook-index-code">3.2.2. Activate cook-mode: <code>cook INDEX</code></a></h4>
+<div class="paragraph">
+<p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>INDEX</code> should be as displayed in the list.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>cook INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="recipe-details-command"><a class="link" href="#recipe-details-command">3.3. Recipe Details Command</a></h3>
-
+<div class="sect3">
+<h4 id="add-recipe-to-favourite-code-favourite-code"><a class="link" href="#add-recipe-to-favourite-code-favourite-code">3.3.1. Add recipe to favourite: <code>favourite</code></a></h4>
+<div class="paragraph">
+<p>Add a recipe in their favourites list.<br>
+Format:<br>
+<code>favourite</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-meal-plan-code-plan-day-time-code"><a class="link" href="#add-a-meal-plan-code-plan-day-time-code">3.3.2. Add a meal plan: <code>plan DAY TIME</code></a></h4>
+<div class="paragraph">
+<p>Add a specified recipe to meal plan.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The range of acceptable values for <code>TIME</code> (<strong>breakfast, lunch, dinner</strong>).</p>
+</li>
+<li>
+<p>The range of acceptable values for <code>DAY</code> (<strong>mon, tue, wed, thu, fri, sat, sun</strong>).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>plan DAY TIME</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="active-cook-mode-code-cook-code"><a class="link" href="#active-cook-mode-code-cook-code">3.3.3. Active cook-mode: <code>cook</code></a></h4>
+<div class="paragraph">
+<p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br>
+Format:<br>
+<code>cook</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-to-review-coming-in-v2-0-code-review-comment-rating-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-comment-rating-code">3.3.4. Add to review [coming in V2.0]: <code>review [Comment] RATING</code></a></h4>
+<div class="paragraph">
+<p>Add comment and rating to current recipe.<br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Local command on recipe page.</p>
+</li>
+<li>
+<p>Rating must be between <strong>1 to 5</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>review [Comment] RATING</code></p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="ingredient-manager-command"><a class="link" href="#ingredient-manager-command">3.4. Ingredient Manager Command</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="add-an-ingredient"><a class="link" href="#add-an-ingredient">3.5. Add an ingredient</a></h3>
+<div class="sect3">
+<h4 id="add-an-ingredient"><a class="link" href="#add-an-ingredient">3.4.1. Add an ingredient</a></h4>
 <div class="paragraph">
 <p>Adds an ingredient to the ingredient manager.
-Format: 'add NAME AMOUNT DATE'</p>
+Format:<br>
+'add NAME AMOUNT DATE'</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -178,35 +413,42 @@ Format: 'add NAME AMOUNT DATE'</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== List all ingredients</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="list-all-ingredients"><a class="link" href="#list-all-ingredients">3.5. List all ingredients</a></h3>
 <div class="paragraph">
 <p>Shows a list of user’s ingredients.
-Format: List</p>
+Format:<br>
+<code>List</code></p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="edit-ingredient-info"><a class="link" href="#edit-ingredient-info">3.6. Edit ingredient info</a></h3>
 <div class="paragraph">
-<p>=== Edit ingredient info</p>
+<p>Edit an existing ingredient in the ingredient manager.<br>
+Format:<br>
+<code>Edit NAME FIELD_NAME NEW_INFO (FIELD_NAME NEW_INFO)… end</code></p>
 </div>
-<div class="paragraph">
-<p>Edit an existing ingredient in the ingredient manager.
-Format: Edit NAME FIELD_NAME NEW_INFO (FIELD_NAME NEW_INFO)… end</p>
-</div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>_ can be used to define compound ingredient name e.g. Spring_Onion</p>
+<p>Can be used to define compound ingredient name e.g. Spring_Onion</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="search-ingredient"><a class="link" href="#search-ingredient">3.6. Search ingredient</a></h3>
+</div>
+<div class="sect3">
+<h4 id="search-ingredient"><a class="link" href="#search-ingredient">3.6.1. Search ingredient</a></h4>
 <div class="paragraph">
 <p>Find ingredients whose name contains any of the given keywords.
-Format: find KEYWORD…</p>
+Format:<br>
+<code>find KEYWORD…</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -223,22 +465,27 @@ Format: find KEYWORD…</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Delete ingredient</p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="delete-ingredient"><a class="link" href="#delete-ingredient">3.7. Delete ingredient</a></h3>
 <div class="paragraph">
 <p>Delete ingredient(s) added by user.
-Format: delete NAME</p>
+Format:<br>
+<code>delete NAME</code></p>
 </div>
-<div class="paragraph">
-<p>=== Search recipes based on ingredients manager availability</p>
 </div>
+<div class="sect2">
+<h3 id="search-recipes-based-on-ingredients-manager-availability"><a class="link" href="#search-recipes-based-on-ingredients-manager-availability">3.8. Search recipes based on ingredients manager availability</a></h3>
 <div class="paragraph">
 <p>Search for recipes based on ingredients stored in manager. User can add additional parameters to widen search result.
-Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
+Format:<br>
+<code>Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</code></p>
 </div>
-</div>
-</div>
+<div class="sidebarblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
@@ -253,8 +500,10 @@ Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
 </ul>
 </div>
 </div>
+</div>
+</div>
 <div class="sect2">
-<h3 id="meal-planner-command"><a class="link" href="#meal-planner-command">3.7. Meal Planner Command</a></h3>
+<h3 id="meal-planner-command"><a class="link" href="#meal-planner-command">3.9. Meal Planner Command</a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -273,7 +522,7 @@ Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-full-meal-plan-code-view-plan-code"><a class="link" href="#view-full-meal-plan-code-view-plan-code">3.7.1. View full meal plan: <code>view plan</code></a></h4>
+<h4 id="view-full-meal-plan-code-view-plan-code"><a class="link" href="#view-full-meal-plan-code-view-plan-code">3.9.1. View full meal plan: <code>view plan</code></a></h4>
 <div class="paragraph">
 <p>Displays the current full meal plan for the week</p>
 </div>
@@ -282,7 +531,7 @@ Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-recipes-code-add-code"><a class="link" href="#add-recipes-code-add-code">3.7.2. Add recipes: <code>add</code></a></h4>
+<h4 id="add-recipes-code-add-code"><a class="link" href="#add-recipes-code-add-code">3.9.2. Add recipes: <code>add</code></a></h4>
 <div class="paragraph">
 <p>After listing all available recipes with <code>list</code>, adds the recipe at the specified index to the specified meal slot of the meal planner</p>
 </div>
@@ -291,7 +540,7 @@ Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-recipes-code-delete-code"><a class="link" href="#delete-recipes-code-delete-code">3.7.3. Delete recipes: <code>delete</code></a></h4>
+<h4 id="delete-recipes-code-delete-code"><a class="link" href="#delete-recipes-code-delete-code">3.9.3. Delete recipes: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>After displaying the meal planner, deletes the recipe at the specified meal slot</p>
 </div>
@@ -301,354 +550,60 @@ Format: Select [NUMBER_OF_SERVINGS] KEYWORD… optional KEYWORD… end</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cook-mode-command"><a class="link" href="#cook-mode-command">3.8. Cook-Mode Command</a></h3>
-
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="old-to-be-deleted-see-examples-here"><a class="link" href="#old-to-be-deleted-see-examples-here">4. OLD TO BE DELETED (See examples here)</a></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="adding-a-person-code-add-code"><a class="link" href="#adding-a-person-code-add-code">4.1. Adding a person: <code>add</code></a></h3>
+<h3 id="cook-mode-command"><a class="link" href="#cook-mode-command">3.10. Cook-Mode Command</a></h3>
+<div class="sect3">
+<h4 id="next-instruction"><a class="link" href="#next-instruction">3.10.1. Next Instruction</a></h4>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]&#8230;&#8203;</code></p>
+<p>Proceed to next instruction.<br>
+Format:<br>
+Hit <code>Enter</code> key</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can have any number of tags (including 0)
-</td>
-</tr>
-</table>
 </div>
+<div class="sect3">
+<h4 id="previous-instruction-code-b-code-code-back-code"><a class="link" href="#previous-instruction-code-b-code-code-back-code">3.10.2. Previous Instruction: <code>b</code>/<code>back</code></a></h4>
 <div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal</code></p>
-</li>
-</ul>
+<p>Revert to previous instruction.<br>
+Format:<br>
+<code>b</code>/<code>back</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="listing-all-persons-code-list-code"><a class="link" href="#listing-all-persons-code-list-code">4.2. Listing all persons : <code>list</code></a></h3>
+<div class="sect3">
+<h4 id="start-timer-code-s-code-code-start-code"><a class="link" href="#start-timer-code-s-code-code-start-code">3.10.3. Start timer: <code>s</code>/<code>start</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of all persons in the address book.<br>
-Format: <code>list</code></p>
+<p>Begin countdown timer.<br>
+Format:<br>
+<code>s</code>/<code>start</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="editing-a-person-code-edit-code"><a class="link" href="#editing-a-person-code-edit-code">4.3. Editing a person : <code>edit</code></a></h3>
+<div class="sect3">
+<h4 id="pause-timer-code-p-code-code-pause-code"><a class="link" href="#pause-timer-code-p-code-code-pause-code">3.10.4. Pause timer: <code>p</code>/<code>pause</code></a></h4>
 <div class="paragraph">
-<p>Edits an existing person in the address book.<br>
-Format: <code>edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the person at the specified <code>INDEX</code>. The index refers to the index number shown in the displayed person list. The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
-</ul>
+<p>Pause countdown timer.<br>
+Format:<br>
+<code>p</code>/<code>pause</code></p>
 </div>
 </div>
-</div>
+<div class="sect3">
+<h4 id="end-reset-timer-code-e-code-code-end-code"><a class="link" href="#end-reset-timer-code-e-code-code-end-code">3.10.5. End/Reset timer: <code>e</code>/<code>end</code></a></h4>
 <div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all existing tags.</p>
-</li>
-</ul>
+<p>End/Reset countdown timer.<br>
+Format:<br>
+<code>e</code>/<code>end</code></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="locating-persons-by-name-code-find-code"><a class="link" href="#locating-persons-by-name-code-find-code">4.4. Locating persons by name: <code>find</code></a></h3>
+<div class="sect3">
+<h4 id="end-cook-mode-code-end-code"><a class="link" href="#end-cook-mode-code-end-code">3.10.6. End cook-mode: <code>end</code></a></h4>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br>
-Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+<p>To end step-by-step instruction of cook-mode.<br>
+Format:<br>
+<code>end</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
-</li>
-<li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">4.5. Deleting a person : <code>delete</code></a></h3>
-<div class="paragraph">
-<p>Deletes the specified person from the address book.<br>
-Format: <code>delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>delete 2</code><br>
-Deletes the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>delete 1</code><br>
-Deletes the 1st person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="selecting-a-person-code-select-code"><a class="link" href="#selecting-a-person-code-select-code">4.6. Selecting a person : <code>select</code></a></h3>
-<div class="paragraph">
-<p>Selects the person identified by the index number used in the displayed person list.<br>
-Format: <code>select INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Selects the person and loads the Google search page the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>list</code><br>
-<code>select 2</code><br>
-Selects the 2nd person in the address book.</p>
-</li>
-<li>
-<p><code>find Betsy</code><br>
-<code>select 1</code><br>
-Selects the 1st person in the results of the <code>find</code> command.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-entered-commands-code-history-code"><a class="link" href="#listing-entered-commands-code-history-code">4.7. Listing entered commands : <code>history</code></a></h3>
-<div class="paragraph">
-<p>Lists all the commands that you have entered in reverse chronological order.<br>
-Format: <code>history</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Pressing the <kbd>&uarr;</kbd> and <kbd>&darr;</kbd> arrows will display the previous and next input respectively in the command box.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undoing-previous-command-code-undo-code"><a class="link" href="#undoing-previous-command-code-undo-code">4.8. Undoing previous command : <code>undo</code></a></h3>
-<div class="paragraph">
-<p>Restores the address book to the state before the previous <em>undoable</em> command was executed.<br>
-Format: <code>undo</code></p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Undoable commands: those commands that modify the address book&#8217;s content (<code>add</code>, <code>delete</code>, <code>edit</code> and <code>clear</code>).</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>list</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>select 1</code><br>
-<code>list</code><br>
-<code>undo</code><br>
-The <code>undo</code> command fails as there are no undoable commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="redoing-the-previously-undone-command-code-redo-code"><a class="link" href="#redoing-the-previously-undone-command-code-redo-code">4.9. Redoing the previously undone command : <code>redo</code></a></h3>
-<div class="paragraph">
-<p>Reverses the most recent <code>undo</code> command.<br>
-Format: <code>redo</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete 1</code><br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br></p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>redo</code><br>
-The <code>redo</code> command fails as there are no <code>undo</code> commands executed previously.</p>
-</li>
-<li>
-<p><code>delete 1</code><br>
-<code>clear</code><br>
-<code>undo</code> (reverses the <code>clear</code> command)<br>
-<code>undo</code> (reverses the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>delete 1</code> command)<br>
-<code>redo</code> (reapplies the <code>clear</code> command)<br></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.10. Clearing all entries : <code>clear</code></a></h3>
-<div class="paragraph">
-<p>Clears all entries from the address book.<br>
-Format: <code>clear</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">4.11. Exiting the program : <code>exit</code></a></h3>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-the-data"><a class="link" href="#saving-the-data">4.12. Saving the data</a></h3>
-<div class="paragraph">
-<p>Address book data are saved in the hard disk automatically after any command that changes the data.<br>
-There is no need to save manually.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="encrypting-data-files-code-coming-in-v2-0-code"><a class="link" href="#encrypting-data-files-code-coming-in-v2-0-code">4.13. Encrypting data files <code>[coming in v2.0]</code></a></h3>
-<div class="paragraph">
-<p><em>{explain how the user can enable/disable data encryption}</em></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="faq"><a class="link" href="#faq">5. FAQ</a></h2>
+<h2 id="faq"><a class="link" href="#faq">4. FAQ</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
@@ -657,7 +612,7 @@ There is no need to save manually.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="command-summary"><a class="link" href="#command-summary">6. Command Summary</a></h2>
+<h2 id="command-summary"><a class="link" href="#command-summary">5. Command Summary</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -702,4 +657,4 @@ e.g.<code>select 2</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-18 08:41:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-19 04:10:11 UTC</div></div></div></body></html>
