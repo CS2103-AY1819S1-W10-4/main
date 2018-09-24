@@ -23,6 +23,7 @@
 <li><a href="#search-recipes-based-on-ingredients-manager-availability">3.8. Search recipes based on ingredients manager availability</a></li>
 <li><a href="#meal-planner-command">3.9. Meal Planner Command</a></li>
 <li><a href="#cook-mode-command">3.10. Cook-Mode Command</a></li>
+<li><a href="#health-planner-command">3.11. Health-planner Command</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -600,6 +601,103 @@ Format:<br>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="health-planner-command"><a class="link" href="#health-planner-command">3.11. Health-planner Command</a></h3>
+<div class="sect3">
+<h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.11.1. Add plan: <code>add</code></a></h4>
+<div class="paragraph">
+<p>Adds a health plan under the user.<br>
+Required parameters are GOAL and DURATION<br>
+Format:<br>
+<code>add GOAL DURATION</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>GOAL specifies a string input of "GAIN", "LOSS" or "MAINTAIN"</p>
+</li>
+<li>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-plan-code-delete-code"><a class="link" href="#delete-plan-code-delete-code">3.11.2. Delete plan: <code>delete</code></a></h4>
+<div class="paragraph">
+<p>After listing the list of health plans by user.<br>
+Deletes the plan selected by user.<br>
+Format:<br>
+<code>delete INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">3.11.3. Edit plan: <code>edit</code></a></h4>
+<div class="paragraph">
+<p>After listing the list of health plans by User.<br>
+Prompts for edit on the plan selected by the user.<br>
+Format :<br>
+<code>edit INDEX GOAL DURATION</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX specifies an integer input for entry to edit</p>
+</li>
+<li>
+<p>GOAL specifies a string input of "GAIN", "LOSS" or "MAINTAIN"</p>
+</li>
+<li>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-current-intake-item-code-addintake-code"><a class="link" href="#add-current-intake-item-code-addintake-code">3.11.4. Add current intake item: <code>addIntake</code></a></h4>
+<div class="paragraph">
+<p>After being shown the recipe list by the system<br>
+User selects to add to intake List<br>
+Format:<br>
+<code>addIntake RECIPE_INDEX</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-current-intake-item-code-removeintake-code"><a class="link" href="#remove-current-intake-item-code-removeintake-code">3.11.5. Remove current intake item: <code>removeIntake</code></a></h4>
+<div class="paragraph">
+<p>After being shown the list of recipe from intake list<br>
+User selects recipe to remove<br>
+Format:<br>
+<code>removeIntake INDEX_OF_ITEM</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-overall-intake-code-viewintake-code"><a class="link" href="#view-overall-intake-code-viewintake-code">3.11.6. View overall intake : <code>viewIntake</code></a></h4>
+<div class="paragraph">
+<p>After shown the list of Recipes by the system<br>
+User enters command to view overall intake<br>
+Format:<br>
+<code>viewIntake</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="compare-overall-intake-against-code-compareintake-code"><a class="link" href="#compare-overall-intake-against-code-compareintake-code">3.11.7. Compare overall intake against : <code>compareIntake</code></a></h4>
+<div class="paragraph">
+<p>After being shown list of health plans<br>
+User enters command to compare against set health plan.<br>
+Format:<br>
+<code>compareIntake PLAN_ID</code></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -657,4 +755,4 @@ e.g.<code>select 2</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-21 10:40:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-24 10:31:14 UTC</div></div></div></body></html>
