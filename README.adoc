@@ -1,4 +1,6 @@
 = Sous Chef
+
+image:https://api.codacy.com/project/badge/Grade/26245a667cd349b0b82ed0fb3d4311d3[link="https://app.codacy.com/app/junrong09/main?utm_source=github.com&utm_medium=referral&utm_content=CS2103-AY1819S1-W10-4/main&utm_campaign=Badge_Grade_Settings"]
 :imagesDir: docs/images/
 ifdef::env-github,env-browser[:relfileprefix: docs/]
 
