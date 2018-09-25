@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>AddressBook Level 4 - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Sous Chef - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>AddressBook Level 4 - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="header"><h1>Sous Chef - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team W10-4</code>      Since: <code>SEP 2018</code>      Licence: <code>MIT</code></p>
@@ -31,7 +31,15 @@
 <h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>AddressBook Level 4 (AB4) is for those who <strong>prefer to use a desktop app for managing contacts</strong>. More importantly, AB4 is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB4 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> to get started. Enjoy!</p>
+<p>Souschef is your <strong>smart cooking sidekick</strong>, offering personalised guidance every step of the way.
+From recipe recommendations just for you, to meal planning and inventory management,
+Sous Chef has everything you need to improve life in the kitchen.
+The application works with a <strong>Command Line Interface (CLI) for speedy</strong>
+provision of recipe choices, management of your cooking plan while guiding you through
+the preparation process.
+With a few commands, this kitchen helper will be
+there to keep cooking as simple as ABC. Get started with <a href="#quick-start">Section 2, &#8220;Quick Start&#8221;</a> and
+experience the fun from cooking meals.</p>
 </div>
 </div>
 </div>
@@ -44,10 +52,10 @@
 <p>Ensure you have Java version <code>9</code> or later installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>addressbook.jar</code> <a href="https://github.com/se-edu/addressbook-level4/releases">here</a>.</p>
+<p>Download the latest <code>souschef.jar</code> <a href="https://github.com/CS2103-AY1819S1-W10-4/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -66,13 +74,16 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>-surprise</code></strong> : displays random recipe</p>
+<p><strong><code>-search KEYWORD&#8230;&#8203; [xx KEYWORD&#8230;&#8203;]</code></strong> : search for recipes related and excluded from the keywords</p>
 </li>
 <li>
-<p><strong><code>2</code></strong>: displays the details of the recipe at index 2</p>
+<p><strong><code>-favorite</code></strong> : display personal favorited recipes</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>-plannerlist</code></strong> : display personal meal schedule</p>
+</li>
+<li>
+<p><strong><code>-exit</code></strong> : exits the app</p>
 </li>
 </ul>
 </div>
@@ -98,10 +109,10 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Chicken Rice</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/Chicken Rice t/halal</code> or as <code>n/Chicken Rice</code>.</p>
+<p>Items in square brackets are optional e.g <code>-search KEYWORD&#8230;&#8203; [xx KEYWORD&#8230;&#8203;]</code> can be used as <code>-search Japanese xx Dairy</code> or as <code>-search Japanese</code>.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/boiled</code>, <code>t/boiled t/vegetarian</code>, etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/Japanese</code>, <code>t/Halal t/Seafood</code> etc.</p>
 </li>
 </ul>
 </div>
@@ -223,7 +234,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-a-recipe-code-add-n-name-t-time-i-instruction-t-tag-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-t-time-i-instruction-t-tag-end-code">3.1.9. Add a recipe: <code>-add n/NAME t/TIME i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></a></h4>
+<h4 id="add-a-recipe-code-add-n-name-t-time-d-difficulty-i-instruction-t-tag-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-t-time-d-difficulty-i-instruction-t-tag-end-code">3.1.9. Add a recipe: <code>-add n/NAME t/TIME d/DIFFICULTY i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></a></h4>
 <div class="paragraph">
 <p>Add new recipe.<br></p>
 </div>
@@ -235,10 +246,16 @@ Format:<br>
 <p>Multi-line command that ends with <code>end</code>.</p>
 </li>
 <li>
+<p>TIME should come with a h or/and min postfix, e.g. 1h15min or 35min.</p>
+</li>
+<li>
+<p>DIFFICULTY should range from 1 to 5.</p>
+</li>
+<li>
 <p><code>i</code> is to be replaced with running numbers for listing of instructions in order.</p>
 </li>
 <li>
-<p>Ingredients can be included in each instruction via <code>#INGREDIENT, QUANTITY</code>.</p>
+<p>Ingredients can be included in each instruction via <code>#INGREDIENT, QUANTITY UNIT_OF_MEASUREMENT</code>.</p>
 </li>
 </ul>
 </div>
@@ -246,7 +263,7 @@ Format:<br>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>-add n/NAME t/TIME i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></p>
+<code>-add n/NAME t/TIME d/DIFFICULTY i/INSTRUCTION&#8230;&#8203; [t/TAG&#8230;&#8203;] end</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -524,7 +541,7 @@ Format:<br>
 <div class="paragraph">
 <p>Proceed to next instruction.<br>
 Format:<br>
-Hit <code>Enter</code> key</p>
+Hit <kbd>Enter</kbd> key</p>
 </div>
 </div>
 <div class="sect3">
@@ -552,11 +569,11 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="end-reset-timer-code-e-code"><a class="link" href="#end-reset-timer-code-e-code">3.6.5. End/Reset timer: <code>e</code></a></h4>
+<h4 id="reset-timer-code-r-code"><a class="link" href="#reset-timer-code-r-code">3.6.5. Reset timer: <code>r</code></a></h4>
 <div class="paragraph">
 <p>End/Reset countdown timer.<br>
 Format:<br>
-<code>e</code>/<code>end</code></p>
+<code>r</code>/<code>reset</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -672,7 +689,7 @@ Format:<br>
 <div class="sectionbody">
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Souschef folder.</p>
 </div>
 </div>
 </div>
@@ -789,7 +806,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Next Instruction: Hit <code>Enter</code> key</p>
+<p>Next Instruction: Hit <kbd>Enter</kbd> key</p>
 </li>
 <li>
 <p>Previous Instruction: <code>b</code></p>
@@ -801,7 +818,7 @@ Format:<br>
 <p>Pause timer: <code>p</code></p>
 </li>
 <li>
-<p>End/Reset timer: <code>e</code></p>
+<p>Reset timer: <code>r</code></p>
 </li>
 <li>
 <p>End cook-mode: <code>end</code></p>
@@ -809,4 +826,4 @@ Format:<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-25 04:10:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-25 14:00:42 UTC</div></div></div></body></html>
