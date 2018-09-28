@@ -19,7 +19,10 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.UniqueRecipeList;
 import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.address.testutil.RecipeBuilder;
 
@@ -28,7 +31,7 @@ public class AddressBookTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    private final AddressBook addressBook = new AddressBook();
+    private final AppContent addressBook = new AppContent();
 
     @Test
     public void constructor() {
@@ -43,7 +46,7 @@ public class AddressBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
+        AppContent newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
@@ -54,7 +57,7 @@ public class AddressBookTest {
         Recipe editedAlice = new RecipeBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Recipe> newRecipes = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newRecipes);
+        AppContentStub newData = new AppContentStub(newRecipes);
 
         thrown.expect(DuplicateRecipeException.class);
         addressBook.resetData(newData);
@@ -92,18 +95,28 @@ public class AddressBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose recipes list can violate interface constraints.
+     * A stub ReadOnlyAppContent whose recipes list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class AppContentStub implements ReadOnlyAppContent {
         private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
+        private final ObservableList<UniqueIngredient> dictionary = FXCollections.observableArrayList();
+        private final ObservableList<Ingredient> inventory = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Recipe> recipes) {
+        AppContentStub(Collection<Recipe> recipes) {
             this.recipes.setAll(recipes);
         }
 
         @Override
         public ObservableList<Recipe> getRecipeList() {
             return recipes;
+        }
+        @Override
+        public ObservableList<UniqueIngredient> getDictionary() {
+            return dictionary;
+        }
+        @Override
+        public ObservableList<Ingredient> getInventory() {
+            return inventory;
         }
     }
 

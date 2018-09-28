@@ -11,8 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.commons.events.model.AppContentChangedEvent;
 import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -21,86 +22,98 @@ import seedu.address.model.recipe.Recipe;
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedAddressBook versionedAddressBook;
+    private final VersionedAppContent versionedAppContent;
     private final FilteredList<Recipe> filteredRecipes;
-    private final FilteredList<Ingredient> filteredIngredients;
+    private final FilteredList<UniqueIngredient> filteredDictionary;
+    private final FilteredList<Ingredient> filteredInventory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAppContent addressBook, UserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        versionedAddressBook = new VersionedAddressBook(addressBook);
-        filteredRecipes = new FilteredList<>(versionedAddressBook.getRecipeList());
-        filteredIngredients = new FilteredList<>(versionedAppContent.getIngredientList());
+        versionedAppContent = new VersionedAppContent(addressBook);
+        filteredRecipes = new FilteredList<>(versionedAppContent.getRecipeList());
+        filteredDictionary = new FilteredList<>(versionedAppContent.getDictionary());
+        filteredInventory = new FilteredList<>(versionedAppContent.getInventory());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AppContent(), new UserPrefs());
     }
 
     @Override
-    public void resetData(ReadOnlyAddressBook newData) {
-        versionedAddressBook.resetData(newData);
-        indicateAddressBookChanged();
+    public void resetData(ReadOnlyAppContent newData) {
+        versionedAppContent.resetData(newData);
+        indicateAppContentChanged();
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return versionedAddressBook;
+    public ReadOnlyAppContent getAppContent() {
+        return versionedAppContent;
     }
 
     /** Raises an event to indicate the model has changed */
-    private void indicateAddressBookChanged() {
-        raise(new AddressBookChangedEvent(versionedAddressBook));
+    private void indicateAppContentChanged() {
+        raise(new AppContentChangedEvent(versionedAppContent));
     }
 
     @Override
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
-        return versionedAddressBook.hasRecipe(recipe);
+        return versionedAppContent.hasRecipe(recipe);
     }
 
     @Override
     public void deleteRecipe(Recipe target) {
-        versionedAddressBook.removeRecipe(target);
-        indicateAddressBookChanged();
+        versionedAppContent.removeRecipe(target);
+        indicateAppContentChanged();
     }
 
     @Override
     public void addRecipe(Recipe recipe) {
-        versionedAddressBook.addRecipe(recipe);
+        versionedAppContent.addRecipe(recipe);
         updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
-        indicateAddressBookChanged();
+        indicateAppContentChanged();
     }
 
     @Override
     public void updateRecipe(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
 
-        versionedAddressBook.updateRecipe(target, editedRecipe);
-        indicateAddressBookChanged();
-    }
-
-    //=========== Filtered Recipe List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Recipe} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Recipe> getFilteredRecipeList() {
-        return FXCollections.unmodifiableObservableList(filteredRecipes);
+        versionedAppContent.updateRecipe(target, editedRecipe);
+        indicateAppContentChanged();
     }
 
     @Override
-    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
-        requireNonNull(predicate);
-        filteredRecipes.setPredicate(predicate);
+    public boolean hasUniqueIngredient(UniqueIngredient uniqueIngredient) {
+        requireNonNull(uniqueIngredient);
+        return versionedAppContent.hasUniqueIngredient(uniqueIngredient);
+    }
+
+    @Override
+    public void deleteUniqueIngredient(UniqueIngredient target) {
+        versionedAppContent.removeUniqueIngredient(target);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void addUniqueIngredient(UniqueIngredient uniqueIngredient) {
+        versionedAppContent.addUniqueIngredient(uniqueIngredient);
+        updateFilteredDictionary(PREDICATE_SHOW_ALL_UNIQUE_INGREDIENTS);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void updateUniqueIngredient(UniqueIngredient target, UniqueIngredient editedUniqueIngredient) {
+        requireAllNonNull(target, editedUniqueIngredient);
+
+        versionedAppContent.updateUniqueIngredient(target, editedUniqueIngredient);
+        indicateAppContentChanged();
     }
 
     @Override
@@ -118,7 +131,7 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public void addIngredient(Ingredient ingredient) {
         versionedAppContent.addIngredient(ingredient);
-        updateFilteredIngredientList(PREDICATE_SHOW_ALL_RECIPES);
+        updateFilteredInventory(PREDICATE_SHOW_ALL_INGREDIENTS);
         indicateAppContentChanged();
     }
 
@@ -130,6 +143,40 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAppContentChanged();
     }
 
+    //=========== Filtered Recipe List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Recipe} backed by the internal list of
+     * {@code versionedAppContent}
+     */
+    @Override
+    public ObservableList<Recipe> getFilteredRecipeList() {
+        return FXCollections.unmodifiableObservableList(filteredRecipes);
+    }
+
+    @Override
+    public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
+        requireNonNull(predicate);
+        filteredRecipes.setPredicate(predicate);
+    }
+
+    //=========== Filtered UniqueIngredient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code UniqueIngredient} backed by the internal list of
+     * {@code versionedAppContent}
+     */
+    @Override
+    public ObservableList<UniqueIngredient> getFilteredDictionary() {
+        return FXCollections.unmodifiableObservableList(filteredDictionary);
+    }
+
+    @Override
+    public void updateFilteredDictionary(Predicate<UniqueIngredient> predicate) {
+        requireNonNull(predicate);
+        filteredDictionary.setPredicate(predicate);
+    }
+
     //=========== Filtered Ingredient List Accessors =============================================================
 
     /**
@@ -137,43 +184,43 @@ public class ModelManager extends ComponentManager implements Model {
      * {@code versionedAppContent}
      */
     @Override
-    public ObservableList<Ingredient> getFilteredIngredientList() {
-        return FXCollections.unmodifiableObservableList(filteredIngredients);
+    public ObservableList<Ingredient> getFilteredInventory() {
+        return FXCollections.unmodifiableObservableList(filteredInventory);
     }
 
     @Override
-    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+    public void updateFilteredInventory(Predicate<Ingredient> predicate) {
         requireNonNull(predicate);
-        filteredIngredients.setPredicate(predicate);
+        filteredInventory.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
 
     @Override
-    public boolean canUndoAddressBook() {
-        return versionedAddressBook.canUndo();
+    public boolean canUndoAppContent() {
+        return versionedAppContent.canUndo();
     }
 
     @Override
-    public boolean canRedoAddressBook() {
-        return versionedAddressBook.canRedo();
+    public boolean canRedoAppContent() {
+        return versionedAppContent.canRedo();
     }
 
     @Override
-    public void undoAddressBook() {
-        versionedAddressBook.undo();
-        indicateAddressBookChanged();
+    public void undoAppContent() {
+        versionedAppContent.undo();
+        indicateAppContentChanged();
     }
 
     @Override
-    public void redoAddressBook() {
-        versionedAddressBook.redo();
-        indicateAddressBookChanged();
+    public void redoAppContent() {
+        versionedAppContent.redo();
+        indicateAppContentChanged();
     }
 
     @Override
-    public void commitAddressBook() {
-        versionedAddressBook.commit();
+    public void commitAppContent() {
+        versionedAppContent.commit();
     }
 
     @Override
@@ -190,9 +237,9 @@ public class ModelManager extends ComponentManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return versionedAddressBook.equals(other.versionedAddressBook)
+        return versionedAppContent.equals(other.versionedAppContent)
                 && filteredRecipes.equals(other.filteredRecipes)
-                && filteredIngredients.equals(other.filteredIngredients);
+                && filteredDictionary.equals(other.filteredDictionary)
+                && filteredInventory.equals(other.filteredInventory);
     }
-
 }

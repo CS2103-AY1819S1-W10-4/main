@@ -16,7 +16,7 @@ import seedu.address.model.recipe.UniqueRecipeList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameRecipe comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class AppContent implements ReadOnlyAppContent {
 
     private final UniqueRecipeList recipes;
     private final UniqueIngredientList dictionary;
@@ -35,12 +35,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         inventory = new Inventory();
     }
 
-    public AddressBook() {}
+    public AppContent() {}
 
     /**
-     * Creates an AddressBook using the recipes in the {@code toBeCopied}
+     * Creates an AppContent using the recipes in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public AppContent(ReadOnlyAppContent toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -62,9 +62,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code AppContent} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyAppContent newData) {
         requireNonNull(newData);
         setRecipes(newData.getRecipeList());
         setDictionary(newData.getDictionary());
@@ -74,7 +74,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// recipe-level operations
 
     /**
-     * Returns true if a recipe with the same identity as {@code recipe} exists in the address book.
+     * Returns true if a recipe with the same identity as {@code recipe} exists in the application content.
      */
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
@@ -82,8 +82,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a recipe to the address book.
-     * The recipe must not already exist in the address book.
+     * Adds a recipe to the application content.
+     * The recipe must not already exist in the application content.
      */
     public void addRecipe(Recipe p) {
         recipes.add(p);
@@ -91,8 +91,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given recipe {@code target} in the list with {@code editedRecipe}.
-     * {@code target} must exist in the address book.
-     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the address book.
+     * {@code target} must exist in the application content.
+     * The recipe identity of {@code editedRecipe} must not be the same as another existing recipe in the application
+     * content.
      */
     public void updateRecipe(Recipe target, Recipe editedRecipe) {
         requireNonNull(editedRecipe);
@@ -101,8 +102,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code AppContent}.
+     * {@code key} must exist in the application content.
      */
     public void removeRecipe(Recipe key) {
         recipes.remove(key);
@@ -206,11 +207,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && recipes.equals(((AddressBook) other).recipes)
-                && dictionary.equals(((AddressBook) other).dictionary)
-                && inventory.equals(((AddressBook) other).inventory)
-        );
+                || (other instanceof AppContent // instanceof handles nulls
+                && recipes.equals(((AppContent) other).recipes))
+                && dictionary.equals(((AppContent) other).dictionary)
+                && inventory.equals(((AppContent) other).inventory);
     }
 
     @Override
