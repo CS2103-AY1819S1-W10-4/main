@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AddressBookChangedEvent;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager extends ComponentManager implements Model {
 
     private final VersionedAddressBook versionedAddressBook;
     private final FilteredList<Recipe> filteredRecipes;
+    private final FilteredList<Ingredient> filteredIngredients;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager extends ComponentManager implements Model {
 
         versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredRecipes = new FilteredList<>(versionedAddressBook.getRecipeList());
+        filteredIngredients = new FilteredList<>(versionedAppContent.getIngredientList());
     }
 
     public ModelManager() {
@@ -100,6 +103,50 @@ public class ModelManager extends ComponentManager implements Model {
         filteredRecipes.setPredicate(predicate);
     }
 
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return versionedAppContent.hasIngredient(ingredient);
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) {
+        versionedAppContent.removeIngredient(target);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        versionedAppContent.addIngredient(ingredient);
+        updateFilteredIngredientList(PREDICATE_SHOW_ALL_RECIPES);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void updateIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireAllNonNull(target, editedIngredient);
+
+        versionedAppContent.updateIngredient(target, editedIngredient);
+        indicateAppContentChanged();
+    }
+
+    //=========== Filtered Ingredient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
+     * {@code versionedAppContent}
+     */
+    @Override
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return FXCollections.unmodifiableObservableList(filteredIngredients);
+    }
+
+    @Override
+    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredIngredients.setPredicate(predicate);
+    }
+
     //=========== Undo/Redo =================================================================================
 
     @Override
@@ -144,7 +191,8 @@ public class ModelManager extends ComponentManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedAddressBook.equals(other.versionedAddressBook)
-                && filteredRecipes.equals(other.filteredRecipes);
+                && filteredRecipes.equals(other.filteredRecipes)
+                && filteredIngredients.equals(other.filteredIngredients);
     }
 
 }

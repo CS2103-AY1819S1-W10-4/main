@@ -87,6 +87,7 @@ public class UniqueIngredientList implements Iterable<UniqueIngredient> {
     /**
      * Replaces the contents of this list with {@code uniqueIngredients}.
      * {@code uniqueIngredients} must not contain duplicate uniqueIngredients.
+     * @param uniqueIngredients
      */
     public void setUniqueIngredients(List<UniqueIngredient> uniqueIngredients) {
         requireAllNonNull(uniqueIngredients);

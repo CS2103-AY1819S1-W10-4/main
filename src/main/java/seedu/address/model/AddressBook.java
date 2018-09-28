@@ -5,6 +5,10 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.Inventory;
+import seedu.address.model.ingredient.UniqueIngredient;
+import seedu.address.model.ingredient.UniqueIngredientList;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.UniqueRecipeList;
 
@@ -15,6 +19,8 @@ import seedu.address.model.recipe.UniqueRecipeList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueRecipeList recipes;
+    private final UniqueIngredientList dictionary;
+    private final Inventory inventory;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +31,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         recipes = new UniqueRecipeList();
+        dictionary = new UniqueIngredientList();
+        inventory = new Inventory();
     }
 
     public AddressBook() {}
@@ -46,14 +54,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes.setRecipes(recipes);
     }
+    public void setDictionary(List<UniqueIngredient> dictionary) {
+        this.dictionary.setUniqueIngredients(dictionary);
+    }
+    public void setInventory(List<Ingredient> inventory) {
+        this.inventory.setIngredients(inventory);
+    }
 
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setRecipes(newData.getRecipeList());
+        setDictionary(newData.getDictionary());
+        setInventory(newData.getInventory());
     }
 
     //// recipe-level operations
@@ -93,6 +108,78 @@ public class AddressBook implements ReadOnlyAddressBook {
         recipes.remove(key);
     }
 
+    //// ingredient-level operations
+
+    /**
+     * Returns true if a ingredient with the same identity as {@code ingredient} exists in the address book.
+     */
+    public boolean hasUniqueIngredient(UniqueIngredient ingredient) {
+        requireNonNull(ingredient);
+        return dictionary.contains(ingredient);
+    }
+
+    /**
+     * Adds a ingredient to the address book.
+     * The ingredient must not already exist in the address book.
+     */
+    public void addUniqueIngredient(UniqueIngredient p) {
+        dictionary.add(p);
+    }
+
+    /**
+     * Replaces the given ingredient {@code target} in the list with {@code editedUniqueIngredient}.
+     * {@code target} must exist in the address book.
+     * The ingredient identity of {@code editedUniqueIngredient} must not be the same as another existing ingredient in the address book.
+     */
+    public void updateUniqueIngredient(UniqueIngredient target, UniqueIngredient editedUniqueIngredient) {
+        requireNonNull(editedUniqueIngredient);
+
+        dictionary.setUniqueIngredient(target, editedUniqueIngredient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeUniqueIngredient(UniqueIngredient key) {
+        dictionary.remove(key);
+    }
+
+    /**
+     * Returns true if a ingredient with the same identity as {@code ingredient} exists in the address book.
+     */
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return inventory.contains(ingredient);
+    }
+
+    /**
+     * Adds a ingredient to the address book.
+     * The ingredient must not already exist in the address book.
+     */
+    public void addIngredient(Ingredient p) {
+        inventory.add(p);
+    }
+
+    /**
+     * Replaces the given ingredient {@code target} in the list with {@code editedIngredient}.
+     * {@code target} must exist in the address book.
+     * The ingredient identity of {@code editedIngredient} must not be the same as another existing ingredient in the address book.
+     */
+    public void updateIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireNonNull(editedIngredient);
+
+        inventory.setIngredient(target, editedIngredient);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeIngredient(Ingredient key) {
+        inventory.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -107,10 +194,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<UniqueIngredient> getDictionary() {
+        return dictionary.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getInventory() {
+        return inventory.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && recipes.equals(((AddressBook) other).recipes));
+                && recipes.equals(((AddressBook) other).recipes)
+                && dictionary.equals(((AddressBook) other).dictionary)
+                && inventory.equals(((AddressBook) other).inventory)
+        );
     }
 
     @Override
