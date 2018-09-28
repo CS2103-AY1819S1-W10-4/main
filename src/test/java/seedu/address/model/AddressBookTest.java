@@ -22,7 +22,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.UniqueRecipeList;
 import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.address.testutil.RecipeBuilder;
 
