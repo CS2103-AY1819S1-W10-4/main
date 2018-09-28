@@ -30,13 +30,13 @@ public class ModelManager extends ComponentManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAppContent addressBook, UserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAppContent appContent, UserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(appContent, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + appContent + " and user prefs " + userPrefs);
 
-        versionedAppContent = new VersionedAppContent(addressBook);
+        versionedAppContent = new VersionedAppContent(appContent);
         filteredRecipes = new FilteredList<>(versionedAppContent.getRecipeList());
         filteredDictionary = new FilteredList<>(versionedAppContent.getDictionary());
         filteredInventory = new FilteredList<>(versionedAppContent.getInventory());
