@@ -130,7 +130,8 @@ public class AppContent implements ReadOnlyAppContent {
     /**
      * Replaces the given ingredient {@code target} in the list with {@code editedUniqueIngredient}.
      * {@code target} must exist in the address book.
-     * The ingredient identity of {@code editedUniqueIngredient} must not be the same as another existing ingredient in the address book.
+     * The ingredient identity of {@code editedUniqueIngredient} must not be the same as another existing ingredient
+     * in the address book.
      */
     public void updateUniqueIngredient(UniqueIngredient target, UniqueIngredient editedUniqueIngredient) {
         requireNonNull(editedUniqueIngredient);
@@ -165,7 +166,8 @@ public class AppContent implements ReadOnlyAppContent {
     /**
      * Replaces the given ingredient {@code target} in the list with {@code editedIngredient}.
      * {@code target} must exist in the address book.
-     * The ingredient identity of {@code editedIngredient} must not be the same as another existing ingredient in the address book.
+     * The ingredient identity of {@code editedIngredient} must not be the same as another existing ingredient
+     * in the address book.
      */
     public void updateIngredient(Ingredient target, Ingredient editedIngredient) {
         requireNonNull(editedIngredient);
