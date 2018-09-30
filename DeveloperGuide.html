@@ -83,8 +83,7 @@
 <li><a href="#ingredient-management-2">D.1. Ingredient Management</a></li>
 <li><a href="#meal-planner-2">D.2. Meal Planner</a></li>
 <li><a href="#user-profiling-2">D.3. User Profiling</a></li>
-<li><a href="#recipes-management-and-cook-mode-2">D.4. Recipes Management and cook-mode</a></li>
-<li><a href="#health-planner-2">D.5. Health planner</a></li>
+<li><a href="#health-planner-2">D.4. Health planner</a></li>
 </ul>
 </li>
 <li><a href="#non-functional-requirements">Appendix E: Non Functional Requirements</a></li>
@@ -2114,7 +2113,52 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="user-profiling"><a class="link" href="#user-profiling">C.3. User Profiling</a></h3>
-
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Priority</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">As a &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I want to &#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">So that I can&#8230;&#8203;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">undecided user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get random recipe suggestions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get new ideas on what to cook</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">get suggestions to cook based on my viewing and cooking history</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">learn to cook similar dishes that I may like</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">favourite a recipe that I really like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">save them into my favourites for easy reference</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove a recipe from my favourites</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove a recipe that I no longer like</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>* * *</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list out all my favourite recipes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view all of my favourite recipes at a glance</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="recipes-management-and-cook-mode"><a class="link" href="#recipes-management-and-cook-mode">C.4. Recipes Management and cook-mode</a></h3>
@@ -2498,10 +2542,64 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="user-profiling-2"><a class="link" href="#user-profiling-2">D.3. User Profiling</a></h3>
-
+<h3 id="use-case-uc31-request-surprise-recipe" class="discrete">Use case: UC31 - Request surprise recipe</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
 </div>
-<div class="sect2">
-<h3 id="recipes-management-and-cook-mode-2"><a class="link" href="#recipes-management-and-cook-mode-2">D.4. Recipes Management and cook-mode</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User requests to wants to cook something new, but has no idea what they want to try.</p>
+</li>
+<li>
+<p>User request for surprise recipe</p>
+</li>
+<li>
+<p>System displays random recipe</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc32-favourite-recipe" class="discrete">Use case: UC32 – Favourite recipe</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User lists a selection of recipes (Based on his search parameters).</p>
+</li>
+<li>
+<p>User selects a recipe to view.</p>
+</li>
+<li>
+<p>User likes that recipe, and adds it to their "Favoure Recipe" list.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="use-case-uc33-suggest-recipe" class="discrete">Use case: UC33 – Suggest recipe</h3>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>User wants to try a new recipe.</p>
+</li>
+<li>
+<p>A list of 3 new recipes (That the user hasn&#8217;t cooked before, and based on their preferences, viewing and cooking history) will be displayed to the user.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+<h3 id="recipes-management-and-cook-mode-2" class="discrete">Recipes Management and cook-mode</h3>
 <h4 id="use-case-uc41-search-for-recipe" class="discrete">Use case: UC41 – Search for Recipe</h4>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2662,7 +2760,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="health-planner-2"><a class="link" href="#health-planner-2">D.5. Health planner</a></h3>
+<h3 id="health-planner-2"><a class="link" href="#health-planner-2">D.4. Health planner</a></h3>
 <h4 id="use-case-uc51-create-plan" class="discrete">Use case: UC51 – Create plan</h4>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -3123,4 +3221,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-28 18:14:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-09-30 14:48:41 UTC</div></div></div></body></html>
