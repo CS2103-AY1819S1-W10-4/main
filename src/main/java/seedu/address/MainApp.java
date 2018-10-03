@@ -47,7 +47,7 @@ public class MainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
-    protected Model model;
+    protected Model[] models;
     protected Config config;
     protected UserPrefs userPrefs;
 
@@ -67,9 +67,9 @@ public class MainApp extends Application {
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        models = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model);
+        logic = new LogicManager(models);
 
         ui = new UiManager(logic, config, userPrefs);
 
