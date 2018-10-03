@@ -5,13 +5,14 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all recipes in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindCommand<T extends UniqueType> extends Command<T> {
 
     public static final String COMMAND_WORD = "find";
 
@@ -20,24 +21,26 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
+    private final Model model;
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Model model, NameContainsKeywordsPredicate predicate) {
+        this.model = model;
         this.predicate = predicate;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(CommandHistory history) {
         requireNonNull(model);
-        model.updateFilteredRecipeList(predicate);
+        model.updateFilteredList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
+                String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicate.equals(((FindCommand<UniqueType>) other).predicate)); // state check
     }
 }

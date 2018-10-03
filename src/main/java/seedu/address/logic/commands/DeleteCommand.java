@@ -9,12 +9,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.Recipe;
 
 /**
  * Deletes a recipe identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand<T extends UniqueType> extends Command<T> {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -25,31 +26,33 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
 
+    private final Model model;
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteCommand(Model model, Index targetIndex) {
+        this.model = model;
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Recipe> lastShownList = model.getFilteredRecipeList();
+        List<T> lastShownList = model.getFilteredList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteRecipe(recipeToDelete);
+        T ToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.delete(ToDelete);
         model.commitAppContent();
-        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_RECIPE_SUCCESS, ToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((DeleteCommand<T>) other).targetIndex)); // state check
     }
 }

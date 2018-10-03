@@ -6,19 +6,19 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 
 /**
  * Lists all the commands entered by user from the start of app launch.
  */
-public class HistoryCommand extends Command {
+public class HistoryCommand extends Command<UniqueType> {
 
     public static final String COMMAND_WORD = "history";
     public static final String MESSAGE_SUCCESS = "Entered commands (from most recent to earliest):\n%1$s";
     public static final String MESSAGE_NO_HISTORY = "You have not yet entered any commands.";
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(CommandHistory history) {
         requireNonNull(history);
         List<String> previousCommands = history.getHistory();
 

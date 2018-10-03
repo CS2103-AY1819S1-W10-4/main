@@ -20,17 +20,17 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Phone;
-import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing recipe in the address book.
  */
-public class EditCommand extends Command {
+public class EditCommand<T extends UniqueType> extends Command<T> {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -47,61 +47,65 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited Recipe: %1$s";
+    public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Edited T: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book.";
 
+    private final Model model;
     private final Index index;
-    private final EditRecipeDescriptor editRecipeDescriptor;
+    private final EditDescriptor editDescriptor;
 
     /**
+     * @param model
      * @param index of the recipe in the filtered recipe list to edit
-     * @param editRecipeDescriptor details to edit the recipe with
+     * @param editDescriptor details to edit the recipe with
      */
-    public EditCommand(Index index, EditRecipeDescriptor editRecipeDescriptor) {
+    public EditCommand(Model model, Index index, EditDescriptor editDescriptor) {
+        requireNonNull(model);
         requireNonNull(index);
-        requireNonNull(editRecipeDescriptor);
+        requireNonNull(editDescriptor);
 
+        this.model = model;
         this.index = index;
-        this.editRecipeDescriptor = new EditRecipeDescriptor(editRecipeDescriptor);
+        this.editDescriptor = new EditDescriptor(editDescriptor);
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
-        List<Recipe> lastShownList = model.getFilteredRecipeList();
+        List<T> lastShownList = model.getFilteredList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToEdit = lastShownList.get(index.getZeroBased());
-        Recipe editedRecipe = createEditedRecipe(recipeToEdit, editRecipeDescriptor);
+        T ToEdit = lastShownList.get(index.getZeroBased());
+        T editedT = createEditedT(ToEdit, editDescriptor);
 
-        if (!recipeToEdit.isSameRecipe(editedRecipe) && model.hasRecipe(editedRecipe)) {
+        if (!ToEdit.isSame(editedT) && model.contain(editedT)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
-        model.updateRecipe(recipeToEdit, editedRecipe);
-        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        model.update(ToEdit, edited);
+        model.updateFilteredList(PREDICATE_SHOW_ALL_RECIPES);
         model.commitAppContent();
-        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedRecipe));
+        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, editedT));
     }
 
     /**
-     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
-     * edited with {@code editRecipeDescriptor}.
+     * Creates and returns a {@code T} with the details of {@code ToEdit}
+     * edited with {@code editDescriptor}.
      */
-    private static Recipe createEditedRecipe(Recipe recipeToEdit, EditRecipeDescriptor editRecipeDescriptor) {
-        assert recipeToEdit != null;
+    private static T createEditedT(T ToEdit, EditDescriptor editDescriptor) {
+        assert ToEdit != null;
 
-        Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        Phone updatedPhone = editRecipeDescriptor.getPhone().orElse(recipeToEdit.getPhone());
-        Email updatedEmail = editRecipeDescriptor.getEmail().orElse(recipeToEdit.getEmail());
-        Address updatedAddress = editRecipeDescriptor.getAddress().orElse(recipeToEdit.getAddress());
-        Set<Tag> updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags());
+        Name updatedName = editDescriptor.getName().orElse(ToEdit.getName());
+        Phone updatedPhone = editDescriptor.getPhone().orElse(ToEdit.getPhone());
+        Email updatedEmail = editDescriptor.getEmail().orElse(ToEdit.getEmail());
+        Address updatedAddress = editDescriptor.getAddress().orElse(ToEdit.getAddress());
+        Set<Tag> updatedTags = editDescriptor.getTags().orElse(ToEdit.getTags());
 
-        return new Recipe(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new T(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -117,29 +121,29 @@ public class EditCommand extends Command {
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditCommand<T> e = (EditCommand<T>) other;
         return index.equals(e.index)
-                && editRecipeDescriptor.equals(e.editRecipeDescriptor);
+                && editDescriptor.equals(e.editDescriptor);
     }
 
     /**
      * Stores the details to edit the recipe with. Each non-empty field value will replace the
      * corresponding field value of the recipe.
      */
-    public static class EditRecipeDescriptor {
+    public static class EditDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditRecipeDescriptor() {}
+        public EditDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditRecipeDescriptor(EditRecipeDescriptor toCopy) {
+        public EditDescriptor(EditDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -211,12 +215,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditRecipeDescriptor)) {
+            if (!(other instanceof EditDescriptor)) {
                 return false;
             }
 
             // state check
-            EditRecipeDescriptor e = (EditRecipeDescriptor) other;
+            EditDescriptor e = (EditDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

@@ -1,13 +1,13 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 
 /**
  * Randomly displays a recipe for the user.
  */
 
-public class SurpriseCommand extends Command {
+public class SurpriseCommand extends Command<UniqueType> {
 
     public static final String COMMAND_WORD = "surprise";
 
@@ -17,7 +17,7 @@ public class SurpriseCommand extends Command {
     public static final String SHOWING_SURPRISE_MESSAGE = "SURPRISE!";
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) {
+    public CommandResult execute(CommandHistory history) {
         return new CommandResult(SHOWING_SURPRISE_MESSAGE);
     }
 }

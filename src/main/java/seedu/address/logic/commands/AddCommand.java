@@ -10,12 +10,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.recipe.Recipe;
+import seedu.address.model.UniqueType;
 
 /**
  * Adds a recipe to the address book.
  */
-public class AddCommand extends Command {
+public class AddCommand<T extends UniqueType> extends Command<T> {
 
     public static final String COMMAND_WORD = "add";
 
@@ -37,25 +37,27 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book";
 
-    private final Recipe toAdd;
+    private final Model model;
+    private final T toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Recipe}
      */
-    public AddCommand(Recipe recipe) {
-        requireNonNull(recipe);
-        toAdd = recipe;
+    public AddCommand(Model model, T toAdd) {
+        requireNonNull(toAdd);
+        this.model = model;
+        this.toAdd = toAdd;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasRecipe(toAdd)) {
+        if (model.contain(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
         }
 
-        model.addRecipe(toAdd);
+        model.add(toAdd);
         model.commitAppContent();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
@@ -64,6 +66,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddCommand<UniqueType>) other).toAdd));
     }
 }
