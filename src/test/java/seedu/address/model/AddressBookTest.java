@@ -19,6 +19,8 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.address.testutil.RecipeBuilder;
@@ -96,6 +98,8 @@ public class AddressBookTest {
      */
     private static class AppContentStub implements ReadOnlyAppContent {
         private final ObservableList<Recipe> recipes = FXCollections.observableArrayList();
+        private final ObservableList<UniqueIngredient> dictionary = FXCollections.observableArrayList();
+        private final ObservableList<Ingredient> inventory = FXCollections.observableArrayList();
 
         AppContentStub(Collection<Recipe> recipes) {
             this.recipes.setAll(recipes);
@@ -104,6 +108,14 @@ public class AddressBookTest {
         @Override
         public ObservableList<Recipe> getRecipeList() {
             return recipes;
+        }
+        @Override
+        public ObservableList<UniqueIngredient> getDictionary() {
+            return dictionary;
+        }
+        @Override
+        public ObservableList<Ingredient> getInventory() {
+            return inventory;
         }
     }
 

@@ -12,28 +12,34 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.events.model.AppContentChangedEvent;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * Represents the in-memory model of the application content data.
+ * Represents the in-memory model of the address book data.
  */
 public class ModelManager extends ComponentManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedAppContent versionedAppContent;
     private final FilteredList<Recipe> filteredRecipes;
+    private final FilteredList<UniqueIngredient> filteredDictionary;
+    private final FilteredList<Ingredient> filteredInventory;
 
     /**
-     * Initializes a ModelManager with the given appContent and userPrefs.
+     * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyAppContent appContent, UserPrefs userPrefs) {
         super();
         requireAllNonNull(appContent, userPrefs);
 
-        logger.fine("Initializing with application content: " + appContent + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + appContent + " and user prefs " + userPrefs);
 
         versionedAppContent = new VersionedAppContent(appContent);
         filteredRecipes = new FilteredList<>(versionedAppContent.getRecipeList());
+        filteredDictionary = new FilteredList<>(versionedAppContent.getDictionary());
+        filteredInventory = new FilteredList<>(versionedAppContent.getInventory());
     }
 
     public ModelManager() {
@@ -83,6 +89,60 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAppContentChanged();
     }
 
+    @Override
+    public boolean hasUniqueIngredient(UniqueIngredient uniqueIngredient) {
+        requireNonNull(uniqueIngredient);
+        return versionedAppContent.hasUniqueIngredient(uniqueIngredient);
+    }
+
+    @Override
+    public void deleteUniqueIngredient(UniqueIngredient target) {
+        versionedAppContent.removeUniqueIngredient(target);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void addUniqueIngredient(UniqueIngredient uniqueIngredient) {
+        versionedAppContent.addUniqueIngredient(uniqueIngredient);
+        updateFilteredDictionary(PREDICATE_SHOW_ALL_UNIQUE_INGREDIENTS);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void updateUniqueIngredient(UniqueIngredient target, UniqueIngredient editedUniqueIngredient) {
+        requireAllNonNull(target, editedUniqueIngredient);
+
+        versionedAppContent.updateUniqueIngredient(target, editedUniqueIngredient);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public boolean hasIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
+        return versionedAppContent.hasIngredient(ingredient);
+    }
+
+    @Override
+    public void deleteIngredient(Ingredient target) {
+        versionedAppContent.removeIngredient(target);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void addIngredient(Ingredient ingredient) {
+        versionedAppContent.addIngredient(ingredient);
+        updateFilteredInventory(PREDICATE_SHOW_ALL_INGREDIENTS);
+        indicateAppContentChanged();
+    }
+
+    @Override
+    public void updateIngredient(Ingredient target, Ingredient editedIngredient) {
+        requireAllNonNull(target, editedIngredient);
+
+        versionedAppContent.updateIngredient(target, editedIngredient);
+        indicateAppContentChanged();
+    }
+
     //=========== Filtered Recipe List Accessors =============================================================
 
     /**
@@ -98,6 +158,40 @@ public class ModelManager extends ComponentManager implements Model {
     public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
         requireNonNull(predicate);
         filteredRecipes.setPredicate(predicate);
+    }
+
+    //=========== Filtered UniqueIngredient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code UniqueIngredient} backed by the internal list of
+     * {@code versionedAppContent}
+     */
+    @Override
+    public ObservableList<UniqueIngredient> getFilteredDictionary() {
+        return FXCollections.unmodifiableObservableList(filteredDictionary);
+    }
+
+    @Override
+    public void updateFilteredDictionary(Predicate<UniqueIngredient> predicate) {
+        requireNonNull(predicate);
+        filteredDictionary.setPredicate(predicate);
+    }
+
+    //=========== Filtered Ingredient List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
+     * {@code versionedAppContent}
+     */
+    @Override
+    public ObservableList<Ingredient> getFilteredInventory() {
+        return FXCollections.unmodifiableObservableList(filteredInventory);
+    }
+
+    @Override
+    public void updateFilteredInventory(Predicate<Ingredient> predicate) {
+        requireNonNull(predicate);
+        filteredInventory.setPredicate(predicate);
     }
 
     //=========== Undo/Redo =================================================================================
@@ -144,7 +238,8 @@ public class ModelManager extends ComponentManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return versionedAppContent.equals(other.versionedAppContent)
-                && filteredRecipes.equals(other.filteredRecipes);
+                && filteredRecipes.equals(other.filteredRecipes)
+                && filteredDictionary.equals(other.filteredDictionary)
+                && filteredInventory.equals(other.filteredInventory);
     }
-
 }

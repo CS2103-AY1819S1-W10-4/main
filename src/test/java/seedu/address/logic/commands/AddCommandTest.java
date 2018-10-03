@@ -19,6 +19,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AppContent;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAppContent;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.UniqueIngredient;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
 
@@ -119,6 +121,46 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasUniqueIngredient(UniqueIngredient uniqueIngredient) {
+            return false;
+        }
+
+        @Override
+        public void deleteUniqueIngredient(UniqueIngredient target) {
+
+        }
+
+        @Override
+        public void addUniqueIngredient(UniqueIngredient uniqueIngredient) {
+
+        }
+
+        @Override
+        public void updateUniqueIngredient(UniqueIngredient target, UniqueIngredient editedUniqueIngredient) {
+
+        }
+
+        @Override
+        public boolean hasIngredient(Ingredient ingredient) {
+            return false;
+        }
+
+        @Override
+        public void deleteIngredient(Ingredient target) {
+
+        }
+
+        @Override
+        public void addIngredient(Ingredient ingredient) {
+
+        }
+
+        @Override
+        public void updateIngredient(Ingredient target, Ingredient editedIngredient) {
+
+        }
+
+        @Override
         public ObservableList<Recipe> getFilteredRecipeList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -126,6 +168,26 @@ public class AddCommandTest {
         @Override
         public void updateFilteredRecipeList(Predicate<Recipe> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<UniqueIngredient> getFilteredDictionary() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredDictionary(Predicate<UniqueIngredient> predicate) {
+
+        }
+
+        @Override
+        public ObservableList<Ingredient> getFilteredInventory() {
+            return null;
+        }
+
+        @Override
+        public void updateFilteredInventory(Predicate<Ingredient> predicate) {
+
         }
 
         @Override
