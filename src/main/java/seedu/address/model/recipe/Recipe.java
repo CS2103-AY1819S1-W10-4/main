@@ -7,13 +7,14 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.UniqueType;
 import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Recipe in the application content.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Recipe {
+public class Recipe extends UniqueType {
 
     // Identity fields
     private final Name name;
@@ -63,15 +64,11 @@ public class Recipe {
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.
+     * @param otherRecipe
      */
-    public boolean isSameRecipe(Recipe otherRecipe) {
-        if (otherRecipe == this) {
-            return true;
-        }
-
-        return otherRecipe != null
-                && otherRecipe.getName().equals(getName())
-                && (otherRecipe.getPhone().equals(getPhone()) || otherRecipe.getEmail().equals(getEmail()));
+    @Override
+    public boolean isSame(UniqueType otherRecipe) {
+       return false;
     }
 
     /**
