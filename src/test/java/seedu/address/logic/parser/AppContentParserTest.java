@@ -27,6 +27,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
@@ -42,8 +43,8 @@ public class AppContentParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Recipe recipe = new RecipeBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(RecipeUtil.getAddCommand(recipe));
-        assertEquals(new AddCommand(recipe), command);
+        AddCommand<UniqueType> command = (AddCommand<UniqueType>) parser.parseCommand(RecipeUtil.getAddCommand(recipe));
+        assertEquals(new AddCommand<UniqueType>(recipe), command);
     }
 
     @Test
@@ -54,18 +55,18 @@ public class AppContentParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+        DeleteCommand<UniqueType> command = (DeleteCommand<UniqueType>) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_RECIPE), command);
+        assertEquals(new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Recipe recipe = new RecipeBuilder().build();
         EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+        EditCommand<U> command = (EditCommand<U>) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_RECIPE.getOneBased() + " " + RecipeUtil.getEditRecipeDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_RECIPE, descriptor), command);
+        assertEquals(new EditCommand<U>(, INDEX_FIRST_RECIPE, descriptor), command);
     }
 
     @Test
@@ -77,9 +78,9 @@ public class AppContentParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
+        FindCommand<UniqueType> command = (FindCommand<UniqueType>) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand<UniqueType>(, new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
@@ -109,9 +110,9 @@ public class AppContentParserTest {
 
     @Test
     public void parseCommand_select() throws Exception {
-        SelectCommand command = (SelectCommand) parser.parseCommand(
+        SelectCommand<UniqueType> command = (SelectCommand<UniqueType>) parser.parseCommand(
                 SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
-        assertEquals(new SelectCommand(INDEX_FIRST_RECIPE), command);
+        assertEquals(new SelectCommand<UniqueType>(, INDEX_FIRST_RECIPE), command);
     }
 
     @Test

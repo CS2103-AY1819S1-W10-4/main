@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AppContent;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAppContent;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
 
@@ -34,7 +35,7 @@ public class AddCommandTest {
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
         thrown.expect(NullPointerException.class);
-        new AddCommand(null);
+        new AddCommand<UniqueType>(null);
     }
 
     @Test
@@ -42,7 +43,7 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Recipe validRecipe = new RecipeBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validRecipe).execute(modelStub, commandHistory);
+        CommandResult commandResult = new AddCommand<UniqueType>(validRecipe).execute(commandHistory);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), commandResult.feedbackToUser);
         assertEquals(Arrays.asList(validRecipe), modelStub.personsAdded);
@@ -52,26 +53,26 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() throws Exception {
         Recipe validRecipe = new RecipeBuilder().build();
-        AddCommand addCommand = new AddCommand(validRecipe);
+        AddCommand<UniqueType> addCommand = new AddCommand<UniqueType>(validRecipe);
         ModelStub modelStub = new ModelStubWithPerson(validRecipe);
 
         thrown.expect(CommandException.class);
         thrown.expectMessage(AddCommand.MESSAGE_DUPLICATE_RECIPE);
-        addCommand.execute(modelStub, commandHistory);
+        addCommand.execute(commandHistory);
     }
 
     @Test
     public void equals() {
         Recipe alice = new RecipeBuilder().withName("Alice").build();
         Recipe bob = new RecipeBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand<UniqueType> addAliceCommand = new AddCommand<UniqueType>(alice);
+        AddCommand<UniqueType> addBobCommand = new AddCommand<UniqueType>(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand<UniqueType> addAliceCommandCopy = new AddCommand<UniqueType>(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -168,7 +169,7 @@ public class AddCommandTest {
         @Override
         public boolean hasRecipe(Recipe recipe) {
             requireNonNull(recipe);
-            return this.recipe.isSameRecipe(recipe);
+            return this.recipe.isSame(recipe);
         }
     }
 
@@ -181,7 +182,7 @@ public class AddCommandTest {
         @Override
         public boolean hasRecipe(Recipe recipe) {
             requireNonNull(recipe);
-            return personsAdded.stream().anyMatch(recipe::isSameRecipe);
+            return personsAdded.stream().anyMatch(recipe::isSame);
         }
 
         @Override

@@ -32,6 +32,7 @@ import static seedu.address.testutil.TypicalRecipes.BOB;
 import org.junit.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.Address;
 import seedu.address.model.recipe.Email;
 import seedu.address.model.recipe.Name;
@@ -49,29 +50,29 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedRecipe));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipe));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedRecipe));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipe));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedRecipe));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipe));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedRecipe));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipe));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedRecipe));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipe));
 
         // multiple tags - all accepted
         Recipe expectedRecipeMultipleTags = new RecipeBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedRecipeMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand<UniqueType>(expectedRecipeMultipleTags));
     }
 
     @Test
@@ -79,7 +80,7 @@ public class AddCommandParserTest {
         // zero tags
         Recipe expectedRecipe = new RecipeBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedRecipe));
+                new AddCommand<UniqueType>(expectedRecipe));
     }
 
     @Test

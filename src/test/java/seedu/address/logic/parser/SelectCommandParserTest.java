@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 import org.junit.Test;
 
 import seedu.address.logic.commands.SelectCommand;
+import seedu.address.model.UniqueType;
 
 /**
  * Test scope: similar to {@code DeleteCommandParserTest}.
@@ -19,7 +20,7 @@ public class SelectCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsSelectCommand() {
-        assertParseSuccess(parser, "1", new SelectCommand(INDEX_FIRST_RECIPE));
+        assertParseSuccess(parser, "1", new SelectCommand<UniqueType>(, INDEX_FIRST_RECIPE));
     }
 
     @Test

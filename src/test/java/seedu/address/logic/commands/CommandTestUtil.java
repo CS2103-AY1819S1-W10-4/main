@@ -17,6 +17,7 @@ import seedu.address.logic.CommandHistory;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AppContent;
 import seedu.address.model.Model;
+import seedu.address.model.UniqueType;
 import seedu.address.model.recipe.NameContainsKeywordsPredicate;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.EditRecipeDescriptorBuilder;
@@ -75,11 +76,11 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel} <br>
      * - the {@code actualCommandHistory} remains unchanged.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage, Model expectedModel) {
+    public static void assertCommandSuccess(Command<UniqueType> command, Model actualModel, CommandHistory actualCommandHistory,
+                                            String expectedMessage, Model expectedModel) {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
-            CommandResult result = command.execute(actualModel, actualCommandHistory);
+            CommandResult result = command.execute(actualCommandHistory);
             assertEquals(expectedMessage, result.feedbackToUser);
             assertEquals(expectedModel, actualModel);
             assertEquals(expectedCommandHistory, actualCommandHistory);
@@ -95,8 +96,8 @@ public class CommandTestUtil {
      * - the address book and the filtered recipe list in the {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
      */
-    public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage) {
+    public static void assertCommandFailure(Command<UniqueType> command, Model actualModel, CommandHistory actualCommandHistory,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AppContent expectedAddressBook = new AppContent(actualModel.getAppContent());
@@ -105,7 +106,7 @@ public class CommandTestUtil {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
         try {
-            command.execute(actualModel, actualCommandHistory);
+            command.execute(actualCommandHistory);
             throw new AssertionError("The expected CommandException was not thrown.");
         } catch (CommandException e) {
             assertEquals(expectedMessage, e.getMessage());

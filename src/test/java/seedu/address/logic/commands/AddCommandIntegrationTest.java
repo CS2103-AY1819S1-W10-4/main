@@ -10,6 +10,7 @@ import org.junit.Test;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UniqueType;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
@@ -35,14 +36,14 @@ public class AddCommandIntegrationTest {
         expectedModel.addRecipe(validRecipe);
         expectedModel.commitAppContent();
 
-        assertCommandSuccess(new AddCommand(validRecipe), model, commandHistory,
+        assertCommandSuccess(new AddCommand<UniqueType>(validRecipe), model, commandHistory,
                 String.format(AddCommand.MESSAGE_SUCCESS, validRecipe), expectedModel);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Recipe recipeInList = model.getAppContent().getRecipeList().get(0);
-        assertCommandFailure(new AddCommand(recipeInList), model, commandHistory,
+        assertCommandFailure(new AddCommand<UniqueType>(recipeInList), model, commandHistory,
                 AddCommand.MESSAGE_DUPLICATE_RECIPE);
     }
 

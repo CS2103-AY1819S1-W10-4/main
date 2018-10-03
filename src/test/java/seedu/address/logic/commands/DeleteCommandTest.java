@@ -17,6 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UniqueType;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.recipe.Recipe;
 
@@ -32,7 +33,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete);
 
@@ -46,7 +47,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_RECIPE);
 
         Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS, recipeToDelete);
 
@@ -76,7 +77,7 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAppContent().getRecipeList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
@@ -84,13 +85,13 @@ public class DeleteCommandTest {
     @Test
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Recipe recipeToDelete = model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
         Model expectedModel = new ModelManager(model.getAppContent(), new UserPrefs());
         expectedModel.deleteRecipe(recipeToDelete);
         expectedModel.commitAppContent();
 
         // delete -> first recipe deleted
-        deleteCommand.execute(model, commandHistory);
+        deleteCommand.execute(commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered recipe list to show all persons
         expectedModel.undoAppContent();
@@ -104,7 +105,7 @@ public class DeleteCommandTest {
     @Test
     public void executeUndoRedo_invalidIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredRecipeList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, outOfBoundIndex);
 
         // execution failed -> address book state not added into model
         assertCommandFailure(deleteCommand, model, commandHistory, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
@@ -123,7 +124,7 @@ public class DeleteCommandTest {
      */
     @Test
     public void executeUndoRedo_validIndexFilteredList_samePersonDeleted() throws Exception {
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteCommand = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
         Model expectedModel = new ModelManager(model.getAppContent(), new UserPrefs());
 
         showPersonAtIndex(model, INDEX_SECOND_RECIPE);
@@ -132,7 +133,7 @@ public class DeleteCommandTest {
         expectedModel.commitAppContent();
 
         // delete -> deletes second recipe in unfiltered recipe list / first recipe in filtered recipe list
-        deleteCommand.execute(model, commandHistory);
+        deleteCommand.execute(commandHistory);
 
         // undo -> reverts addressbook back to previous state and filtered recipe list to show all persons
         expectedModel.undoAppContent();
@@ -146,14 +147,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_RECIPE);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_RECIPE);
+        DeleteCommand<UniqueType> deleteFirstCommand = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteSecondCommand = new DeleteCommand<UniqueType>(, INDEX_SECOND_RECIPE);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_RECIPE);
+        DeleteCommand<UniqueType> deleteFirstCommandCopy = new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

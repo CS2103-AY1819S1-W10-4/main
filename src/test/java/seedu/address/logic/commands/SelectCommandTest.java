@@ -20,6 +20,7 @@ import seedu.address.commons.events.ui.JumpToListRequestEvent;
 import seedu.address.logic.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.UniqueType;
 import seedu.address.model.UserPrefs;
 import seedu.address.ui.testutil.EventsCollectorRule;
 
@@ -72,14 +73,14 @@ public class SelectCommandTest {
 
     @Test
     public void equals() {
-        SelectCommand selectFirstCommand = new SelectCommand(INDEX_FIRST_RECIPE);
-        SelectCommand selectSecondCommand = new SelectCommand(INDEX_SECOND_RECIPE);
+        SelectCommand<UniqueType> selectFirstCommand = new SelectCommand<UniqueType>(, INDEX_FIRST_RECIPE);
+        SelectCommand<UniqueType> selectSecondCommand = new SelectCommand<UniqueType>(, INDEX_SECOND_RECIPE);
 
         // same object -> returns true
         assertTrue(selectFirstCommand.equals(selectFirstCommand));
 
         // same values -> returns true
-        SelectCommand selectFirstCommandCopy = new SelectCommand(INDEX_FIRST_RECIPE);
+        SelectCommand<UniqueType> selectFirstCommandCopy = new SelectCommand<UniqueType>(, INDEX_FIRST_RECIPE);
         assertTrue(selectFirstCommand.equals(selectFirstCommandCopy));
 
         // different types -> returns false
@@ -97,7 +98,7 @@ public class SelectCommandTest {
      * is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index) {
-        SelectCommand selectCommand = new SelectCommand(index);
+        SelectCommand<UniqueType> selectCommand = new SelectCommand<UniqueType>(, index);
         String expectedMessage = String.format(SelectCommand.MESSAGE_SELECT_RECIPE_SUCCESS, index.getOneBased());
 
         assertCommandSuccess(selectCommand, model, commandHistory, expectedMessage, expectedModel);
@@ -111,7 +112,7 @@ public class SelectCommandTest {
      * is thrown with the {@code expectedMessage}.
      */
     private void assertExecutionFailure(Index index, String expectedMessage) {
-        SelectCommand selectCommand = new SelectCommand(index);
+        SelectCommand<UniqueType> selectCommand = new SelectCommand<UniqueType>(, index);
         assertCommandFailure(selectCommand, model, commandHistory, expectedMessage);
         assertTrue(eventsCollectorRule.eventsCollector.isEmpty());
     }
