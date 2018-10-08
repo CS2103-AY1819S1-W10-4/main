@@ -1,12 +1,12 @@
-package seedu.address.model;
+package seedu.souschef.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.model.recipe.UniqueRecipeList;
+import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.recipe.UniqueRecipeList;
 
 /**
  * Wraps all data at the application content level

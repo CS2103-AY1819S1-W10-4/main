@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import seedu.address.model.Model;
-import seedu.address.model.recipe.Recipe;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.recipe.Recipe;
 
 /**
  * Contains helper methods to set up {@code Model} for testing.
@@ -15,12 +15,12 @@ public class ModelHelper {
     private static final Predicate<Recipe> PREDICATE_MATCHING_NO_RECIPES = unused -> false;
 
     /**
-     * Updates {@code model}'s filtered list to display only {@code toDisplay}.
+     * Updates {@code recipeModel}'s filtered list to display only {@code toDisplay}.
      */
     public static void setFilteredList(Model model, List<Recipe> toDisplay) {
         Optional<Predicate<Recipe>> predicate =
                 toDisplay.stream().map(ModelHelper::getPredicateMatching).reduce(Predicate::or);
-        model.updateFilteredRecipeList(predicate.orElse(PREDICATE_MATCHING_NO_RECIPES));
+        model.updateFilteredList(predicate.orElse(PREDICATE_MATCHING_NO_RECIPES));
     }
 
     /**

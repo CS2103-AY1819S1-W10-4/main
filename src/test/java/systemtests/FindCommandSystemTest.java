@@ -1,25 +1,25 @@
 package systemtests;
 
 import static org.junit.Assert.assertFalse;
-import static seedu.address.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.testutil.TypicalRecipes.BENSON;
-import static seedu.address.testutil.TypicalRecipes.CARL;
-import static seedu.address.testutil.TypicalRecipes.DANIEL;
-import static seedu.address.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
+import static seedu.souschef.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
+import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.souschef.testutil.TypicalRecipes.BENSON;
+import static seedu.souschef.testutil.TypicalRecipes.CARL;
+import static seedu.souschef.testutil.TypicalRecipes.DANIEL;
+import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
+import seedu.souschef.commons.core.index.Index;
+import seedu.souschef.logic.commands.DeleteCommand;
+import seedu.souschef.logic.commands.FindCommand;
+import seedu.souschef.logic.commands.RedoCommand;
+import seedu.souschef.logic.commands.UndoCommand;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.tag.Tag;
 
 public class FindCommandSystemTest extends AddressBookSystemTest {
 
@@ -82,7 +82,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: find same recipes in address book after deleting 1 of them -> 1 recipe found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
-        assertFalse(getModel().getAppContent().getRecipeList().contains(BENSON));
+        assertFalse(getModel().getAppContent().getObservableRecipeList().contains(BENSON));
         command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER;
         expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, DANIEL);
@@ -157,7 +157,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
     /**
      * Executes {@code command} and verifies that the command box displays an empty string, the result display
      * box displays {@code Messages#MESSAGE_RECIPES_LISTED_OVERVIEW} with the number of people in the filtered list,
-     * and the model related components equal to {@code expectedModel}.
+     * and the recipeModel related components equal to {@code expectedModel}.
      * These verifications are done by
      * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the status bar remains unchanged, and the command box has the default style class, and the
@@ -166,7 +166,7 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
      */
     private void assertCommandSuccess(String command, Model expectedModel) {
         String expectedResultMessage = String.format(
-                MESSAGE_RECIPES_LISTED_OVERVIEW, expectedModel.getFilteredRecipeList().size());
+                MESSAGE_RECIPES_LISTED_OVERVIEW, expectedModel.getFilteredList().size());
 
         executeCommand(command);
         assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
@@ -176,7 +176,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
 
     /**
      * Executes {@code command} and verifies that the command box displays {@code command}, the result display
-     * box displays {@code expectedResultMessage} and the model related components equal to the current model.
+     * box displays {@code expectedResultMessage} and the recipeModel related components equal
+     * to the current recipeModel.
      * These verifications are done by
      * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
      * Also verifies that the browser url, selected card and status bar remain unchanged, and the command box has the

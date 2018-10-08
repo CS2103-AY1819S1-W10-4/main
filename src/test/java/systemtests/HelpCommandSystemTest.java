@@ -4,18 +4,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.address.ui.testutil.GuiTestAssert.assertListMatching;
+import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
+import static seedu.souschef.ui.testutil.GuiTestAssert.assertListMatching;
 
 import org.junit.Test;
 
 import guitests.GuiRobot;
 import guitests.guihandles.HelpWindowHandle;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.ui.BrowserPanel;
-import seedu.address.ui.StatusBarFooter;
+import seedu.souschef.logic.commands.DeleteCommand;
+import seedu.souschef.logic.commands.HelpCommand;
+import seedu.souschef.logic.commands.SelectCommand;
+import seedu.souschef.ui.BrowserPanel;
+import seedu.souschef.ui.StatusBarFooter;
 
 /**
  * A system test class for the help window, which contains interaction with other UI components.
@@ -65,7 +65,7 @@ public class HelpCommandSystemTest extends AddressBookSystemTest {
         assertCommandBoxShowsDefaultStyle();
         assertNotEquals(HelpCommand.SHOWING_HELP_MESSAGE, getResultDisplay().getText());
         assertNotEquals(BrowserPanel.DEFAULT_PAGE, getBrowserPanel().getLoadedUrl());
-        assertListMatching(getRecipeListPanel(), getModel().getFilteredRecipeList());
+        assertListMatching(getRecipeListPanel(), getModel().getFilteredList());
 
         // assert that the status bar too is updated correctly while the help window is open
         // note: the select command tested above does not update the status bar

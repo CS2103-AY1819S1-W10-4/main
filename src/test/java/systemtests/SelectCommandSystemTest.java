@@ -1,22 +1,22 @@
 package systemtests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.SelectCommand.MESSAGE_SELECT_RECIPE_SUCCESS;
-import static seedu.address.testutil.TestUtil.getLastIndex;
-import static seedu.address.testutil.TestUtil.getMidIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.address.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
+import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
+import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.souschef.logic.commands.SelectCommand.MESSAGE_SELECT_RECIPE_SUCCESS;
+import static seedu.souschef.testutil.TestUtil.getLastIndex;
+import static seedu.souschef.testutil.TestUtil.getMidIndex;
+import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
+import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
+import seedu.souschef.commons.core.index.Index;
+import seedu.souschef.logic.commands.RedoCommand;
+import seedu.souschef.logic.commands.SelectCommand;
+import seedu.souschef.logic.commands.UndoCommand;
+import seedu.souschef.model.Model;
 
 public class SelectCommandSystemTest extends AddressBookSystemTest {
     @Test
@@ -58,12 +58,12 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
          * -> rejected
          */
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAppContent().getRecipeList().size();
+        int invalidIndex = getModel().getAppContent().getObservableRecipeList().size();
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
 
         /* Case: filtered recipe list, select index within bounds of address book and recipe list -> selected */
         Index validIndex = Index.fromOneBased(1);
-        assertTrue(validIndex.getZeroBased() < getModel().getFilteredRecipeList().size());
+        assertTrue(validIndex.getZeroBased() < getModel().getFilteredList().size());
         command = SelectCommand.COMMAND_WORD + " " + validIndex.getOneBased();
         assertCommandSuccess(command, validIndex);
 
@@ -78,7 +78,7 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
 
         /* Case: invalid index (size + 1) -> rejected */
-        invalidIndex = getModel().getFilteredRecipeList().size() + 1;
+        invalidIndex = getModel().getFilteredList().size() + 1;
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
 
         /* Case: invalid arguments (alphabets) -> rejected */

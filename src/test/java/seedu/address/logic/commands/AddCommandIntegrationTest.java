@@ -1,19 +1,19 @@
-package seedu.address.logic.commands;
+package seedu.souschef.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalRecipes.getTypicalAddressBook;
+import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import seedu.address.logic.CommandHistory;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UniqueType;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.RecipeBuilder;
+import seedu.souschef.logic.CommandHistory;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ModelManager;
+import seedu.souschef.model.UniqueType;
+import seedu.souschef.model.UserPrefs;
+import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.testutil.RecipeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

@@ -14,14 +14,14 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AppContent;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAppContent;
-import seedu.address.model.UniqueType;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.RecipeBuilder;
+import seedu.souschef.logic.CommandHistory;
+import seedu.souschef.logic.commands.exceptions.CommandException;
+import seedu.souschef.model.AppContent;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ReadOnlyAppContent;
+import seedu.souschef.model.UniqueType;
+import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.testutil.RecipeBuilder;
 
 public class AddCommandTest {
 

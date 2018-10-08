@@ -1,24 +1,24 @@
 package systemtests;
 
 import static org.junit.Assert.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS;
-import static seedu.address.testutil.TestUtil.getLastIndex;
-import static seedu.address.testutil.TestUtil.getMidIndex;
-import static seedu.address.testutil.TestUtil.getRecipe;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.address.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
+import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
+import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.souschef.logic.commands.DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS;
+import static seedu.souschef.testutil.TestUtil.getLastIndex;
+import static seedu.souschef.testutil.TestUtil.getMidIndex;
+import static seedu.souschef.testutil.TestUtil.getRecipe;
+import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
+import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.model.Model;
-import seedu.address.model.recipe.Recipe;
+import seedu.souschef.commons.core.Messages;
+import seedu.souschef.commons.core.index.Index;
+import seedu.souschef.logic.commands.DeleteCommand;
+import seedu.souschef.logic.commands.RedoCommand;
+import seedu.souschef.logic.commands.UndoCommand;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.recipe.Recipe;
 
 public class DeleteCommandSystemTest extends AddressBookSystemTest {
 
@@ -61,14 +61,14 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* Case: filtered recipe list, delete index within bounds of address book and recipe list -> deleted */
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
         Index index = INDEX_FIRST_RECIPE;
-        assertTrue(index.getZeroBased() < getModel().getFilteredRecipeList().size());
+        assertTrue(index.getZeroBased() < getModel().getFilteredList().size());
         assertCommandSuccess(index);
 
         /* Case: filtered recipe list, delete index within bounds of address book but out of bounds of recipe list
          * -> rejected
          */
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAppContent().getRecipeList().size();
+        int invalidIndex = getModel().getAppContent().getObservableRecipeList().size();
         command = DeleteCommand.COMMAND_WORD + " " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
 
@@ -97,7 +97,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         Index outOfBoundsIndex = Index.fromOneBased(
-                getModel().getAppContent().getRecipeList().size() + 1);
+                getModel().getAppContent().getObservableRecipeList().size() + 1);
         command = DeleteCommand.COMMAND_WORD + " " + outOfBoundsIndex.getOneBased();
         assertCommandFailure(command, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
 
@@ -112,12 +112,12 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
     }
 
     /**
-     * Removes the {@code Recipe} at the specified {@code index} in {@code model}'s address book.
+     * Removes the {@code Recipe} at the specified {@code index} in {@code recipeModel}'s address book.
      * @return the removed recipe
      */
     private Recipe removeRecipe(Model model, Index index) {
         Recipe targetRecipe = getRecipe(model, index);
-        model.deleteRecipe(targetRecipe);
+        model.delete(targetRecipe);
         return targetRecipe;
     }
 
