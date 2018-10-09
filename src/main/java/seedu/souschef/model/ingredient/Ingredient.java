@@ -6,7 +6,7 @@ import java.util.Objects;
 import seedu.souschef.model.UniqueType;
 
 /**
- * Represents an ingredient in the address book.
+ * Represents an ingredient in the souschef app.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Ingredient extends UniqueType {
@@ -18,8 +18,8 @@ public class Ingredient extends UniqueType {
     private ServingUnit unit;
     private Date date;
 
-    public Ingredient(UniqueIngredient uniqueIngredient, double amount, ServingUnit unit, Date date) {
-        this.name = uniqueIngredient.getName();
+    public Ingredient(String name, double amount, ServingUnit unit, Date date) {
+        this.name = name;
         this.amount = amount;
         this.unit = unit;
         this.date = date;
@@ -43,7 +43,7 @@ public class Ingredient extends UniqueType {
 
     /**
      * Returns true if both ingredients have same name.
-     * This defines a weaker notion of equality between two recipes.
+     * This defines a weaker notion of equality between two ingredients.
      */
     @Override
     public boolean isSame(UniqueType other) {
