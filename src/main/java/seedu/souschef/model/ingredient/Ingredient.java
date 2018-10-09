@@ -3,7 +3,7 @@ package seedu.souschef.model.ingredient;
 import java.util.Date;
 import java.util.Objects;
 
-import seedu.address.model.UniqueType;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Represents an ingredient in the address book.
