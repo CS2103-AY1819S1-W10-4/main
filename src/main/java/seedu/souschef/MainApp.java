@@ -26,8 +26,6 @@ import seedu.souschef.model.ModelSet;
 import seedu.souschef.model.ModelSetCoordinator;
 import seedu.souschef.model.ReadOnlyAppContent;
 import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.ingredient.Ingredient;
-import seedu.souschef.model.recipe.Recipe;
 import seedu.souschef.model.util.SampleDataUtil;
 import seedu.souschef.storage.AddressBookStorage;
 import seedu.souschef.storage.JsonUserPrefsStorage;

@@ -57,7 +57,7 @@ public class RecipeBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Recipe} that we are building.
      */
-    public RecipeBuilder withTags(String ... tags) {
+    public RecipeBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }

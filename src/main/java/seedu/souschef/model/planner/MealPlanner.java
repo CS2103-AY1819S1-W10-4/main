@@ -78,6 +78,7 @@ public class MealPlanner {
 
     /**
      * Clears all the recipes in a day by removing the day from the calendar.
+     *
      * @param date Date of day to be removed.
      */
     public void clearDay(LocalDate date) {

@@ -1,62 +1,17 @@
 package systemtests;
 
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.souschef.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.souschef.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.souschef.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.souschef.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.souschef.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.souschef.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.souschef.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.souschef.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.souschef.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.souschef.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.souschef.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.souschef.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.souschef.testutil.TypicalRecipes.ALICE;
-import static seedu.souschef.testutil.TypicalRecipes.AMY;
-import static seedu.souschef.testutil.TypicalRecipes.BOB;
-import static seedu.souschef.testutil.TypicalRecipes.CARL;
-import static seedu.souschef.testutil.TypicalRecipes.HOON;
-import static seedu.souschef.testutil.TypicalRecipes.IDA;
-import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
-
-import org.junit.Test;
-
-import seedu.souschef.commons.core.Messages;
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.logic.commands.AddCommand;
-import seedu.souschef.logic.commands.RedoCommand;
-import seedu.souschef.logic.commands.UndoCommand;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Address;
-import seedu.souschef.model.recipe.Email;
-import seedu.souschef.model.recipe.Name;
-import seedu.souschef.model.recipe.Phone;
-import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.model.tag.Tag;
-import seedu.souschef.testutil.RecipeBuilder;
-import seedu.souschef.testutil.RecipeUtil;
-
 public class AddCommandSystemTest extends AddressBookSystemTest {
 
     /*@Test
     public void add() {
         Model model = getModel();
 
-        *//* ------------------------ Perform add operations on the shown unfiltered list ----------------------------- *//*
-
-        *//* Case: add a recipe without tags to a non-empty address book, command with leading spaces and trailing spaces
-         * -> added
+        *//* ------------------------ Perform add operations on the shown unfiltered list -----------------------------
          *//*
+
+     *//* Case: add a recipe without tags to a non-empty address book, command with leading spaces and trailing spaces
+     * -> added
+     *//*
         Recipe toAdd = AMY;
         String command = "   " + AddCommand.COMMAND_WORD + "  " + NAME_DESC_AMY + "  " + PHONE_DESC_AMY + " "
                 + EMAIL_DESC_AMY + "   " + ADDRESS_DESC_AMY + "   " + TAG_DESC_FRIEND + " ";
@@ -80,8 +35,8 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, toAdd);
 
         *//* Case: add a recipe with all fields same as another recipe in the address book except phone and email
-         * -> added
-         *//*
+     * -> added
+     *//*
         toAdd = new RecipeBuilder(AMY).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
         command = RecipeUtil.getAddCommand(toAdd);
         assertCommandSuccess(command, toAdd);
@@ -99,21 +54,24 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         *//* Case: add a recipe, missing tags -> added *//*
         assertCommandSuccess(HOON);
 
-        *//* -------------------------- Perform add operation on the shown filtered list ------------------------------ *//*
+        *//* -------------------------- Perform add operation on the shown filtered list ------------------------------
+        *//*
 
-        *//* Case: filters the recipe list before adding -> added *//*
+     *//* Case: filters the recipe list before adding -> added *//*
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
         assertCommandSuccess(IDA);
 
-        *//* ------------------------ Perform add operation while a recipe card is selected --------------------------- *//*
+        *//* ------------------------ Perform add operation while a recipe card is selected ---------------------------
+        *//*
 
-        *//* Case: selects first card in the recipe list, add a recipe -> added, card selection remains unchanged *//*
+     *//* Case: selects first card in the recipe list, add a recipe -> added, card selection remains unchanged *//*
         selectRecipe(Index.fromOneBased(1));
         assertCommandSuccess(CARL);
 
-        *//* ----------------------------------- Perform invalid add operations --------------------------------------- *//*
+        *//* ----------------------------------- Perform invalid add operations ---------------------------------------
+        *//*
 
-        *//* Case: add a duplicate recipe -> rejected *//*
+     *//* Case: add a duplicate recipe -> rejected *//*
         command = RecipeUtil.getAddCommand(HOON);
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_RECIPE);
 

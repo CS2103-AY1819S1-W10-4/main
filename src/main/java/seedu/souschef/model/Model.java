@@ -8,13 +8,19 @@ import javafx.collections.ObservableList;
  * The API of the Model component.
  */
 public interface Model<T extends UniqueType> {
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<UniqueType> PREDICATE_SHOW_ALL = unused -> true;
 
-    /** Clears existing backing recipeModel and replaces with the provided new data. */
+    /**
+     * Clears existing backing recipeModel and replaces with the provided new data.
+     */
     void resetData(ReadOnlyAppContent newData);
 
-    /** Returns the AppContent */
+    /**
+     * Returns the AppContent
+     */
     ReadOnlyAppContent getAppContent();
 
     /**
@@ -42,11 +48,14 @@ public interface Model<T extends UniqueType> {
      */
     void update(T target, T edited);
 
-    /** Returns an unmodifiable view of the filtered recipe list */
+    /**
+     * Returns an unmodifiable view of the filtered recipe list
+     */
     ObservableList<T> getFilteredList();
 
     /**
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredList(Predicate<? extends UniqueType> predicate);

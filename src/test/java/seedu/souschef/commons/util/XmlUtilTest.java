@@ -143,5 +143,6 @@ public class XmlUtilTest {
      * objects.
      */
     @XmlRootElement(name = "recipe")
-    private static class XmlAdaptedRecipeWithRootElement extends XmlAdaptedRecipe {}
+    private static class XmlAdaptedRecipeWithRootElement extends XmlAdaptedRecipe {
+    }
 }

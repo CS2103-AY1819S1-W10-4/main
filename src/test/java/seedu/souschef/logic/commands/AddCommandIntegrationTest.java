@@ -1,18 +1,8 @@
 package seedu.souschef.logic.commands;
 //TODO : commented JUnit
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.testutil.RecipeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.

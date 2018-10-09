@@ -2,7 +2,6 @@ package seedu.souschef.logic.parser;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import static seedu.souschef.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 

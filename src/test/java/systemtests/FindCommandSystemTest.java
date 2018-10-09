@@ -1,33 +1,12 @@
 package systemtests;
 
-import static org.junit.Assert.assertFalse;
-import static seedu.souschef.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
-import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.souschef.testutil.TypicalRecipes.BENSON;
-import static seedu.souschef.testutil.TypicalRecipes.CARL;
-import static seedu.souschef.testutil.TypicalRecipes.DANIEL;
-import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.logic.commands.DeleteCommand;
-import seedu.souschef.logic.commands.FindCommand;
-import seedu.souschef.logic.commands.RedoCommand;
-import seedu.souschef.logic.commands.UndoCommand;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.tag.Tag;
-
 public class FindCommandSystemTest extends AddressBookSystemTest {
 
     /*@Test
     public void find() {
         *//* Case: find multiple recipes in address book, command with leading spaces and trailing spaces
-         * -> 2 recipes found
-         *//*
+     * -> 2 recipes found
+     *//*
         String command = "   " + FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER + "   ";
         Model expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, BENSON, DANIEL); // first names of Benson and Daniel are "Meier"
@@ -35,8 +14,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         *//* Case: repeat previous find command where recipe list is displaying the recipes we are finding
-         * -> 2 recipes found
-         *//*
+     * -> 2 recipes found
+     *//*
         command = FindCommand.COMMAND_WORD + " " + KEYWORD_MATCHING_MEIER;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
@@ -64,8 +43,8 @@ public class FindCommandSystemTest extends AddressBookSystemTest {
         assertSelectedCardUnchanged();
 
         *//* Case: find multiple recipes in address book, 2 matching keywords and 1 non-matching keyword
-         * -> 2 recipes found
-         *//*
+     * -> 2 recipes found
+     *//*
         command = FindCommand.COMMAND_WORD + " Daniel Benson NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();

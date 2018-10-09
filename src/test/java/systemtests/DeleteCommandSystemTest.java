@@ -1,25 +1,5 @@
 package systemtests;
 
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
-import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.souschef.logic.commands.DeleteCommand.MESSAGE_DELETE_RECIPE_SUCCESS;
-import static seedu.souschef.testutil.TestUtil.getLastIndex;
-import static seedu.souschef.testutil.TestUtil.getMidIndex;
-import static seedu.souschef.testutil.TestUtil.getRecipe;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
-
-import org.junit.Test;
-
-import seedu.souschef.commons.core.Messages;
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.logic.commands.DeleteCommand;
-import seedu.souschef.logic.commands.RedoCommand;
-import seedu.souschef.logic.commands.UndoCommand;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Recipe;
-
 public class DeleteCommandSystemTest extends AddressBookSystemTest {
 
    /* private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
@@ -27,9 +7,10 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
 
     @Test
     public void delete() {
-        *//* ----------------- Performing delete operation while an unfiltered list is being shown -------------------- *//*
+        *//* ----------------- Performing delete operation while an unfiltered list is being shown --------------------
+         *//*
 
-        *//* Case: delete the first recipe in the list, command with leading spaces and trailing spaces -> deleted *//*
+     *//* Case: delete the first recipe in the list, command with leading spaces and trailing spaces -> deleted *//*
         Model expectedModel = getModel();
         String command = "     " + DeleteCommand.COMMAND_WORD + "      " + INDEX_FIRST_RECIPE.getOneBased() + "       ";
         Recipe deletedRecipe = removeRecipe(expectedModel, INDEX_FIRST_RECIPE);
@@ -56,25 +37,27 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         Index middleRecipeIndex = getMidIndex(getModel());
         assertCommandSuccess(middleRecipeIndex);
 
-        *//* ------------------ Performing delete operation while a filtered list is being shown ---------------------- *//*
+        *//* ------------------ Performing delete operation while a filtered list is being shown ----------------------
+        *//*
 
-        *//* Case: filtered recipe list, delete index within bounds of address book and recipe list -> deleted *//*
+     *//* Case: filtered recipe list, delete index within bounds of address book and recipe list -> deleted *//*
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
         Index index = INDEX_FIRST_RECIPE;
         assertTrue(index.getZeroBased() < getModel().getFilteredList().size());
         assertCommandSuccess(index);
 
         *//* Case: filtered recipe list, delete index within bounds of address book but out of bounds of recipe list
-         * -> rejected
-         *//*
+     * -> rejected
+     *//*
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getAppContent().getObservableRecipeList().size();
         command = DeleteCommand.COMMAND_WORD + " " + invalidIndex;
         assertCommandFailure(command, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
 
-        *//* --------------------- Performing delete operation while a recipe card is selected ------------------------ *//*
+        *//* --------------------- Performing delete operation while a recipe card is selected ------------------------
+         *//*
 
-        *//* Case: delete the selected recipe -> recipe list panel selects the recipe before the deleted recipe *//*
+     *//* Case: delete the selected recipe -> recipe list panel selects the recipe before the deleted recipe *//*
         showAllRecipes();
         expectedModel = getModel();
         Index selectedIndex = getLastIndex(expectedModel);
@@ -85,9 +68,10 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = String.format(MESSAGE_DELETE_RECIPE_SUCCESS, deletedRecipe);
         assertCommandSuccess(command, expectedModel, expectedResultMessage, expectedIndex);
 
-        *//* --------------------------------- Performing invalid delete operation ------------------------------------ *//*
+        *//* --------------------------------- Performing invalid delete operation ------------------------------------
+        *//*
 
-        *//* Case: invalid index (0) -> rejected *//*
+     *//* Case: invalid index (0) -> rejected *//*
         command = DeleteCommand.COMMAND_WORD + " 0";
         assertCommandFailure(command, MESSAGE_INVALID_DELETE_COMMAND_FORMAT);
 

@@ -1,11 +1,6 @@
 package seedu.souschef.storage;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static seedu.souschef.testutil.TypicalRecipes.ALICE;
-import static seedu.souschef.testutil.TypicalRecipes.HOON;
-import static seedu.souschef.testutil.TypicalRecipes.IDA;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;

@@ -57,7 +57,8 @@ public class TypicalRecipes {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalRecipes() {} // prevents instantiation
+    private TypicalRecipes() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code AppContent} with all the typical recipes.

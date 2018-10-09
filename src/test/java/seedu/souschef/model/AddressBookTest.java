@@ -1,15 +1,9 @@
 package seedu.souschef.model;
 
 import static org.junit.Assert.assertEquals;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.souschef.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.souschef.testutil.TypicalRecipes.ALICE;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -17,9 +11,7 @@ import org.junit.rules.ExpectedException;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.souschef.model.exceptions.DuplicateException;
 import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.testutil.RecipeBuilder;
 
 public class AddressBookTest {
 

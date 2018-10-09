@@ -3,7 +3,6 @@ package seedu.souschef.model;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
-
 import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Recipe;
 
@@ -29,7 +28,8 @@ public class AppContent implements ReadOnlyAppContent {
         ingredients = new UniqueList<>();
     }
 
-    public AppContent() {}
+    public AppContent() {
+    }
 
     /**
      * Creates an AppContent using the recipes in the {@code toBeCopied}
@@ -40,6 +40,7 @@ public class AppContent implements ReadOnlyAppContent {
     }
 
     //// list overwrite operations
+
     /**
      * Resets the existing data of this {@code AppContent} with {@code newData}.
      */

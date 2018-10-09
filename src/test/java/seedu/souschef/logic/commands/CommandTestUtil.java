@@ -56,8 +56,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-//    public static final EditCommand.EditRecipeDescriptor DESC_AMY;
-//    public static final EditCommand.EditRecipeDescriptor DESC_BOB;
+    //public static final EditCommand.EditRecipeDescriptor DESC_AMY;
+    //public static final EditCommand.EditRecipeDescriptor DESC_BOB;
 
     /*static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -95,7 +95,7 @@ public class CommandTestUtil {
      * - {@code actualCommandHistory} remains unchanged.
      */
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
-            String expectedMessage) {
+                                            String expectedMessage) {
         // we are unable to defensively copy the recipeModel for comparison later, so we can
         // only do so by copying its components.
         AppContent expectedAddressBook = new AppContent(actualModel.getAppContent());

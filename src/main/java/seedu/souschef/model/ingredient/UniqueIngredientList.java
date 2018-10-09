@@ -19,7 +19,7 @@ import seedu.souschef.model.ingredient.exceptions.UniqueIngredientNotFoundExcept
  * in terms of identity in the UniqueIngredientList.
  * However, the removal of an unique ingredient uses UniqueIngredient#equals(Object)
  * so as to ensure that the unique ingredient with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see UniqueIngredient#equals(Object)

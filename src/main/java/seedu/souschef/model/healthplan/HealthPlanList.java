@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import seedu.souschef.model.healthplan.exceptions.DuplicateHpException;
 import seedu.souschef.model.healthplan.exceptions.HpNotFoundException;
 
@@ -80,12 +79,9 @@ public class HealthPlanList implements Iterable<HealthPlan> {
     }
 
 
-
     public ObservableList<HealthPlan> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(internalList);
     }
-
-
 
 
     @Override

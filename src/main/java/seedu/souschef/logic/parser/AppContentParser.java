@@ -8,7 +8,6 @@ import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.Command;
 import seedu.souschef.logic.parser.exceptions.ParseException;
 import seedu.souschef.model.Model;
-import seedu.souschef.model.UniqueType;
 
 /**
  * Parses user input.
@@ -32,15 +31,12 @@ public class AppContentParser {
         String context = history.getContext();
         if (userInput.charAt(0) == '-') {
             return null;
-        }
-        else if (context == null || context.equals("recipe")) {
+        } else if (context == null || context.equals("recipe")) {
             // place holder
             return null;
-        }
-        else if (context.equals("ingredient")) {
+        } else if (context.equals("ingredient")) {
             return new IngredientParser().parseCommand(models[1], userInput);
-        }
-        else {
+        } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

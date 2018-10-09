@@ -1,26 +1,5 @@
 package seedu.souschef.logic;
 
-import static org.junit.Assert.assertEquals;
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
-import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import seedu.souschef.logic.commands.CommandResult;
-import seedu.souschef.logic.commands.HistoryCommand;
-import seedu.souschef.logic.commands.ListCommand;
-import seedu.souschef.logic.commands.exceptions.CommandException;
-import seedu.souschef.logic.parser.exceptions.ParseException;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelManager;
-import seedu.souschef.model.ModelSet;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.recipe.Recipe;
-
-
 public class LogicManagerTest {
     /*@Rule
     public ExpectedException thrown = ExpectedException.none();

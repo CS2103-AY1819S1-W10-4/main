@@ -9,10 +9,8 @@ import seedu.souschef.model.Model;
 import seedu.souschef.model.ModelManager;
 import seedu.souschef.model.ReadOnlyAppContent;
 import seedu.souschef.model.UniqueList;
-import seedu.souschef.model.UniqueType;
 import seedu.souschef.model.VersionedAppContent;
 import seedu.souschef.model.ingredient.Ingredient;
-import seedu.souschef.model.recipe.Recipe;
 
 /**
  * Contains helper methods for testing command parsers.

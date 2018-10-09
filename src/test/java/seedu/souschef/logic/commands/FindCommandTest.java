@@ -1,26 +1,8 @@
 package seedu.souschef.logic.commands;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.commons.core.Messages.MESSAGE_RECIPES_LISTED_OVERVIEW;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.souschef.testutil.TypicalRecipes.CARL;
-import static seedu.souschef.testutil.TypicalRecipes.ELLE;
-import static seedu.souschef.testutil.TypicalRecipes.FIONA;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.junit.Test;
 
-import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
 import seedu.souschef.model.recipe.NameContainsKeywordsPredicate;
-import seedu.souschef.model.recipe.Recipe;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

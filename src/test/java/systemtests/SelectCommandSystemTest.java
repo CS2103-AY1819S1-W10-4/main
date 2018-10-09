@@ -1,31 +1,14 @@
 package systemtests;
 
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX;
-import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.souschef.logic.commands.SelectCommand.MESSAGE_SELECT_RECIPE_SUCCESS;
-import static seedu.souschef.testutil.TestUtil.getLastIndex;
-import static seedu.souschef.testutil.TestUtil.getMidIndex;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
-
-import org.junit.Test;
-
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.logic.commands.RedoCommand;
-import seedu.souschef.logic.commands.SelectCommand;
-import seedu.souschef.logic.commands.UndoCommand;
-import seedu.souschef.model.Model;
-
 public class SelectCommandSystemTest extends AddressBookSystemTest {
     /*@Test
     public void select() {
-        *//* ------------------------ Perform select operations on the shown unfiltered list -------------------------- *//*
+        *//* ------------------------ Perform select operations on the shown unfiltered list --------------------------
+        *//*
 
-        *//* Case: select the first card in the recipe list, command with leading spaces and trailing spaces
-         * -> selected
-         *//*
+     *//* Case: select the first card in the recipe list, command with leading spaces and trailing spaces
+     * -> selected
+     *//*
         String command = "   " + SelectCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased() + "   ";
         assertCommandSuccess(command, INDEX_FIRST_RECIPE);
 
@@ -52,11 +35,12 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         *//* Case: select the current selected card -> selected *//*
         assertCommandSuccess(command, middleIndex);
 
-        *//* ------------------------ Perform select operations on the shown filtered list ---------------------------- *//*
-
-        *//* Case: filtered recipe list, select index within bounds of address book but out of bounds of recipe list
-         * -> rejected
+        *//* ------------------------ Perform select operations on the shown filtered list ----------------------------
          *//*
+
+     *//* Case: filtered recipe list, select index within bounds of address book but out of bounds of recipe list
+     * -> rejected
+     *//*
         showRecipesWithName(KEYWORD_MATCHING_MEIER);
         int invalidIndex = getModel().getAppContent().getObservableRecipeList().size();
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
@@ -67,9 +51,10 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         command = SelectCommand.COMMAND_WORD + " " + validIndex.getOneBased();
         assertCommandSuccess(command, validIndex);
 
-        *//* ----------------------------------- Perform invalid select operations ------------------------------------ *//*
+        *//* ----------------------------------- Perform invalid select operations ------------------------------------
+        *//*
 
-        *//* Case: invalid index (0) -> rejected *//*
+     *//* Case: invalid index (0) -> rejected *//*
         assertCommandFailure(SelectCommand.COMMAND_WORD + " " + 0,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
 

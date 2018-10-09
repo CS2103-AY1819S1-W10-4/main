@@ -1,8 +1,6 @@
 package seedu.souschef.ui;
 
-import static java.time.Duration.ofMillis;
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static seedu.souschef.testutil.EventsUtil.postNow;
 import static seedu.souschef.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.souschef.testutil.TypicalRecipes.getTypicalRecipes;

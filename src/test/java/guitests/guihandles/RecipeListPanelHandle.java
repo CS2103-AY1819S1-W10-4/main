@@ -25,7 +25,8 @@ public class RecipeListPanelHandle extends NodeHandle<ListView<Recipe>> {
     /**
      * Returns a handle to the selected {@code RecipeCardHandle}.
      * A maximum of 1 item can be selected at any time.
-     * @throws AssertionError if no card is selected, or more than 1 card is selected.
+     *
+     * @throws AssertionError        if no card is selected, or more than 1 card is selected.
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
     public RecipeCardHandle getHandleToSelectedCard() {
@@ -99,6 +100,7 @@ public class RecipeListPanelHandle extends NodeHandle<ListView<Recipe>> {
 
     /**
      * Returns the recipe card handle of a recipe associated with the {@code index} in the list.
+     *
      * @throws IllegalStateException if the selected card is currently not in the scene graph.
      */
     public RecipeCardHandle getRecipeCardHandle(int index) {

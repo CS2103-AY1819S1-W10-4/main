@@ -1,21 +1,5 @@
 package seedu.souschef.logic.parser;
 
-import static seedu.souschef.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.souschef.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.souschef.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-
-import org.junit.Test;
-
-import seedu.souschef.logic.commands.DeleteCommand;
-import seedu.souschef.model.AppContent;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelManager;
-import seedu.souschef.model.ReadOnlyAppContent;
-import seedu.souschef.model.UniqueList;
-import seedu.souschef.model.VersionedAppContent;
-import seedu.souschef.model.recipe.Recipe;
-
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
  * outside of the DeleteCommand code. For example, inputs "1" and "1 abc" take the

@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.souschef.logic.commands.AddCommand;
-import seedu.souschef.logic.commands.ClearCommand;
 import seedu.souschef.logic.commands.Command;
 import seedu.souschef.logic.commands.DeleteCommand;
 import seedu.souschef.logic.commands.EditCommand;
@@ -32,7 +31,6 @@ public class IngredientParser {
     /**
      * Parses user input into command for execution.
      *
-     *
      * @param model
      * @param userInput full user input string
      * @return the command based on the user input
@@ -48,27 +46,26 @@ public class IngredientParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parseIngredient(model, arguments);
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parseIngredient(model, arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parseIngredient(model, arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parseIngredient(model, arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parseIngredient(model, arguments);
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parseIngredient(model, arguments);
-
-            case EditCommand.COMMAND_WORD:
+        case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parseIngredient(model, arguments);
 
-            case SelectCommand.COMMAND_WORD:
+        case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parseIngredient(model, arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand<>(model);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand<>(model);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }

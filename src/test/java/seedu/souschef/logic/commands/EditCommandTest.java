@@ -1,17 +1,7 @@
 package seedu.souschef.logic.commands;
 //TODO: Commented Junit
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
 import org.junit.Test;
-
-import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.recipe.Recipe;
 
 
 /**
@@ -213,11 +203,13 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        /*final EditCommand<UniqueType> standardCommand = new EditCommand<UniqueType>(, , INDEX_FIRST_RECIPE, , DESC_AMY);
+        /*final EditCommand<UniqueType> standardCommand = new EditCommand<UniqueType>(, , INDEX_FIRST_RECIPE, ,
+        DESC_AMY);
 
         // same values -> returns true
         EditRecipeDescriptor copyDescriptor = new EditCommand.EditRecipeDescriptor(DESC_AMY);
-        EditCommand<UniqueType> commandWithSameValues = new EditCommand<UniqueType>(, , INDEX_FIRST_RECIPE, , copyDescriptor);
+        EditCommand<UniqueType> commandWithSameValues = new EditCommand<UniqueType>(, , INDEX_FIRST_RECIPE, ,
+        copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true

@@ -46,6 +46,7 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<Recipe> getFilteredRecipeList() {
         return models[0].getFilteredList();
     }
+
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return models[1].getFilteredList();
     }

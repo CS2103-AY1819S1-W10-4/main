@@ -6,12 +6,8 @@ import static seedu.souschef.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.souschef.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.souschef.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
 import seedu.souschef.logic.commands.AddCommand;
-import seedu.souschef.logic.commands.EditCommand;
 import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.model.tag.Tag;
 
 /**
  * A utility class for Recipe.
@@ -34,8 +30,7 @@ public class RecipeUtil {
         sb.append(PREFIX_PHONE + recipe.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + recipe.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + recipe.getAddress().value + " ");
-        recipe.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

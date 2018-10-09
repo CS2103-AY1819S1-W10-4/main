@@ -13,7 +13,7 @@ public class MealRecipeNotFoundException extends Exception {
 
     /**
      * @param message should contain relevant information on the failed constraint(s)
-     * @param cause of the main exception
+     * @param cause   of the main exception
      */
     public MealRecipeNotFoundException(String message, Throwable cause) {
         super(message, cause);

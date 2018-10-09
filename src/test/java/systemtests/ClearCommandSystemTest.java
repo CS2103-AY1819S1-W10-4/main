@@ -1,26 +1,14 @@
 package systemtests;
 
-import static seedu.souschef.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.souschef.testutil.TypicalRecipes.KEYWORD_MATCHING_MEIER;
-
-import org.junit.Test;
-
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.logic.commands.ClearCommand;
-import seedu.souschef.logic.commands.RedoCommand;
-import seedu.souschef.logic.commands.UndoCommand;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-
 public class ClearCommandSystemTest extends AddressBookSystemTest {
 
     /*@Test
     public void clear() {
         *//*final Model defaultModel = getModel();
 
-        *//**//* Case: clear non-empty address book, command with leading spaces and trailing alphanumeric characters and
-         * spaces -> cleared
-         *//**//*
+     *//**//* Case: clear non-empty address book, command with leading spaces and trailing alphanumeric characters and
+     * spaces -> cleared
+     *//**//*
         assertCommandSuccess("   " + ClearCommand.COMMAND_WORD + " ab12   ");
         assertSelectedCardUnchanged();
 
@@ -36,7 +24,8 @@ public class ClearCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedResultMessage, new ModelSetCoordinator().getRecipeModel());
         assertSelectedCardUnchanged();
 
-        *//**//* Case: selects first card in recipe list and clears address book -> cleared and no card selected *//**//*
+        *//**//* Case: selects first card in recipe list and clears address book -> cleared and no card selected *//*
+        *//*
         executeCommand(UndoCommand.COMMAND_WORD); // restores the original address book
         selectRecipe(Index.fromOneBased(1));
         assertCommandSuccess(ClearCommand.COMMAND_WORD);

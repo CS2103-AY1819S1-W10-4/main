@@ -177,7 +177,7 @@ public abstract class AddressBookSystemTest {
      * and the recipe list panel displays the recipes in the recipeModel correctly.
      */
     protected void assertApplicationDisplaysExpected(String expectedCommandInput, String expectedResultMessage,
-            Model expectedModel) {
+                                                     Model expectedModel) {
         assertEquals(expectedCommandInput, getCommandBox().getInput());
         assertEquals(expectedResultMessage, getResultDisplay().getText());
         assertEquals(new AppContent(expectedModel.getAppContent()), testApp.readStorageAddressBook());
@@ -199,6 +199,7 @@ public abstract class AddressBookSystemTest {
     /**
      * Asserts that the previously selected card is now deselected and the browser's url remains displaying the details
      * of the previously selected recipe.
+     *
      * @see BrowserPanelHandle#isUrlChanged()
      */
     protected void assertSelectedCardDeselected() {
@@ -209,6 +210,7 @@ public abstract class AddressBookSystemTest {
     /**
      * Asserts that the browser's url is changed to display the details of the recipe in the recipe list panel at
      * {@code expectedSelectedCardIndex}, and only the card at {@code expectedSelectedCardIndex} is selected.
+     *
      * @see BrowserPanelHandle#isUrlChanged()
      * @see RecipeListPanelHandle#isSelectedRecipeCardChanged()
      */
@@ -228,6 +230,7 @@ public abstract class AddressBookSystemTest {
 
     /**
      * Asserts that the browser's url and the selected card in the recipe list panel remain unchanged.
+     *
      * @see BrowserPanelHandle#isUrlChanged()
      * @see RecipeListPanelHandle#isSelectedRecipeCardChanged()
      */

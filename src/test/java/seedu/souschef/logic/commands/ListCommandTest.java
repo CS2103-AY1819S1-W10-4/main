@@ -1,25 +1,14 @@
 package seedu.souschef.logic.commands;
 
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.souschef.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.recipe.Recipe;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
 public class ListCommandTest {
 
-   /* private Model<Recipe> model;
+    /* private Model<Recipe> model;
     private Model<Recipe> expectedModel;
     private CommandHistory commandHistory = new CommandHistory();*/
 
@@ -38,6 +27,7 @@ public class ListCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         /*showPersonAtIndex(model, INDEX_FIRST_RECIPE);
-        assertCommandSuccess(new ListCommand(model), model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);*/
+        assertCommandSuccess(new ListCommand(model), model, commandHistory, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        */
     }
 }

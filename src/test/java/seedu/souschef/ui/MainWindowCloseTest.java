@@ -1,22 +1,5 @@
 package seedu.souschef.ui;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.testfx.api.FxToolkit;
-
-import guitests.guihandles.StageHandle;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import seedu.souschef.commons.core.Config;
-import seedu.souschef.commons.events.ui.ExitAppRequestEvent;
-import seedu.souschef.logic.LogicManager;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.ui.testutil.EventsCollectorRule;
-
 /**
  * Contains tests for closing of the {@code MainWindow}.
  */
@@ -66,17 +49,17 @@ public class MainWindowCloseTest extends GuiUnitTest {
         }
 
         *//**
-         * Closes the {@code MainWindow} by clicking on the menu bar's exit button.
-         *//*
+     * Closes the {@code MainWindow} by clicking on the menu bar's exit button.
+     *//*
         private void clickOnMenuExitButton() {
             guiRobot.clickOn("File");
             guiRobot.clickOn("Exit");
         }
 
         *//**
-         * Closes the {@code MainWindow} through an external request {@code MainWindow} (e.g pressing the 'X' button on
-         * the {@code MainWindow} or closing the app through the taskbar).
-         *//*
+     * Closes the {@code MainWindow} through an external request {@code MainWindow} (e.g pressing the 'X' button on
+     * the {@code MainWindow} or closing the app through the taskbar).
+     *//*
         private void closeMainWindowExternally() {
             guiRobot.interact(() -> stage.fireEvent(new WindowEvent(stage, WindowEvent.WINDOW_CLOSE_REQUEST)));
         }

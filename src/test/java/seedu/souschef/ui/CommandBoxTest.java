@@ -1,21 +1,5 @@
 package seedu.souschef.ui;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.ArrayList;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import guitests.guihandles.CommandBoxHandle;
-import javafx.scene.input.KeyCode;
-import seedu.souschef.logic.Logic;
-import seedu.souschef.logic.LogicManager;
-import seedu.souschef.logic.commands.ListCommand;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.recipe.Recipe;
-
 public class CommandBoxTest extends GuiUnitTest {
 
     /*private static final String COMMAND_THAT_SUCCEEDS = ListCommand.COMMAND_WORD;

@@ -1,22 +1,5 @@
 package systemtests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.ui.testutil.GuiTestAssert.assertListMatching;
-
-import org.junit.Test;
-
-import guitests.GuiRobot;
-import guitests.guihandles.HelpWindowHandle;
-import seedu.souschef.logic.commands.DeleteCommand;
-import seedu.souschef.logic.commands.HelpCommand;
-import seedu.souschef.logic.commands.SelectCommand;
-import seedu.souschef.ui.BrowserPanel;
-import seedu.souschef.ui.StatusBarFooter;
-
 /**
  * A system test class for the help window, which contains interaction with other UI components.
  */

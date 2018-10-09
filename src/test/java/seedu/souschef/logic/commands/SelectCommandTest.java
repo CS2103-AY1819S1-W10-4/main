@@ -1,29 +1,5 @@
 package seedu.souschef.logic.commands;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.souschef.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
-import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
-
-import org.junit.Rule;
-import org.junit.Test;
-
-import seedu.souschef.commons.core.Messages;
-import seedu.souschef.commons.core.index.Index;
-import seedu.souschef.commons.events.ui.JumpToListRequestEvent;
-import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
-import seedu.souschef.model.ModelSetCoordinator;
-import seedu.souschef.model.UserPrefs;
-import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.ui.testutil.EventsCollectorRule;
-
 /**
  * Contains integration tests (interaction with the Model) for {@code SelectCommand}.
  */

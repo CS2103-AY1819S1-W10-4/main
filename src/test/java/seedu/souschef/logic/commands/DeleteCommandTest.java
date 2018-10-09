@@ -1,20 +1,9 @@
 package seedu.souschef.logic.commands;
 //TODO: Commented Junit
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.souschef.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.souschef.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
-import static seedu.souschef.testutil.TypicalIndexes.INDEX_SECOND_RECIPE;
 import static seedu.souschef.testutil.TypicalRecipes.getTypicalAddressBook;
 
-import org.junit.Test;
-
-import seedu.souschef.commons.core.Messages;
-import seedu.souschef.commons.core.index.Index;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.model.Model;
 import seedu.souschef.model.ModelSetCoordinator;
@@ -69,7 +58,7 @@ public class DeleteCommandTest {
         assertCommandSuccess(deleteCommand, model, commandHistory, expectedMessage, expectedModel);
     }*/
 
-   /* @Test
+    /* @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_RECIPE);
 
