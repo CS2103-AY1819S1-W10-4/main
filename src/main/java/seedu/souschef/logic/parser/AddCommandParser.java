@@ -11,7 +11,10 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.souschef.logic.commands.AddCommand;
+import seedu.souschef.logic.commands.Command;
 import seedu.souschef.logic.parser.exceptions.ParseException;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Address;
 import seedu.souschef.model.recipe.Email;
 import seedu.souschef.model.recipe.Name;
@@ -29,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand<Recipe> parse(Model model, String args) throws ParseException {
+    public Command<Ingredient> parseIngredient(Model<Ingredient> model, String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
@@ -46,16 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Recipe recipe = new Recipe(name, phone, email, address, tagList);
 
-        return new AddCommand<>(model, recipe);
-    }
-
-    /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public AddCommand<Ingredient> parseIngredient(Model model, String args) throws ParseException {
-        return null;
+        return new AddCommand(model, recipe);
     }
 
     /**

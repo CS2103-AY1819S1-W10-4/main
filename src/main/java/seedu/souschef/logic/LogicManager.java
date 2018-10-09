@@ -11,6 +11,8 @@ import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.logic.parser.AppContentParser;
 import seedu.souschef.logic.parser.exceptions.ParseException;
 import seedu.souschef.model.Model;
+import seedu.souschef.model.UniqueType;
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Recipe;
 
 /**
@@ -42,7 +44,10 @@ public class LogicManager extends ComponentManager implements Logic {
 
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
-        return model.getFilteredList();
+        return models[0].getFilteredList();
+    }
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return models[1].getFilteredList();
     }
 
     @Override

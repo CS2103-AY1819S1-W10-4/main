@@ -5,14 +5,14 @@ import static java.util.Objects.requireNonNull;
 import seedu.souschef.commons.core.Messages;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.model.Model;
+import seedu.souschef.model.UniqueType;
 import seedu.souschef.model.recipe.NameContainsKeywordsPredicate;
->>>>>>> 327b25fefda23974fc349e1177a88a82bd6bd45a:src/main/java/seedu/souschef/logic/commands/FindCommand.java
 
 /**
  * Finds and lists all recipes in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand<T extends UniqueType> extends Command<T> {
+public class FindCommand<T extends UniqueType> extends Command {
 
     public static final String COMMAND_WORD = "find";
 

@@ -14,54 +14,25 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.souschef.commons.core.index.Index;
+import seedu.souschef.logic.commands.Command;
 import seedu.souschef.logic.commands.EditCommand;
-import seedu.souschef.logic.commands.EditCommand.EditRecipeDescriptor;
 import seedu.souschef.logic.parser.exceptions.ParseException;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<EditCommand<U>> {
+public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditCommand<U> parse(Model model, String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
-
-        EditRecipeDescriptor editRecipeDescriptor = new EditCommand.EditRecipeDescriptor();
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editRecipeDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
-        }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editRecipeDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editRecipeDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editRecipeDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
-        }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editRecipeDescriptor::setTags);
-
-        if (!editRecipeDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand<U>(, index, editRecipeDescriptor);
+    public Command<Ingredient> parseIngredient(Model<Ingredient> model, String args) throws ParseException {
+        return null;
     }
 
     /**
@@ -79,7 +50,4 @@ public class EditCommandParser implements Parser<EditCommand<U>> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
-    public Command<Ingredient> parseIngredient(Model model, String arguments) {
-        return null;
-    }
 }

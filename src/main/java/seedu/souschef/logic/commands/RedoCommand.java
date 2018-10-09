@@ -10,11 +10,17 @@ import seedu.souschef.model.Model;
 /**
  * Reverts the {@code recipeModel}'s address book to its previously undone state.
  */
-public class RedoCommand extends Command<UniqueType> {
+public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Redo success!";
     public static final String MESSAGE_FAILURE = "No more commands to redo!";
+
+    private final Model model;
+
+    public RedoCommand(Model model) {
+        this.model = model;
+    }
 
     @Override
     public CommandResult execute(CommandHistory history) throws CommandException {

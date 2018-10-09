@@ -10,12 +10,12 @@ import static seedu.souschef.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Adds a recipe to the address book.
  */
-public class AddCommand<T extends UniqueType> extends Command<T> {
+public class AddCommand<T extends UniqueType> extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -50,7 +50,7 @@ public class AddCommand<T extends UniqueType> extends Command<T> {
     }
 
     @Override
-    public CommandResult execute(Model<Recipe> model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         if (model.has(toAdd)) {

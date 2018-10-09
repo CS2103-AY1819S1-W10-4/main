@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.model.AppContent;
 import seedu.souschef.model.Model;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Clears the address book.

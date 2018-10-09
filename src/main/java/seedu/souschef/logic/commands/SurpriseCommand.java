@@ -1,13 +1,12 @@
 package seedu.souschef.logic.commands;
 
 import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
 
 /**
  * Randomly displays a recipe for the user.
  */
 
-public class SurpriseCommand extends Command<UniqueType> {
+public class SurpriseCommand extends Command {
 
     public static final String COMMAND_WORD = "surprise";
 

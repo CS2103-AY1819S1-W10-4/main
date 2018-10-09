@@ -28,7 +28,7 @@ public class AppContentParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command<UniqueType> parseCommand(Model[] models, String userInput, CommandHistory history) throws ParseException {
+    public Command parseCommand(Model[] models, String userInput, CommandHistory history) throws ParseException {
         String context = history.getContext();
         if (userInput.charAt(0) == '-') {
             return null;

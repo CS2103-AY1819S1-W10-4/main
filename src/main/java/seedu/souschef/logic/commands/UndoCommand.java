@@ -10,7 +10,13 @@ import seedu.souschef.model.Model;
 /**
  * Reverts the {@code recipeModel}'s address book to its previous state.
  */
-public class UndoCommand extends Command<UniqueType> {
+public class UndoCommand extends Command {
+
+    private final Model model;
+
+    public UndoCommand(Model model) {
+        this.model = model;
+    }
 
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_SUCCESS = "Undo success!";

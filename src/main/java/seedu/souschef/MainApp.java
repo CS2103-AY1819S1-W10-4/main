@@ -26,6 +26,7 @@ import seedu.souschef.model.ModelSet;
 import seedu.souschef.model.ModelSetCoordinator;
 import seedu.souschef.model.ReadOnlyAppContent;
 import seedu.souschef.model.UserPrefs;
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Recipe;
 import seedu.souschef.model.util.SampleDataUtil;
 import seedu.souschef.storage.AddressBookStorage;
@@ -53,7 +54,6 @@ public class MainApp extends Application {
     protected Config config;
     protected UserPrefs userPrefs;
 
-
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing AppContent ]===========================");
@@ -70,9 +70,10 @@ public class MainApp extends Application {
         initLogging(config);
 
         modelSet = initModelManager(storage, userPrefs);
-        Model<Recipe> recipeModel = modelSet.getRecipeModel();
 
-        logic = new LogicManager(recipeModel);
+        Model[] models = modelSet.getModels();
+
+        logic = new LogicManager(models);
 
         ui = new UiManager(logic, config, userPrefs);
 

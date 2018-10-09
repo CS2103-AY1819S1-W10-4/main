@@ -11,7 +11,7 @@ import seedu.souschef.commons.events.ui.JumpToListRequestEvent;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Selects a recipe identified using it's displayed index from the address book.
@@ -54,6 +54,6 @@ public class SelectCommand<T extends UniqueType> extends Command<T> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SelectCommand // instanceof handles nulls
-                && targetIndex.equals(((SelectCommand<UniqueType>) other).targetIndex)); // state check
+                && targetIndex.equals(((SelectCommand) other).targetIndex)); // state check
     }
 }

@@ -3,12 +3,11 @@ package seedu.souschef.logic.commands;
 import seedu.souschef.commons.core.EventsCenter;
 import seedu.souschef.commons.events.ui.ExitAppRequestEvent;
 import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
 
 /**
  * Terminates the program.
  */
-public class ExitCommand extends Command<UniqueType> {
+public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
 

@@ -6,12 +6,11 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.souschef.logic.CommandHistory;
-import seedu.souschef.model.Model;
 
 /**
  * Lists all the commands entered by user from the start of app launch.
  */
-public class HistoryCommand extends Command<UniqueType> {
+public class HistoryCommand extends Command {
 
     public static final String COMMAND_WORD = "history";
     public static final String MESSAGE_SUCCESS = "Entered commands (from most recent to earliest):\n%1$s";
