@@ -10,12 +10,12 @@ import static seedu.souschef.logic.parser.CliSyntax.PREFIX_TAG;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Adds a recipe to the address book.
  */
-public class AddCommand extends Command {
+public class AddCommand<T extends UniqueType> extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -37,18 +37,20 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in the address book";
 
-    private final Recipe toAdd;
+    private final Model model;
+    private final T toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Recipe}
      */
-    public AddCommand(Recipe recipe) {
-        requireNonNull(recipe);
-        toAdd = recipe;
+    public AddCommand(Model model, T toAdd) {
+        requireNonNull(toAdd);
+        this.model = model;
+        this.toAdd = toAdd;
     }
 
     @Override
-    public CommandResult execute(Model<Recipe> model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         if (model.has(toAdd)) {
@@ -64,6 +66,6 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddCommand<UniqueType>) other).toAdd));
     }
 }

@@ -6,7 +6,7 @@ import seedu.souschef.model.recipe.Recipe;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AppContent ab = new AppContentBuilder().withRecipe("John", "Doe").build();}
+ * {@code AppContent ab = new AppContentBuilder().withRecipe("John", "Doe").build();}
  */
 public class AppContentBuilder {
 

@@ -40,7 +40,8 @@ public class XmlAdaptedRecipe {
      * Constructs an XmlAdaptedRecipe.
      * This is the no-arg constructor that is required by JAXB.
      */
-    public XmlAdaptedRecipe() {}
+    public XmlAdaptedRecipe() {
+    }
 
     /**
      * Constructs an {@code XmlAdaptedRecipe} with the given recipe details.

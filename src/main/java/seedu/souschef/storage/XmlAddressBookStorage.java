@@ -39,11 +39,12 @@ public class XmlAddressBookStorage implements AddressBookStorage {
 
     /**
      * Similar to {@link #readAddressBook()}
+     *
      * @param filePath location of the data. Cannot be null
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyAppContent> readAddressBook(Path filePath) throws DataConversionException,
-                                                                                 FileNotFoundException {
+            FileNotFoundException {
         requireNonNull(filePath);
 
         if (!Files.exists(filePath)) {
@@ -67,6 +68,7 @@ public class XmlAddressBookStorage implements AddressBookStorage {
 
     /**
      * Similar to {@link #saveAddressBook(ReadOnlyAppContent)}
+     *
      * @param filePath location of the data. Cannot be null
      */
     public void saveAddressBook(ReadOnlyAppContent addressBook, Path filePath) throws IOException {

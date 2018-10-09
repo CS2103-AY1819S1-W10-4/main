@@ -81,7 +81,7 @@ public class RecipeCardHandle extends NodeHandle<Node> {
                 && getPhone().equals(recipe.getPhone().value)
                 && getEmail().equals(recipe.getEmail().value)
                 && ImmutableMultiset.copyOf(getTags()).equals(ImmutableMultiset.copyOf(recipe.getTags().stream()
-                        .map(tag -> tag.tagName)
-                        .collect(Collectors.toList())));
+                .map(tag -> tag.tagName)
+                .collect(Collectors.toList())));
     }
 }

@@ -1,4 +1,5 @@
 package seedu.souschef.model.healthplan;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.souschef.commons.util.AppUtil.checkArgument;
 
@@ -40,9 +41,6 @@ public class CurrentHeight {
     public int hashCode() {
         return value.hashCode();
     }
-
-
-
 
 
 }

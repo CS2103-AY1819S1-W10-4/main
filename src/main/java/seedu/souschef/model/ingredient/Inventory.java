@@ -18,7 +18,7 @@ import seedu.souschef.model.ingredient.exceptions.IngredientNotFoundException;
  * so as to ensure that the ingredient being added or updated is unique in terms of identity in the Inventory.
  * However, the removal of an ingredient uses Ingredient#isSameIngredient(Ingredient)
  * so as to ensure that the ingredient with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Ingredient#isSameIngredient(Ingredient)

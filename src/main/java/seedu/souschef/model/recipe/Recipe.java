@@ -62,20 +62,6 @@ public class Recipe extends UniqueType {
     }
 
     /**
-     * Returns true if both recipes of the same name have at least one other identity field that is the same.
-     * This defines a weaker notion of equality between two recipes.
-     */
-    private boolean isSame(Recipe otherRecipe) {
-        if (otherRecipe == this) {
-            return true;
-        }
-
-        return otherRecipe != null
-                && otherRecipe.getName().equals(getName())
-                && (otherRecipe.getPhone().equals(getPhone()) || otherRecipe.getEmail().equals(getEmail()));
-    }
-
-    /**
      * Returns true if other is a instance of Recipe and they are of the same name have at least one other identity
      * field that is the same.
      * This defines a weaker notion of equality between two recipes.
