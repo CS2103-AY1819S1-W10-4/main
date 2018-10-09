@@ -12,17 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.CommandHistory;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AppContent;
-import seedu.address.model.Model;
-import seedu.address.model.UniqueType;
-import seedu.address.model.recipe.NameContainsKeywordsPredicate;
-import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.EditRecipeDescriptorBuilder;
-=======
 import seedu.souschef.commons.core.index.Index;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.exceptions.CommandException;
@@ -30,8 +19,6 @@ import seedu.souschef.model.AppContent;
 import seedu.souschef.model.Model;
 import seedu.souschef.model.recipe.NameContainsKeywordsPredicate;
 import seedu.souschef.model.recipe.Recipe;
-import seedu.souschef.testutil.EditRecipeDescriptorBuilder;
->>>>>>> 327b25fefda23974fc349e1177a88a82bd6bd45a:src/test/java/seedu/souschef/logic/commands/CommandTestUtil.java
 
 /**
  * Contains helper methods for testing commands.
@@ -69,17 +56,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditRecipeDescriptor DESC_AMY;
-    public static final EditCommand.EditRecipeDescriptor DESC_BOB;
+//    public static final EditCommand.EditRecipeDescriptor DESC_AMY;
+//    public static final EditCommand.EditRecipeDescriptor DESC_BOB;
 
-    static {
+    /*static {
         DESC_AMY = new EditRecipeDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditRecipeDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
+    }*/
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -87,7 +74,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel} <br>
      * - the {@code actualCommandHistory} remains unchanged.
      */
-    public static void assertCommandSuccess(Command<UniqueType> command, Model actualModel, CommandHistory actualCommandHistory,
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualCommandHistory,
                                             String expectedMessage, Model expectedModel) {
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
         try {
@@ -107,15 +94,9 @@ public class CommandTestUtil {
      * - the address book and the filtered recipe list in the {@code actualModel} remain unchanged <br>
      * - {@code actualCommandHistory} remains unchanged.
      */
-<<<<<<< HEAD:src/test/java/seedu/address/logic/commands/CommandTestUtil.java
-    public static void assertCommandFailure(Command<UniqueType> command, Model actualModel, CommandHistory actualCommandHistory,
-                                            String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-=======
     public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualCommandHistory,
             String expectedMessage) {
         // we are unable to defensively copy the recipeModel for comparison later, so we can
->>>>>>> 327b25fefda23974fc349e1177a88a82bd6bd45a:src/test/java/seedu/souschef/logic/commands/CommandTestUtil.java
         // only do so by copying its components.
         AppContent expectedAddressBook = new AppContent(actualModel.getAppContent());
         List<Recipe> expectedFilteredList = new ArrayList<>(actualModel.getFilteredList());

@@ -7,12 +7,14 @@ import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import org.junit.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/address/logic/parser/SelectCommandParserTest.java
-import seedu.address.logic.commands.SelectCommand;
-import seedu.address.model.UniqueType;
-=======
 import seedu.souschef.logic.commands.SelectCommand;
->>>>>>> 327b25fefda23974fc349e1177a88a82bd6bd45a:src/test/java/seedu/souschef/logic/parser/SelectCommandParserTest.java
+import seedu.souschef.model.AppContent;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ModelManager;
+import seedu.souschef.model.ReadOnlyAppContent;
+import seedu.souschef.model.UniqueList;
+import seedu.souschef.model.VersionedAppContent;
+import seedu.souschef.model.recipe.Recipe;
 
 /**
  * Test scope: similar to {@code DeleteCommandParserTest}.
@@ -20,15 +22,18 @@ import seedu.souschef.logic.commands.SelectCommand;
  */
 public class SelectCommandParserTest {
 
-    private SelectCommandParser parser = new SelectCommandParser();
+    /*private SelectCommandParser parser = new SelectCommandParser();
+    private ReadOnlyAppContent initialState = new AppContent();
+    private Model<Recipe> model = new ModelManager<Recipe>(new VersionedAppContent(initialState),
+            new UniqueList<Recipe>());
 
     @Test
     public void parse_validArgs_returnsSelectCommand() {
-        assertParseSuccess(parser, "1", new SelectCommand<UniqueType>(, INDEX_FIRST_RECIPE));
+        assertParseSuccess(parser, "1", new SelectCommand(model, INDEX_FIRST_RECIPE));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
-    }
+    }*/
 }

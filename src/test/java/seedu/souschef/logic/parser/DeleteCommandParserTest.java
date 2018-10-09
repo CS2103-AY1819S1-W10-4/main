@@ -7,12 +7,14 @@ import static seedu.souschef.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import org.junit.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/address/logic/parser/DeleteCommandParserTest.java
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.model.UniqueType;
-=======
 import seedu.souschef.logic.commands.DeleteCommand;
->>>>>>> 327b25fefda23974fc349e1177a88a82bd6bd45a:src/test/java/seedu/souschef/logic/parser/DeleteCommandParserTest.java
+import seedu.souschef.model.AppContent;
+import seedu.souschef.model.Model;
+import seedu.souschef.model.ModelManager;
+import seedu.souschef.model.ReadOnlyAppContent;
+import seedu.souschef.model.UniqueList;
+import seedu.souschef.model.VersionedAppContent;
+import seedu.souschef.model.recipe.Recipe;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -23,15 +25,19 @@ import seedu.souschef.logic.commands.DeleteCommand;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    /*private DeleteCommandParser parser = new DeleteCommandParser();
+    private ReadOnlyAppContent initialState = new AppContent();
+    private Model<Recipe> model = new ModelManager<Recipe>(new VersionedAppContent(initialState),
+            new UniqueList<Recipe>());
+    private Recipe target = null;
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand<UniqueType>(, INDEX_FIRST_RECIPE));
+        assertParseSuccess(parser, "1", new DeleteCommand(model, target));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-    }
+    }*/
 }
