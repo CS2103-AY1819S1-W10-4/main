@@ -10,13 +10,16 @@ import java.util.List;
  */
 public class CommandHistory {
     private LinkedList<String> userInputHistory;
+    private String context;
 
     public CommandHistory() {
         userInputHistory = new LinkedList<>();
+        context = null;
     }
 
     public CommandHistory(CommandHistory commandHistory) {
         userInputHistory = new LinkedList<>(commandHistory.userInputHistory);
+        context = commandHistory.getContext();
     }
 
     /**
@@ -25,6 +28,20 @@ public class CommandHistory {
     public void add(String userInput) {
         requireNonNull(userInput);
         userInputHistory.add(userInput);
+    }
+
+    /**
+     * Returns the {@code context} of the app
+     */
+    public String getContext() {
+        return context;
+    }
+
+    /**
+     * Sets the {@code context} of the app
+     */
+    public void setContext(String context) {
+        this.context = context;
     }
 
     /**

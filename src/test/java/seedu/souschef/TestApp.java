@@ -94,7 +94,7 @@ public class TestApp extends MainApp {
      */
     public Model<Recipe> getModel() {
         Model<Recipe> copy = new ModelSetCoordinator(modelSet.getAppContent(), new UserPrefs())
-                        .getRecipeModel();
+                .getRecipeModel();
         ModelHelper.setFilteredList(copy, modelSet.getRecipeModel().getFilteredList());
         return copy;
     }

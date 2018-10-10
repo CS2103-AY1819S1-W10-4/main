@@ -5,7 +5,7 @@ import static seedu.souschef.commons.util.AppUtil.checkArgument;
 
 
 /**
- *  Class to handle the current weight component of health plans
+ * Class to handle the current weight component of health plans
  */
 public class CurrentWeight {
 

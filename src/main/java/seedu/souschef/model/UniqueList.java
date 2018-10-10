@@ -13,13 +13,14 @@ import seedu.souschef.model.exceptions.NotFoundException;
 
 /**
  * A list of elements that enforces uniqueness between its elements and does not allow nulls.
- *  * A element is considered unique by comparing using {@code UniqueType#isSame(UniqueType)}. As such, adding and
- *  updating of
- *  * Unique list uses UniqueType#isSame(UniqueType) for equality so as to ensure that the recipe being added or
- *  updated is
- *  * unique in terms of identity in the UniqueRecipeList. However, the removal of a recipe uses UniqueType#equals
- *  (Object) so
- *  * as to ensure that the recipe with exactly the same fields will be removed.
+ * * A element is considered unique by comparing using {@code UniqueType#isSame(UniqueType)}. As such, adding and
+ * updating of
+ * * Unique list uses UniqueType#isSame(UniqueType) for equality so as to ensure that the recipe being added or
+ * updated is
+ * * unique in terms of identity in the UniqueRecipeList. However, the removal of a recipe uses UniqueType#equals
+ * (Object) so
+ * * as to ensure that the recipe with exactly the same fields will be removed.
+ *
  * @param <T> Element of unique type
  */
 public class UniqueList<T extends UniqueType> implements Iterable<T> {
@@ -29,6 +30,7 @@ public class UniqueList<T extends UniqueType> implements Iterable<T> {
 
     /**
      * Check for existence of similar element exist in list
+     *
      * @param toCheck element exist in the list
      * @return True if the element is found in list (weak equality), or else false
      */
@@ -40,6 +42,7 @@ public class UniqueList<T extends UniqueType> implements Iterable<T> {
     /**
      * Add unique element into a list.
      * Element must not exist in the list.
+     *
      * @param toAdd Element to be added
      */
     public void add(T toAdd) {

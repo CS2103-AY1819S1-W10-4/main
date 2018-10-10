@@ -3,7 +3,7 @@ package seedu.souschef.model;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
-
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Recipe;
 
 /**
@@ -14,6 +14,7 @@ import seedu.souschef.model.recipe.Recipe;
 public class AppContent implements ReadOnlyAppContent {
 
     private final UniqueList<Recipe> recipes;
+    private final UniqueList<Ingredient> ingredients;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -24,9 +25,11 @@ public class AppContent implements ReadOnlyAppContent {
      */
     {
         recipes = new UniqueList<>();
+        ingredients = new UniqueList<>();
     }
 
-    public AppContent() {}
+    public AppContent() {
+    }
 
     /**
      * Creates an AppContent using the recipes in the {@code toBeCopied}
@@ -37,17 +40,24 @@ public class AppContent implements ReadOnlyAppContent {
     }
 
     //// list overwrite operations
+
     /**
      * Resets the existing data of this {@code AppContent} with {@code newData}.
      */
     public void resetData(ReadOnlyAppContent newData) {
         requireNonNull(newData);
         this.recipes.set(newData.getObservableRecipeList());
+        this.ingredients.set(newData.getObservableIngredientList());
     }
 
     //// recipe-level operations
     public UniqueList<Recipe> getRecipes() {
         return recipes;
+    }
+
+    //// ingredient-level operations
+    public UniqueList<Ingredient> getIngredients() {
+        return ingredients;
     }
 
     //// util methods
@@ -60,6 +70,11 @@ public class AppContent implements ReadOnlyAppContent {
     @Override
     public ObservableList<Recipe> getObservableRecipeList() {
         return recipes.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Ingredient> getObservableIngredientList() {
+        return ingredients.asUnmodifiableObservableList();
     }
 
     @Override

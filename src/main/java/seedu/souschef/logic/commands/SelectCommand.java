@@ -11,12 +11,12 @@ import seedu.souschef.commons.events.ui.JumpToListRequestEvent;
 import seedu.souschef.logic.CommandHistory;
 import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.model.Model;
-import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.UniqueType;
 
 /**
  * Selects a recipe identified using it's displayed index from the address book.
  */
-public class SelectCommand extends Command {
+public class SelectCommand<T extends UniqueType> extends Command<T> {
 
     public static final String COMMAND_WORD = "select";
 
@@ -27,19 +27,21 @@ public class SelectCommand extends Command {
 
     public static final String MESSAGE_SELECT_RECIPE_SUCCESS = "Selected Recipe: %1$s";
 
+    private final Model model;
     private final Index targetIndex;
 
-    public SelectCommand(Index targetIndex) {
+    public SelectCommand(Model model, Index targetIndex) {
+        this.model = model;
         this.targetIndex = targetIndex;
     }
 
     @Override
-    public CommandResult execute(Model model, CommandHistory history) throws CommandException {
+    public CommandResult execute(CommandHistory history) throws CommandException {
         requireNonNull(model);
 
-        List<Recipe> filteredRecipeList = model.getFilteredList();
+        List<T> filteredList = model.getFilteredList();
 
-        if (targetIndex.getZeroBased() >= filteredRecipeList.size()) {
+        if (targetIndex.getZeroBased() >= filteredList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 

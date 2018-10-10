@@ -5,7 +5,7 @@ import static seedu.souschef.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- *  class to handle the overall frame of health plans
+ * class to handle the overall frame of health plans
  */
 public class HealthPlan {
     // Identity fields
@@ -41,6 +41,7 @@ public class HealthPlan {
     public CurrentWeight getCurrentWeight() {
         return cWeight;
     }
+
     public CurrentHeight getCurrentHeight() {
         return cHeight;
     }
@@ -118,9 +119,6 @@ public class HealthPlan {
                 && otherPlan.getAge().equals(getAge())
                 && otherPlan.getScheme().equals(getScheme());
     }
-
-
-
 
 
 }

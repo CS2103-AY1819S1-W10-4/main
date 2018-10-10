@@ -1,4 +1,5 @@
 package seedu.souschef.model.healthplan;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.souschef.commons.util.AppUtil.checkArgument;
 
@@ -41,12 +42,6 @@ public class Age {
     public int hashCode() {
         return value.hashCode();
     }
-
-
-
-
-
-
 
 
 }

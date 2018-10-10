@@ -11,6 +11,8 @@ import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.logic.parser.AppContentParser;
 import seedu.souschef.logic.parser.exceptions.ParseException;
 import seedu.souschef.model.Model;
+import seedu.souschef.model.UniqueType;
+import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.recipe.Recipe;
 
 /**
@@ -19,12 +21,12 @@ import seedu.souschef.model.recipe.Recipe;
 public class LogicManager extends ComponentManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final Model model;
+    private final Model[] models;
     private final CommandHistory history;
     private final AppContentParser appContentParser;
 
-    public LogicManager(Model model) {
-        this.model = model;
+    public LogicManager(Model[] models) {
+        this.models = models;
         history = new CommandHistory();
         appContentParser = new AppContentParser();
     }
@@ -33,8 +35,8 @@ public class LogicManager extends ComponentManager implements Logic {
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
-            Command command = appContentParser.parseCommand(commandText);
-            return command.execute(model, history);
+            Command<UniqueType> command = appContentParser.parseCommand(models, commandText, history);
+            return command.execute(history);
         } finally {
             history.add(commandText);
         }
@@ -42,7 +44,11 @@ public class LogicManager extends ComponentManager implements Logic {
 
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
-        return model.getFilteredList();
+        return models[0].getFilteredList();
+    }
+
+    public ObservableList<Ingredient> getFilteredIngredientList() {
+        return models[1].getFilteredList();
     }
 
     @Override
