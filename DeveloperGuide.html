@@ -28,13 +28,14 @@
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
-<ul class="sectlevel3">
-<li><a href="#cook-mode">3.1. Cook-mode</a></li>
+<ul class="sectlevel2">
+<li><a href="#recipe-management">3.1. Recipe Management</a></li>
 <li><a href="#meal-planner-feature">3.2. Meal Planner feature</a></li>
 <li><a href="#ingredient-manager">3.3. Ingredient Manager</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#health-plan-list">3.4. Health Plan list</a></li>
+<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -603,7 +604,16 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in xml format and read it back.</p>
+<p>can save the various xml files from each of the different functions. Namely recipe.xml, ingredients.xml and healthplan.xml</p>
+</li>
+<li>
+<p>can do a context switch for storing information into the correct xml file for the function.</p>
+</li>
+<li>
+<p>generalized in its implementation for easy extension</p>
+</li>
+<li>
+<p>controls information by passing a single appcontent unit around the system.</p>
 </li>
 </ul>
 </div>
@@ -620,10 +630,14 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes some noteworthy details on how certain features are implemented.
-=== Recipe Management
-==== All-field search
-The all-field search matches keywords with details of <code>Recipe</code>.
+<p>This section describes some noteworthy details on how certain features are implemented.</p>
+</div>
+<div class="sect2">
+<h3 id="recipe-management"><a class="link" href="#recipe-management">3.1. Recipe Management</a></h3>
+<div class="sect3">
+<h4 id="all-field-search"><a class="link" href="#all-field-search">3.1.1. All-field search</a></h4>
+<div class="paragraph">
+<p>The all-field search matches keywords with details of <code>Recipe</code>.
 Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search
 feature
 provides a complex querying, rather than a superficial search on merely recipes' name.</p>
@@ -649,8 +663,9 @@ to use its getter and perform matching with its keywords. Hence, a filter via pr
 Pros - Search done more effectively as the system only need to display all recipes stored in a tag
 Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
 </div>
+</div>
 <div class="sect3">
-<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1. Cook-mode</a></h4>
+<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1.2. Cook-mode</a></h4>
 <div class="paragraph">
 <p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be
 triggered by choosing a <code>Recipe</code> listed.</p>
@@ -663,10 +678,9 @@ navigation between instructions, possibility controlling of a real-time timer is
 instructions.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
 <h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.2. Meal Planner feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Meal Planner feature is supported by the classes <code>Meal</code> and <code>Day</code>.</p>
 </div>
@@ -726,9 +740,8 @@ ensured as <strong>Day</strong> objects are only instantiated when recipes are a
 <em>date</em>, with that <em>date</em> being assigned to its <strong>Day</strong> object. When all the recipes
 are deleted from a certain <strong>Day</strong>, the <strong>Day</strong> object is removed from the Meal Planner.</p>
 </div>
-</div>
 <div class="sect3">
-<h4 id="other-notes"><a class="link" href="#other-notes">3.2.2. Other notes</a></h4>
+<h4 id="other-notes"><a class="link" href="#other-notes">3.2.1. Other notes</a></h4>
 <div class="paragraph">
 <p>Since the the recipe list has to be visible for users to select recipes to add to
 the Meal Planner, the panel does not switch to show the Meal Planner list view immediately
@@ -793,20 +806,63 @@ of ingredients in inventory so that increases the possibility for user to use up
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
+<h3 id="health-plan-list"><a class="link" href="#health-plan-list">3.4. Health Plan list</a></h3>
+<div class="paragraph">
+<p>This is a feature that users can access to have healthplans to manage their diet and health due to dietary
+needs of their choice. Users are able to add a health list to based on their specifications:
+whether they intend to gain/lose/maintain weight from their
+set age, current weight and also their current height. this will then tell them what is the required calories to
+eat per day to hit their target.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.4.1. Current implementation</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Users are able to add to the list based on their personal settings: name, age, height, weight, target weight,
+duration, scheme(gain/loss/maintain)</p>
+</li>
+<li>
+<p>Users are able to delete entries that they do not want to keep anymore.</p>
+</li>
+<li>
+<p>Users are aso able to edit entries which information is incorrect.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ongoing-implementation-adding-of-meal-plans"><a class="link" href="#ongoing-implementation-adding-of-meal-plans">3.4.2. Ongoing implementation (Adding of meal plans)</a></h4>
+<div class="paragraph">
+<p>The new implementation of this feature should allow users to add meal plans from the meal planner feature, and also
+calculate the nutritional intake against the required calculate intake for the day and then also calculate the
+ percentage of the set target by calculated by the system
+met by the user&#8217;s own personal intake.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ongoing-implementation-expiry-of-health-plans"><a class="link" href="#ongoing-implementation-expiry-of-health-plans">3.4.3. Ongoing implementation (Expiry of health plans)</a></h4>
+<div class="paragraph">
+<p>The new implementation of this feature should have an expiry feature that counts down the system base on the app&#8217;s date
+ against the duration set by the user.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -837,7 +893,7 @@ of ingredients in inventory so that increases the possibility for user to use up
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3207,4 +3263,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 15:36:36 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 15:46:58 UTC</div></div></div></body></html>
