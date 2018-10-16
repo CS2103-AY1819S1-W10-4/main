@@ -29,11 +29,12 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#meal-planner-feature">3.1. Meal Planner feature</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#recipe-management">3.1. Recipe Management</a></li>
+<li><a href="#meal-planner-feature">3.2. Meal Planner feature</a></li>
+<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
+<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -619,9 +620,56 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.1. Meal Planner feature</a></h3>
+<h3 id="recipe-management"><a class="link" href="#recipe-management">3.1. Recipe Management</a></h3>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.1.1. Current Implementation</a></h4>
+<h4 id="all-field-search"><a class="link" href="#all-field-search">3.1.1. All-field search</a></h4>
+<div class="paragraph">
+<p>The all-field search matches keywords with details of <code>Recipe</code>.
+Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search
+feature
+provides a complex querying, rather than a superficial search on merely recipes' name.</p>
+</div>
+<div class="paragraph">
+<p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in of a predicate to
+filter away recipes that does not meet the requirement.</p>
+</div>
+<div class="paragraph">
+<p>The desired search keywords, once parsed as <code>List</code> of <code>String</code> will be turned to <code>Stream</code> checking for matching words
+ in the a recipe <code>Name</code>, complete matching of <code>CookTime</code>, matching of <code>Difficulty</code> and finally exact matching of any
+ one <code>Tag</code> in a <code>Stream</code> of tags. This ultimately returns a <code>boolean</code> that decides whether a <code>Recipe</code> stays or remain
+  in
+ the <code>FilteredList</code>.</p>
+</div>
+<div class="paragraph">
+<p>Why it is implemented that way:<br>
+Due to the existing data structure implemented by model, to access the attributes within a recipe, the system needs
+to use its getter and perform matching with its keywords. Hence, a filter via predicate testing is deemed fit.</p>
+</div>
+<div class="paragraph">
+<p>Alternatives: Tag saving recipes that uses it
+Pros - Search done more effectively as the system only need to display all recipes stored in a tag
+Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1.2. Cook-mode</a></h4>
+<div class="paragraph">
+<p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be
+triggered by choosing a <code>Recipe</code> listed.</p>
+</div>
+<div class="paragraph">
+<p>Upon <code>Command</code> execution, logic identify the context, which in this case cook-mode, of the application and perform a
+switch. Subsequent commands will be parse further by a parser unique to cook-mode. These commands allows the
+navigation between instructions, possibility controlling of a real-time timer is specified by the <code>Instruction</code>. A
+<code>ArrayList</code> is stored with the current index being saved to track and allow movement forward/backward between
+instructions.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.2. Meal Planner feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The Meal Planner feature is supported by the classes <code>Meal</code> and <code>Day</code>.</p>
 </div>
@@ -683,7 +731,7 @@ are deleted from a certain <strong>Day</strong>, the <strong>Day</strong> object
 </div>
 </div>
 <div class="sect3">
-<h4 id="other-notes"><a class="link" href="#other-notes">3.1.2. Other notes</a></h4>
+<h4 id="other-notes"><a class="link" href="#other-notes">3.2.2. Other notes</a></h4>
 <div class="paragraph">
 <p>Since the the recipe list has to be visible for users to select recipes to add to
 the Meal Planner, the panel does not switch to show the Meal Planner list view immediately
@@ -713,9 +761,9 @@ displaying the Meal Planner.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.2.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
 It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
@@ -845,7 +893,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -915,20 +963,20 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.3. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -959,7 +1007,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -3329,4 +3377,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 14:42:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 14:49:47 UTC</div></div></div></body></html>
