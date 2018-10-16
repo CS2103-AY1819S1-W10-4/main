@@ -28,10 +28,10 @@
 </ul>
 </li>
 <li><a href="#implementation">3. Implementation</a>
-<ul class="sectlevel2">
-<li><a href="#recipe-management">3.1. Recipe Management</a></li>
+<ul class="sectlevel3">
+<li><a href="#cook-mode">3.1. Cook-mode</a></li>
 <li><a href="#meal-planner-feature">3.2. Meal Planner feature</a></li>
-<li><a href="#undo-redo-feature">3.3. Undo/Redo feature</a></li>
+<li><a href="#ingredient-manager">3.3. Ingredient Manager</a></li>
 <li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
@@ -512,7 +512,10 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Logic</code> uses the <code>AppContentParser</code> class to parse the user command.'</p>
+</li>
+<li>
+<p><code>AppContentParser</code> passed necessary model to each feature parser such as <code>RecipeParser</code> according to the context.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
@@ -617,14 +620,10 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section describes some noteworthy details on how certain features are implemented.</p>
-</div>
-<div class="sect2">
-<h3 id="recipe-management"><a class="link" href="#recipe-management">3.1. Recipe Management</a></h3>
-<div class="sect3">
-<h4 id="all-field-search"><a class="link" href="#all-field-search">3.1.1. All-field search</a></h4>
-<div class="paragraph">
-<p>The all-field search matches keywords with details of <code>Recipe</code>.
+<p>This section describes some noteworthy details on how certain features are implemented.
+=== Recipe Management
+==== All-field search
+The all-field search matches keywords with details of <code>Recipe</code>.
 Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search
 feature
 provides a complex querying, rather than a superficial search on merely recipes' name.</p>
@@ -650,9 +649,8 @@ to use its getter and perform matching with its keywords. Hence, a filter via pr
 Pros - Search done more effectively as the system only need to display all recipes stored in a tag
 Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
 </div>
-</div>
 <div class="sect3">
-<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1.2. Cook-mode</a></h4>
+<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1. Cook-mode</a></h4>
 <div class="paragraph">
 <p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be
 triggered by choosing a <code>Recipe</code> listed.</p>
@@ -663,7 +661,6 @@ switch. Subsequent commands will be parse further by a parser unique to cook-mod
 navigation between instructions, possibility controlling of a real-time timer is specified by the <code>Instruction</code>. A
 <code>ArrayList</code> is stored with the current index being saved to track and allow movement forward/backward between
 instructions.</p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -761,204 +758,37 @@ displaying the Meal Planner.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.3. Undo/Redo feature</a></h3>
+<h3 id="ingredient-manager"><a class="link" href="#ingredient-manager">3.3. Ingredient Manager</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.3.1. Current Implementation</a></h4>
+<h4 id="select-feature-of-the-ingredient-manager-to-be-implemented"><a class="link" href="#select-feature-of-the-ingredient-manager-to-be-implemented">3.3.1. Select feature of the Ingredient Manager(to be implemented)</a></h4>
 <div class="paragraph">
-<p>The undo/redo mechanism is facilitated by <code>VersionedAddressBook</code>.
-It extends <code>AddressBook</code> with an undo/redo history, stored internally as an <code>addressBookStateList</code> and <code>currentStatePointer</code>.
-Additionally, it implements the following operations:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>VersionedAddressBook#commit()</code>&#8201;&#8212;&#8201;Saves the current address book state in its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#undo()</code>&#8201;&#8212;&#8201;Restores the previous address book state from its history.</p>
-</li>
-<li>
-<p><code>VersionedAddressBook#redo()</code>&#8201;&#8212;&#8201;Restores a previously undone address book state from its history.</p>
-</li>
-</ul>
+<p>Selecting recipe based on ingredients that are currently in the inventory is a key feature of Ingredient Manager.
+Basically Ingredient Manager does similar things that can be done by addressbook, such as add, delete, edit, and find
+. In this sense, you can think of the Ingredient Manager as storing and manipulating ingredient related information
+rather than person related information.
+However, select feature of it is noteworthy in that it enables users to filter out necessary knowledge outside of the
+ingredient manager(e.g. recipes), using the information stored in it(e.g. ingredients).</p>
 </div>
 <div class="paragraph">
-<p>These operations are exposed in the <code>Model</code> interface as <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> and <code>Model#redoAddressBook()</code> respectively.</p>
+<p>In AppContentParser, Ingredient Manager is passed two model parameters, which are recipe model and ingredient model.
+If you execute select command, it conducts search based on ingredients in inventory. Then It takes
+additional ingredients in as parameters, no matter if they are currently in inventory or not.
+Based on those ingredients, it conducts second round of search.
+The ingredients you put before 'optional' command would be considered as the ones that you want to necessarily
+include in your recipe search.
+The ingredients following 'optional' command is considered as the ones that you want to include as much as possible.
+Ingredient Manager display recipes sorted based on the number of optional ingredients, with the ones that contains most
+number at the top.
+Therefore, you can think of it as a 2 step, where 'must' ingredients filter out the recipes and 'optional'
+ingredients sorts the recipe.</p>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.</p>
-</div>
-<div class="paragraph">
-<p>Step 1. The user launches the application for the first time. The <code>VersionedAddressBook</code> will be initialized with the initial address book state, and the <code>currentStatePointer</code> pointing to that single address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoStartingStateListDiagram.png" alt="UndoRedoStartingStateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 2. The user executes <code>delete 5</code> command to delete the 5th recipe in the address book. The <code>delete</code> command calls <code>Model#commitAddressBook()</code>, causing the modified state of the address book after the <code>delete 5</code> command executes to be saved in the <code>addressBookStateList</code>, and the <code>currentStatePointer</code> is shifted to the newly inserted address book state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand1StateListDiagram.png" alt="UndoRedoNewCommand1StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 3. The user executes <code>add n/David &#8230;&#8203;</code> to add a new recipe. The <code>add</code> command also calls <code>Model#commitAddressBook()</code>, causing another modified address book state to be saved into the <code>addressBookStateList</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand2StateListDiagram.png" alt="UndoRedoNewCommand2StateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails its execution, it will not call <code>Model#commitAddressBook()</code>, so the address book state will not be saved into the <code>addressBookStateList</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 4. The user now decides that adding the recipe was a mistake, and decides to undo that action by executing the <code>undo</code> command. The <code>undo</code> command will call <code>Model#undoAddressBook()</code>, which will shift the <code>currentStatePointer</code> once to the left, pointing it to the previous address book state, and restores the address book to that state.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoExecuteUndoStateListDiagram.png" alt="UndoRedoExecuteUndoStateListDiagram" width="800">
-</div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The <code>undo</code> command uses <code>Model#canUndoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The following sequence diagram shows how the undo operation works:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoSequenceDiagram.png" alt="UndoRedoSequenceDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The <code>redo</code> command does the opposite&#8201;&#8212;&#8201;it calls <code>Model#redoAddressBook()</code>, which shifts the <code>currentStatePointer</code> once to the right, pointing to the previously undone state, and restores the address book to that state.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If the <code>currentStatePointer</code> is at index <code>addressBookStateList.size() - 1</code>, pointing to the latest address book state, then there are no undone address book states to restore. The <code>redo</code> command uses <code>Model#canRedoAddressBook()</code> to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Step 5. The user then decides to execute the command <code>list</code>. Commands that do not modify the address book, such as <code>list</code>, will usually not call <code>Model#commitAddressBook()</code>, <code>Model#undoAddressBook()</code> or <code>Model#redoAddressBook()</code>. Thus, the <code>addressBookStateList</code> remains unchanged.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand3StateListDiagram.png" alt="UndoRedoNewCommand3StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Step 6. The user executes <code>clear</code>, which calls <code>Model#commitAddressBook()</code>. Since the <code>currentStatePointer</code> is not pointing at the end of the <code>addressBookStateList</code>, all address book states after the <code>currentStatePointer</code> will be purged. We designed it this way because it no longer makes sense to redo the <code>add n/David &#8230;&#8203;</code> command. This is the behavior that most modern desktop applications follow.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoNewCommand4StateListDiagram.png" alt="UndoRedoNewCommand4StateListDiagram" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoRedoActivityDiagram.png" alt="UndoRedoActivityDiagram" width="650">
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.3.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Saves the entire address book.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Individual command knows how to undo/redo by itself.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the recipe being deleted).</p>
-</li>
-<li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
-</li>
-<li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
-</li>
-<li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<p>The difference between normal search using ingredient and current select method lies in the fact that it conducts
+search based
+ on ingredients in inventory as a default.
+Although you just put in 'select' without any additional parameters, it shows the recipes that contains most number
+of ingredients in inventory so that increases the possibility for user to use up the ingredients that are recorded in
+ inventory.</p>
 </div>
 </div>
 </div>
@@ -3377,4 +3207,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 14:49:47 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-16 14:57:17 UTC</div></div></div></body></html>
