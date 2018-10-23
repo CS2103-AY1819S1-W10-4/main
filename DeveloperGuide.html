@@ -29,14 +29,13 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#recipe-management">3.1. Recipe Management</a></li>
-<li><a href="#favourites-list">3.2. Favourites list</a></li>
-<li><a href="#meal-planner-feature">3.3. Meal Planner feature</a></li>
-<li><a href="#ingredient-manager">3.4. Ingredient Manager</a></li>
+<li><a href="#ingredient-manager">3.1. Ingredient Manager</a></li>
+<li><a href="#meal-planner-feature">3.2. Meal Planner feature</a></li>
+<li><a href="#favourites-list">3.3. Favourites list</a></li>
+<li><a href="#recipe-management">3.4. Recipe Management</a></li>
 <li><a href="#health-plan-list">3.5. Health Plan list</a></li>
-<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -67,32 +66,30 @@
 </ul>
 </li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
-<li><a href="#user-stories">7. User Stories</a>
+<li><a href="#user-stories">Appendix B: User Stories</a>
 <ul class="sectlevel2">
-<li><a href="#ingredient-management">7.1. Ingredient Management</a></li>
-<li><a href="#meal-planner">7.2. Meal Planner</a></li>
-<li><a href="#user-profiling">7.3. User Profiling</a></li>
-<li><a href="#recipes-management-and-cook-mode">7.4. Recipes Management and cook-mode</a></li>
-<li><a href="#health-planner">7.5. Health Planner</a></li>
+<li><a href="#ingredient-management">B.1. Ingredient Management</a></li>
+<li><a href="#meal-planner">B.2. Meal Planner</a></li>
+<li><a href="#user-profiling">B.3. User Profiling</a></li>
+<li><a href="#recipes-management-and-cook-mode">B.4. Recipes Management and cook-mode</a></li>
+<li><a href="#health-planner">B.5. Health Planner</a></li>
 </ul>
 </li>
-<li><a href="#use-cases">Appendix B: Use Cases</a>
+<li><a href="#use-cases">Appendix C: Use Cases</a>
 <ul class="sectlevel2">
-<li><a href="#ingredient-management-2">B.1. Ingredient Management</a></li>
-<li><a href="#meal-planner-2">B.2. Meal Planner</a></li>
-<li><a href="#user-profiling-2">B.3. User Profiling</a></li>
-<li><a href="#recipes-management-and-cook-mode-2">B.4. Recipes Management and cook-mode</a></li>
-<li><a href="#health-planner-2">B.5. Health planner</a></li>
+<li><a href="#ingredient-management-2">C.1. Ingredient Management</a></li>
+<li><a href="#meal-planner-2">C.2. Meal Planner</a></li>
+<li><a href="#user-profiling-2">C.3. User Profiling</a></li>
+<li><a href="#recipes-management-and-cook-mode-2">C.4. Recipes Management and cook-mode</a></li>
+<li><a href="#health-planner-2">C.5. Health planner</a></li>
 </ul>
 </li>
-<li><a href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix D: Glossary</a></li>
-<li><a href="#product-survey">Appendix E: Product Survey</a></li>
+<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-recipe">F.2. Deleting a recipe</a></li>
-<li><a href="#saving-data">F.3. Saving data</a></li>
 </ul>
 </li>
 </ul>
@@ -180,7 +177,8 @@ Do not disable them. If you have disabled them, go to <code>File</code> &gt; <co
 This will generate all resources required by the application and tests.</p>
 </li>
 <li>
-<p>Open <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
+<p>Open <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/storage/XmlAdaptedPerson.java"><code>XmlAdaptedPerson.java</code></a> and
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/ui/MainWindow.java"><code>MainWindow.java</code></a> and check for any code errors</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -193,7 +191,11 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </li>
 <li>
-<p>Repeat this for the test folder as well (e.g. check <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/test/java/seedu/address/commons/util/XmlUtilTest.java"><code>XmlUtilTest.java</code></a> and <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/test/java/seedu/address/ui/HelpWindowTest.java"><code>HelpWindowTest.java</code></a> for code errors, and if so, resolve it the same way)</p>
+<p>Repeat this for the test folder as well (e.g. check
+link:https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/test/java/seedu/souschef/commons/util/XmlUtilTest
+.java[<code>XmlUtilTest.java</code>] and <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/test/java/seedu/souschef/ui/HelpWindowTest.java"><code>HelpWindowTest.java</code></a>
+for
+code errors, and if so, resolve it the same way)</p>
 </li>
 </ol>
 </div>
@@ -246,26 +248,7 @@ This will generate all resources required by the application and tests.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="updating-documentation-to-match-your-fork"><a class="link" href="#updating-documentation-to-match-your-fork">1.4.2. Updating documentation to match your fork</a></h4>
-<div class="paragraph">
-<p>After forking the repo, the documentation will still have the SE-EDU branding and refer to the <code>se-edu/addressbook-level4</code> repo.</p>
-</div>
-<div class="paragraph">
-<p>If you plan to develop this fork as a separate product (i.e. instead of contributing to <code>se-edu/addressbook-level4</code>), you should do the following:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure the <a href="#Docs-SiteWideDocSettings">site-wide documentation settings</a> in <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/build.gradle"><code>build.gradle</code></a>, such as the <code>site-name</code>, to suit your own project.</p>
-</li>
-<li>
-<p>Replace the URL in the attribute <code>repoURL</code> in <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/docs/DeveloperGuide.adoc"><code>DeveloperGuide.adoc</code></a> and <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/docs/UserGuide.adoc"><code>UserGuide.adoc</code></a> with the URL of your fork.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.3. Setting up CI</a></h4>
+<h4 id="setting-up-ci"><a class="link" href="#setting-up-ci">1.4.2. Setting up CI</a></h4>
 <div class="paragraph">
 <p>Set up Travis to perform Continuous Integration (CI) for your fork. See <a href="UsingTravis.html">UsingTravis.adoc</a> to learn how to set it up.</p>
 </div>
@@ -301,7 +284,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 </div>
 </div>
 <div class="sect3">
-<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.4. Getting started with coding</a></h4>
+<h4 id="getting-started-with-coding"><a class="link" href="#getting-started-with-coding">1.4.3. Getting started with coding</a></h4>
 <div class="paragraph">
 <p>When you are ready to start coding,</p>
 </div>
@@ -346,7 +329,8 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </table>
 </div>
 <div class="paragraph">
-<p><code>Main</code> has only one class called <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
+<p><code>Main</code> has only one class called <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/MainApp.java"><code>MainApp</code></a>. It is responsible
+for,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -383,7 +367,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <p><a href="#Design-Logic"><strong><code>Logic</code></strong></a>: The command executor.</p>
 </li>
 <li>
-<p><a href="#Design-Model"><strong><code>Model</code></strong></a>: Holds the data of the App in-memory.</p>
+<p><a href="#Design-Model"><strong><code>ModelSet</code></strong></a>: Holds the data of the App in-memory.</p>
 </li>
 <li>
 <p><a href="#Design-Storage"><strong><code>Storage</code></strong></a>: Reads data from, and writes data to, the hard disk.</p>
@@ -429,7 +413,8 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises a <code>AppContentChangedEvent</code> when the Sous Chef data are changed, instead of asking
+the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
@@ -468,13 +453,16 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <div class="title">Figure 5. Structure of the UI Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>GenericListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
+<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that
+are in the <code>src/main/resources/view</code> folder. For example, the layout of the
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/ui/MainWindow.java"><code>MainWindow</code></a> is specified in
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component,</p>
@@ -575,7 +563,7 @@ anywhere as long as they have access to UiManager.</p>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> :
-<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -611,15 +599,16 @@ gram 10-23-2018")</code> API call.</p>
 <h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
+<img src="images/ModelComponent.png" alt="ModelComponent" width="800">
 </div>
 <div class="title">Figure 8. Structure of the Model Component</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/model/ModelSet.java"><code>ModelSet.java</code></a>,
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code>,</p>
+<p>The <code>ModelSet</code>,</p>
 </div>
 <div class="ulist">
 <ul>
@@ -627,29 +616,45 @@ gram 10-23-2018")</code> API call.</p>
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the Sous Chef application data.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Contains multiple <code>Model</code> each in-charge of a feature&#8217;s data.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>shares a single instance of VersionedAppContent to ensure single version of truth.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/ModelClassBetterOopDiagram.png" alt="ModelClassBetterOopDiagram" width="800"></span>
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>each represents a feature-unique data.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>ensures data abstraction for each feature.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>is reusable as model is now generic.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;T extends UniqueType&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -661,7 +666,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="title">Figure 9. Structure of the Storage Component (The given diagram only shows the extensions of 2 functions.)</div>
 </div>
 <div class="paragraph">
-<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
+<p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
 <p>The <code>Storage</code> component,</p>
@@ -699,7 +704,7 @@ calls the intended result will be achieved.</p>
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>seedu.souschef.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -711,72 +716,43 @@ calls the intended result will be achieved.</p>
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="recipe-management"><a class="link" href="#recipe-management">3.1. Recipe Management</a></h3>
+<h3 id="ingredient-manager"><a class="link" href="#ingredient-manager">3.1. Ingredient Manager</a></h3>
 <div class="sect3">
-<h4 id="all-field-search"><a class="link" href="#all-field-search">3.1.1. All-field search</a></h4>
+<h4 id="select-feature-of-the-ingredient-manager-to-be-implemented"><a class="link" href="#select-feature-of-the-ingredient-manager-to-be-implemented">3.1.1. Select feature of the Ingredient Manager(to be implemented)</a></h4>
 <div class="paragraph">
-<p>The all-field search matches keywords with details of <code>Recipe</code>.
-Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search
-feature
-provides a complex querying, rather than a superficial search on merely recipes' name.</p>
+<p>Selecting recipe based on ingredients that are currently in the inventory is a key feature of Ingredient Manager.
+In this sense, you can think of the Ingredient Manager as storing and manipulating ingredient related information
+rather than person related information.
+However, select feature of it is noteworthy in that it enables users to filter out necessary knowledge outside of the
+ingredient manager(e.g. recipes), using the information stored in it(e.g. ingredients).</p>
 </div>
 <div class="paragraph">
-<p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in of a predicate to
-filter away recipes that does not meet the requirement.</p>
+<p>In AppContentParser, Ingredient Manager is passed two model parameters, which are recipe model and ingredient model.
+If you execute select command, it conducts search based on ingredients in inventory. Then It takes
+additional ingredients in as parameters, no matter if they are currently in inventory or not.
+Based on those ingredients, it conducts second round of search.
+The ingredients you put before 'optional' command would be considered as the ones that you want to necessarily
+include in your recipe search.
+The ingredients following 'optional' command is considered as the ones that you want to include as much as possible.
+Ingredient Manager display recipes sorted based on the number of optional ingredients, with the ones that contains most
+number at the top.
+Therefore, you can think of it as a 2 step, where 'must' ingredients filter out the recipes and 'optional'
+ingredients sorts the recipe.</p>
 </div>
 <div class="paragraph">
-<p>The desired search keywords, once parsed as <code>List</code> of <code>String</code> will be turned to <code>Stream</code> checking for matching words
- in the a recipe <code>Name</code>, complete matching of <code>CookTime</code>, matching of <code>Difficulty</code> and finally exact matching of any
- one <code>Tag</code> in a <code>Stream</code> of tags. This ultimately returns a <code>boolean</code> that decides whether a <code>Recipe</code> stays or remain
-  in
- the <code>FilteredList</code>.</p>
-</div>
-<div class="paragraph">
-<p>Why it is implemented that way:<br>
-Due to the existing data structure implemented by model, to access the attributes within a recipe, the system needs
-to use its getter and perform matching with its keywords. Hence, a filter via predicate testing is deemed fit.</p>
-</div>
-<div class="paragraph">
-<p>Alternatives: Tag saving recipes that uses it
-Pros - Search done more effectively as the system only need to display all recipes stored in a tag
-Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="cook-mode"><a class="link" href="#cook-mode">3.1.2. Cook-mode</a></h4>
-<div class="paragraph">
-<p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be
-triggered by choosing a <code>Recipe</code> listed.</p>
-</div>
-<div class="paragraph">
-<p>Upon <code>Command</code> execution, logic identify the context, which in this case cook-mode, of the application and perform a
-switch. Subsequent commands will be parse further by a parser unique to cook-mode. These commands allows the
-navigation between instructions, possibility controlling of a real-time timer is specified by the <code>Instruction</code>. A
-<code>ArrayList</code> is stored with the current index being saved to track and allow movement forward/backward between
-instructions.</p>
+<p>The difference between normal search using ingredient and current select method lies in the fact that it conducts
+search based
+ on ingredients in inventory as a default.
+Although you just put in 'select' without any additional parameters, it shows the recipes that contains most number
+of ingredients in inventory so that increases the possibility for user to use up the ingredients that are recorded in
+ inventory.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="favourites-list"><a class="link" href="#favourites-list">3.2. Favourites list</a></h3>
-<div class="paragraph">
-<p>This feature allows users to have a quick reference to all of their favourite recipes. Users are able to add recipes
-that they like a lot, or that they cook often to the favourites list. Users are also able to search, display details,
-and remove any entry within the favourites list.</p>
-</div>
+<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.2. Meal Planner feature</a></h3>
 <div class="sect3">
-<h4 id="adding-to-favourites"><a class="link" href="#adding-to-favourites">3.2.1. Adding to Favourites</a></h4>
-<div class="paragraph">
-<p>While browsing the recipes in the recipe context, and when a user likes a recipe at a particular <code>INDEX</code>, they can
-execute the <code>favourite INDEX</code> command. The recipe selected would be copied from the recipe model, and added to an array
-list in the favourites model.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.3. Meal Planner feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="model"><a class="link" href="#model">Model</a></h5>
 <div class="paragraph">
@@ -904,37 +880,78 @@ The <strong>Day</strong> is specified by its index as seen on the list panel.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="ingredient-manager"><a class="link" href="#ingredient-manager">3.4. Ingredient Manager</a></h3>
+<h3 id="favourites-list"><a class="link" href="#favourites-list">3.3. Favourites list</a></h3>
+<div class="paragraph">
+<p>This feature allows users to have a quick reference to all of their favourite recipes. Users are able to add recipes
+that they like a lot, or that they cook often to the favourites list. Users are also able to search, display details,
+and remove any entry within the favourites list.</p>
+</div>
 <div class="sect3">
-<h4 id="select-feature-of-the-ingredient-manager-to-be-implemented"><a class="link" href="#select-feature-of-the-ingredient-manager-to-be-implemented">3.4.1. Select feature of the Ingredient Manager(to be implemented)</a></h4>
+<h4 id="adding-to-favourites"><a class="link" href="#adding-to-favourites">3.3.1. Adding to Favourites</a></h4>
 <div class="paragraph">
-<p>Selecting recipe based on ingredients that are currently in the inventory is a key feature of Ingredient Manager.
-Basically Ingredient Manager does similar things that can be done by addressbook, such as add, delete, edit, and find
-. In this sense, you can think of the Ingredient Manager as storing and manipulating ingredient related information
-rather than person related information.
-However, select feature of it is noteworthy in that it enables users to filter out necessary knowledge outside of the
-ingredient manager(e.g. recipes), using the information stored in it(e.g. ingredients).</p>
+<p>While browsing the recipes in the recipe context, and when a user likes a recipe at a particular <code>INDEX</code>, they can
+execute the <code>favourite INDEX</code> command. The recipe selected would be copied from the recipe model, and added to an array
+list in the favourites model.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recipe-management"><a class="link" href="#recipe-management">3.4. Recipe Management</a></h3>
+<div class="sect3">
+<h4 id="all-field-search"><a class="link" href="#all-field-search">3.4.1. All-field search</a></h4>
+<div class="paragraph">
+<p>The all-field search matches keywords with details of <code>Recipe</code>.
+Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search feature provides a complex querying, rather than a superficial search on merely recipes' name.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
+<div class="paragraph">
+<p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in of a predicate to
+filter away recipes that does not meet the requirement.</p>
 </div>
 <div class="paragraph">
-<p>In AppContentParser, Ingredient Manager is passed two model parameters, which are recipe model and ingredient model.
-If you execute select command, it conducts search based on ingredients in inventory. Then It takes
-additional ingredients in as parameters, no matter if they are currently in inventory or not.
-Based on those ingredients, it conducts second round of search.
-The ingredients you put before 'optional' command would be considered as the ones that you want to necessarily
-include in your recipe search.
-The ingredients following 'optional' command is considered as the ones that you want to include as much as possible.
-Ingredient Manager display recipes sorted based on the number of optional ingredients, with the ones that contains most
-number at the top.
-Therefore, you can think of it as a 2 step, where 'must' ingredients filter out the recipes and 'optional'
-ingredients sorts the recipe.</p>
+<p>The desired search keywords, once parsed as <code>List</code> of <code>String</code> will be turned to <code>Stream</code> checking for matching words
+ in the a recipe <code>Name</code>, complete matching of <code>CookTime</code>, matching of <code>Difficulty</code> and finally exact matching of any
+ one <code>Tag</code> in a <code>Stream</code> of tags. This ultimately returns a <code>boolean</code> that decides whether a <code>Recipe</code> stays or remain
+  in
+ the <code>FilteredList</code>.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recipe_search_seq.png" alt="recipe search seq" width="800">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="why-it-is-implemented-that-way"><a class="link" href="#why-it-is-implemented-that-way">Why it is implemented that way:</a></h5>
 <div class="paragraph">
-<p>The difference between normal search using ingredient and current select method lies in the fact that it conducts
-search based
- on ingredients in inventory as a default.
-Although you just put in 'select' without any additional parameters, it shows the recipes that contains most number
-of ingredients in inventory so that increases the possibility for user to use up the ingredients that are recorded in
- inventory.</p>
+<p>Due to the existing data structure implemented by model, to access the attributes within a recipe, the system needs
+to use its getter and perform matching with its keywords. Hence, a filter via predicate testing is deemed fit.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="alternatives"><a class="link" href="#alternatives">Alternatives:</a></h5>
+<div class="paragraph">
+<p>Tag saving recipes that uses it.<br>
+Pros - Search done more effectively as the system only need to display all recipes stored in a tag<br>
+Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cook-mode"><a class="link" href="#cook-mode">3.4.2. Cook-mode</a></h4>
+<div class="paragraph">
+<p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be triggered by choosing a <code>Recipe</code> listed.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<div class="paragraph">
+<p>Upon <code>Command</code> execution, logic identify the context, which in this case cook-mode, of the application and perform a
+switch. Subsequent commands will be parse further by a parser unique to cook-mode. These commands allows the
+navigation between instructions, possibility controlling of a real-time timer is specified by the <code>Instruction</code>. A
+<code>ArrayList</code> is stored with the current index being saved to track and allow movement forward/backward between
+instructions.</p>
+</div>
 </div>
 </div>
 </div>
@@ -948,7 +965,7 @@ set age, current weight and also their current height. this will then tell them 
 eat per day to hit their target.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.5.1. Current implementation</a></h4>
+<h4 id="current-implementation-4"><a class="link" href="#current-implementation-4">3.5.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -984,20 +1001,14 @@ by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1028,7 +1039,7 @@ by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1402,7 +1413,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Update the version number in <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/MainApp.java"><code>MainApp.java</code></a>.</p>
+<p>Update the version number in <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/souschef/MainApp.java"><code>MainApp.java</code></a>.</p>
 </li>
 <li>
 <p>Generate a JAR file <a href="UsingGradle.html#creating-the-jar-file">using Gradle</a>.</p>
@@ -1419,7 +1430,8 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 <div class="sect2">
 <h3 id="managing-dependencies"><a class="link" href="#managing-dependencies">6.6. Managing Dependencies</a></h3>
 <div class="paragraph">
-<p>A project often depends on third-party libraries. For example, Address Book depends on the <a href="http://wiki.fasterxml.com/JacksonHome">Jackson library</a> for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br></p>
+<p>A project often depends on third-party libraries. For example, Sous Chef depends on the <a href="http://wiki.fasterxml" class="bare">http://wiki.fasterxml</a>
+.com/JacksonHome[Jackson library] for XML parsing. Managing these <em>dependencies</em> can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives.<br></p>
 </div>
 </div>
 </div>
@@ -1452,26 +1464,16 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 <div class="paragraph">
 <p><strong>Value proposition</strong>: innovate, plan and guide health-conscious occupied working adults in preparing home-cooked meals</p>
 </div>
-<div class="olist appendix">
-<ol class="appendix">
-<li>
-<p>Include those libraries in the repo (this bloats the repo size)<br></p>
-</li>
-<li>
-<p>Require developers to download those libraries manually (this creates extra work for developers)</p>
-</li>
-</ol>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">7. User Stories</a></h2>
+<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
 </div>
 <div class="sect2">
-<h3 id="ingredient-management"><a class="link" href="#ingredient-management">7.1. Ingredient Management</a></h3>
+<h3 id="ingredient-management"><a class="link" href="#ingredient-management">B.1. Ingredient Management</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -1522,7 +1524,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="meal-planner"><a class="link" href="#meal-planner">7.2. Meal Planner</a></h3>
+<h3 id="meal-planner"><a class="link" href="#meal-planner">B.2. Meal Planner</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -1573,7 +1575,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="user-profiling"><a class="link" href="#user-profiling">7.3. User Profiling</a></h3>
+<h3 id="user-profiling"><a class="link" href="#user-profiling">B.3. User Profiling</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -1624,7 +1626,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="recipes-management-and-cook-mode"><a class="link" href="#recipes-management-and-cook-mode">7.4. Recipes Management and cook-mode</a></h3>
+<h3 id="recipes-management-and-cook-mode"><a class="link" href="#recipes-management-and-cook-mode">B.4. Recipes Management and cook-mode</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -1687,7 +1689,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="health-planner"><a class="link" href="#health-planner">7.5. Health Planner</a></h3>
+<h3 id="health-planner"><a class="link" href="#health-planner">B.5. Health Planner</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 25%;">
@@ -1741,13 +1743,13 @@ search online</p></td>
 </div>
 </div>
 <div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix B: Use Cases</a></h2>
+<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>Sous Chef</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
 <div class="sect2">
-<h3 id="ingredient-management-2"><a class="link" href="#ingredient-management-2">B.1. Ingredient Management</a></h3>
+<h3 id="ingredient-management-2"><a class="link" href="#ingredient-management-2">C.1. Ingredient Management</a></h3>
 <h3 id="use-case-uc11-list-ingredient" class="discrete">Use case: UC11 – List Ingredient</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -1924,7 +1926,7 @@ search online</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meal-planner-2"><a class="link" href="#meal-planner-2">B.2. Meal Planner</a></h3>
+<h3 id="meal-planner-2"><a class="link" href="#meal-planner-2">C.2. Meal Planner</a></h3>
 <h3 id="use-case-uc21-add-recipe-to-meal-planner" class="discrete">Use case: UC21 – Add recipe to meal planner</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2007,7 +2009,7 @@ search online</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-profiling-2"><a class="link" href="#user-profiling-2">B.3. User Profiling</a></h3>
+<h3 id="user-profiling-2"><a class="link" href="#user-profiling-2">C.3. User Profiling</a></h3>
 <h3 id="use-case-uc31-request-surprise-recipe" class="discrete">Use case: UC31 - Request surprise recipe</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2067,7 +2069,7 @@ search online</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recipes-management-and-cook-mode-2"><a class="link" href="#recipes-management-and-cook-mode-2">B.4. Recipes Management and cook-mode</a></h3>
+<h3 id="recipes-management-and-cook-mode-2"><a class="link" href="#recipes-management-and-cook-mode-2">C.4. Recipes Management and cook-mode</a></h3>
 <h4 id="use-case-uc41-search-for-recipe" class="discrete">Use case: UC41 – Search for Recipe</h4>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2087,7 +2089,7 @@ search online</p></td>
 <p>System displays recipes.</p>
 </li>
 <li>
-<p>System suggests ways to refine result.</p>
+<p>User enters keywords.</p>
 <div class="paragraph">
 <p>Steps 3 – 5 are repeated until search result becomes too narrow or user choose to look at existing result.</p>
 </div>
@@ -2228,7 +2230,7 @@ search online</p></td>
 </div>
 </div>
 <div class="sect2">
-<h3 id="health-planner-2"><a class="link" href="#health-planner-2">B.5. Health planner</a></h3>
+<h3 id="health-planner-2"><a class="link" href="#health-planner-2">C.5. Health planner</a></h3>
 <h4 id="use-case-uc51-create-plan" class="discrete">Use case: UC51 – Create plan</h4>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
@@ -2507,7 +2509,7 @@ from set target.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix C: Non Functional Requirements</a></h2>
+<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -2522,13 +2524,10 @@ from set target.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix D: Glossary</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -2536,48 +2535,7 @@ from set target.</p>
 <dd>
 <p>Windows, Linux, Unix, OS-X</p>
 </dd>
-<dt class="hdlist1"><a id="private-contact-detail"></a> Private contact detail</dt>
-<dd>
-<p>A contact detail that is not meant to be shared with others</p>
-</dd>
 </dl>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix E: Product Survey</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><strong>Product Name</strong></p>
-</div>
-<div class="paragraph">
-<p>Author: &#8230;&#8203;</p>
-</div>
-<div class="paragraph">
-<p>Pros:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Cons:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-<li>
-<p>&#8230;&#8203;</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -2612,7 +2570,7 @@ These instructions only provide a starting point for testers to work on; testers
 </li>
 <li>
 <p>Double-click the jar file<br>
-Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.</p>
+Expected: Shows the GUI with a set of sample recipes. The window size may not be optimum.</p>
 </li>
 </ol>
 </div>
@@ -2633,9 +2591,6 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="deleting-a-recipe"><a class="link" href="#deleting-a-recipe">F.2. Deleting a recipe</a></h3>
@@ -2650,7 +2605,9 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
-Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
+Expected: First recipe is deleted from the list. Details of the deleted recipe shown in the status message.
+Timestamp
+in the status bar is updated.</p>
 </li>
 <li>
 <p>Test case: <code>delete 0</code><br>
@@ -2665,29 +2622,6 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.3. Saving data</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Dealing with missing/corrupted data files</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><em>{explain how to simulate a missing/corrupted file and the expected behavior}</em></p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 11:59:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 13:26:10 UTC</div></div></div></body></html>
