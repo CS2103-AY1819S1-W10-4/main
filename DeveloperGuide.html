@@ -30,12 +30,13 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#recipe-management">3.1. Recipe Management</a></li>
-<li><a href="#meal-planner-feature">3.2. Meal Planner feature</a></li>
-<li><a href="#ingredient-manager">3.3. Ingredient Manager</a></li>
-<li><a href="#health-plan-list">3.4. Health Plan list</a></li>
-<li><a href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#favourites-list">3.2. Favourites list</a></li>
+<li><a href="#meal-planner-feature">3.3. Meal Planner feature</a></li>
+<li><a href="#ingredient-manager">3.4. Ingredient Manager</a></li>
+<li><a href="#health-plan-list">3.5. Health Plan list</a></li>
+<li><a href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a>
@@ -757,9 +758,25 @@ instructions.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.2. Meal Planner feature</a></h3>
+<h3 id="favourites-list"><a class="link" href="#favourites-list">3.2. Favourites list</a></h3>
+<div class="paragraph">
+<p>This feature allows users to have a quick reference to all of their favourite recipes. Users are able to add recipes
+that they like a lot, or that they cook often to the favourites list. Users are also able to search, display details,
+and remove any entry within the favourites list.</p>
+</div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<h4 id="adding-to-favourites"><a class="link" href="#adding-to-favourites">3.2.1. Adding to Favourites</a></h4>
+<div class="paragraph">
+<p>While browsing the recipes in the recipe context, and when a user likes a recipe at a particular <code>INDEX</code>, they can
+execute the <code>favourite INDEX</code> command. The recipe selected would be copied from the recipe model, and added to an array
+list in the favourites model.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="meal-planner-feature"><a class="link" href="#meal-planner-feature">3.3. Meal Planner feature</a></h3>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.3.1. Current Implementation</a></h4>
 <div class="sect4">
 <h5 id="model"><a class="link" href="#model">Model</a></h5>
 <div class="paragraph">
@@ -887,9 +904,9 @@ The <strong>Day</strong> is specified by its index as seen on the list panel.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="ingredient-manager"><a class="link" href="#ingredient-manager">3.3. Ingredient Manager</a></h3>
+<h3 id="ingredient-manager"><a class="link" href="#ingredient-manager">3.4. Ingredient Manager</a></h3>
 <div class="sect3">
-<h4 id="select-feature-of-the-ingredient-manager-to-be-implemented"><a class="link" href="#select-feature-of-the-ingredient-manager-to-be-implemented">3.3.1. Select feature of the Ingredient Manager(to be implemented)</a></h4>
+<h4 id="select-feature-of-the-ingredient-manager-to-be-implemented"><a class="link" href="#select-feature-of-the-ingredient-manager-to-be-implemented">3.4.1. Select feature of the Ingredient Manager(to be implemented)</a></h4>
 <div class="paragraph">
 <p>Selecting recipe based on ingredients that are currently in the inventory is a key feature of Ingredient Manager.
 Basically Ingredient Manager does similar things that can be done by addressbook, such as add, delete, edit, and find
@@ -922,7 +939,7 @@ of ingredients in inventory so that increases the possibility for user to use up
 </div>
 </div>
 <div class="sect2">
-<h3 id="health-plan-list"><a class="link" href="#health-plan-list">3.4. Health Plan list</a></h3>
+<h3 id="health-plan-list"><a class="link" href="#health-plan-list">3.5. Health Plan list</a></h3>
 <div class="paragraph">
 <p>This is a feature that users can access to have health plans to manage their diet and health due to dietary
 needs of their choice. Users are able to add a health list to based on their specifications:
@@ -931,7 +948,7 @@ set age, current weight and also their current height. this will then tell them 
 eat per day to hit their target.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.4.1. Current implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.5.1. Current implementation</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -948,7 +965,7 @@ duration, scheme (gain/loss/maintain)</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ongoing-implementation-adding-of-meal-plans"><a class="link" href="#ongoing-implementation-adding-of-meal-plans">3.4.2. Ongoing implementation (Adding of meal plans)</a></h4>
+<h4 id="ongoing-implementation-adding-of-meal-plans"><a class="link" href="#ongoing-implementation-adding-of-meal-plans">3.5.2. Ongoing implementation (Adding of meal plans)</a></h4>
 <div class="paragraph">
 <p>The new implementation of this feature should allow users to add meal plans from the meal planner feature, and also
 calculate the nutritional intake against the required calculate intake for the day and then also calculate the
@@ -959,7 +976,7 @@ by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ongoing-implementation-expiry-of-health-plans"><a class="link" href="#ongoing-implementation-expiry-of-health-plans">3.4.3. Ongoing implementation (Expiry of health plans)</a></h4>
+<h4 id="ongoing-implementation-expiry-of-health-plans"><a class="link" href="#ongoing-implementation-expiry-of-health-plans">3.5.3. Ongoing implementation (Expiry of health plans)</a></h4>
 <div class="paragraph">
 <p>The new implementation of this feature should have an expiry feature that counts down the system base on the app&#8217;s date
  against the duration set by the user.</p>
@@ -967,20 +984,20 @@ by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.5. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.6. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1011,7 +1028,7 @@ by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g App name, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2673,4 +2690,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 10:59:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 11:59:43 UTC</div></div></div></body></html>
