@@ -655,9 +655,9 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage component</a></h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/StorageClassDiagram.png" alt="StorageClassDiagram" width="800">
+<img src="images/StorageClassDiagramRevamp.png" alt="StorageClassDiagramRevamp" width="800">
 </div>
-<div class="title">Figure 9. Structure of the Storage Component</div>
+<div class="title">Figure 9. Structure of the Storage Component (The given diagram only shows the extensions of 2 functions.)</div>
 </div>
 <div class="paragraph">
 <p><strong>API</strong> : <a href="https://github.com/CS2103-AY1819S1-W10-4/main/tree/master/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
@@ -680,7 +680,17 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>generalized in its implementation for easy extension</p>
 </li>
 <li>
-<p>controls information by passing a single appcontent unit around the system.</p>
+<p>controls information by passing a single appContent unit around the system.</p>
+</li>
+<li>
+<p>With the new implementation of the storage component, calls at the upper layers are generalized and all components shares
+common calls for load and saving.</p>
+</li>
+<li>
+<p>The new storage component introduces a new abstract parent (XmlFeatureStorage) and also a new interface
+(XmlSerializableGeneric) to make all the calls of load and save to be generic to allow easy functional implementation
+without much creation of new methods at the storage level. Just by calling the context switch and also the save and load
+calls the intended result will be achieved.</p>
 </li>
 </ul>
 </div>
@@ -914,7 +924,7 @@ of ingredients in inventory so that increases the possibility for user to use up
 <div class="sect2">
 <h3 id="health-plan-list"><a class="link" href="#health-plan-list">3.4. Health Plan list</a></h3>
 <div class="paragraph">
-<p>This is a feature that users can access to have healthplans to manage their diet and health due to dietary
+<p>This is a feature that users can access to have health plans to manage their diet and health due to dietary
 needs of their choice. Users are able to add a health list to based on their specifications:
 whether they intend to gain/lose/maintain weight from their
 set age, current weight and also their current height. this will then tell them what is the required calories to
@@ -926,7 +936,7 @@ eat per day to hit their target.</p>
 <ul>
 <li>
 <p>Users are able to add to the list based on their personal settings: name, age, height, weight, target weight,
-duration, scheme(gain/loss/maintain)</p>
+duration, scheme (gain/loss/maintain)</p>
 </li>
 <li>
 <p>Users are able to delete entries that they do not want to keep anymore.</p>
@@ -942,8 +952,10 @@ duration, scheme(gain/loss/maintain)</p>
 <div class="paragraph">
 <p>The new implementation of this feature should allow users to add meal plans from the meal planner feature, and also
 calculate the nutritional intake against the required calculate intake for the day and then also calculate the
- percentage of the set target by calculated by the system
-met by the user&#8217;s own personal intake.</p>
+percentage of the set target by calculated by the system
+met by the user&#8217;s own personal intake.
+This will then also help to compare the intake taken by the user via the meal plans versus the required target calculated
+by the system using the age, height and current weight of the user.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2661,4 +2673,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 08:01:43 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-23 10:59:34 UTC</div></div></div></body></html>
