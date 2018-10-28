@@ -18,8 +18,8 @@
 <li><a href="#recipe-details-commands">3.3. Recipe Details Commands</a></li>
 <li><a href="#ingredient-manager-commands">3.4. Ingredient Manager Commands</a></li>
 <li><a href="#meal-planner-commands">3.5. Meal Planner Commands</a></li>
-<li><a href="#cook-mode-commands">3.6. Cook-Mode Commands</a></li>
-<li><a href="#health-planner-command">3.7. Health-planner Command</a></li>
+<li><a href="#health-planner-command">3.6. Health-planner Command</a></li>
+<li><a href="#cook-mode-commands-coming-in-v2-0">3.7. Cook-Mode Commands [coming in V2.0]</a></li>
 </ul>
 </li>
 <li><a href="#faq">4. FAQ</a></li>
@@ -109,7 +109,7 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Chicken Rice</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional e.g <code>-search KEYWORD&#8230;&#8203; [xx KEYWORD&#8230;&#8203;]</code> can be used as <code>-search Japanese xx Dairy</code> or as <code>-search Japanese</code>.</p>
+<p>Items in square brackets are optional.</p>
 </li>
 <li>
 <p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/Japanese</code>, <code>t/Halal t/Seafood</code> etc.</p>
@@ -121,42 +121,17 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <div class="sect2">
 <h3 id="universal-commands"><a class="link" href="#universal-commands">3.1. Universal Commands</a></h3>
 <div class="sect3">
-<h4 id="view-help-code-help-local-code"><a class="link" href="#view-help-code-help-local-code">3.1.1. View help: <code>-help [local]</code></a></h4>
+<h4 id="view-help-code-help-code"><a class="link" href="#view-help-code-help-code">3.1.1. View help: <code>-help</code></a></h4>
 <div class="paragraph">
-<p>To view the help menu containing all the universal commands.<br>
-<code>local</code> flag display local commands unique to an application page.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>-help [local]</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="navigate-pages-code-back-times-code-code-forward-times-code"><a class="link" href="#navigate-pages-code-back-times-code-code-forward-times-code">3.1.2. Navigate pages: <code>-back [TIMES]</code>/<code>-forward [TIMES]</code></a></h4>
-<div class="paragraph">
-<p>Navigate between past pages.<br></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p><code>TIMES</code> must be a positive integer.</p>
-</li>
-<li>
-<p>If integer exceeds history, navigate to the next navigable history.</p>
-</li>
-</ul>
-</div>
-</div>
+<p>To view the help menu containing all the universal commands.<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>-back [TIMES]</code>/<code>-forward [TIMES]</code></p>
+<code>-help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipes-database-code-recipe-code"><a class="link" href="#display-recipes-database-code-recipe-code">3.1.3. Display recipes database: <code>-recipe</code></a></h4>
+<h4 id="display-recipes-database-code-recipe-code"><a class="link" href="#display-recipes-database-code-recipe-code">3.1.2. Display recipes database: <code>-recipe</code></a></h4>
 <div class="paragraph">
 <p>Display all recipes records.<br>
 Format:<br>
@@ -164,7 +139,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipe-suggestion-code-suggest-code"><a class="link" href="#display-recipe-suggestion-code-suggest-code">3.1.4. Display recipe suggestion: <code>-suggest</code></a></h4>
+<h4 id="display-recipe-suggestion-code-suggest-code"><a class="link" href="#display-recipe-suggestion-code-suggest-code">3.1.3. Display recipe suggestion: <code>-suggest</code></a></h4>
 <div class="paragraph">
 <p>Display system suggestions based on user&#8217;s past navigation history
 and favorites.<br>
@@ -173,7 +148,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-new-recipe-code-surprise-code"><a class="link" href="#display-new-recipe-code-surprise-code">3.1.5. Display new recipe: <code>-surprise</code></a></h4>
+<h4 id="display-new-recipe-code-surprise-code"><a class="link" href="#display-new-recipe-code-surprise-code">3.1.4. Display new recipe: <code>-surprise</code></a></h4>
 <div class="paragraph">
 <p>Display a random recipe for the user who wants to try something bold
 and new but has no idea what they want.<br>
@@ -182,7 +157,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-favorites-code-favourite-code"><a class="link" href="#display-favorites-code-favourite-code">3.1.6. Display favorites: <code>-favourite</code></a></h4>
+<h4 id="display-favorites-code-favourite-code"><a class="link" href="#display-favorites-code-favourite-code">3.1.5. Display favorites: <code>-favourite</code></a></h4>
 <div class="paragraph">
 <p>List all the bookmarked favourite recipes of the user.<br>
 Format:<br>
@@ -190,7 +165,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-ingredient-manager-code-ingredientmanager-code"><a class="link" href="#display-ingredient-manager-code-ingredientmanager-code">3.1.7. Display ingredient manager: <code>-ingredientmanager</code></a></h4>
+<h4 id="display-ingredient-manager-code-ingredientmanager-code"><a class="link" href="#display-ingredient-manager-code-ingredientmanager-code">3.1.6. Display ingredient manager: <code>-ingredientmanager</code></a></h4>
 <div class="paragraph">
 <p>Ingredient manager is an inventory manager that helps stock
 tracking of existing ingredient available at home.<br>
@@ -199,7 +174,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-meal-planner-code-mealplanner-code"><a class="link" href="#display-meal-planner-code-mealplanner-code">3.1.8. Display meal planner: <code>-mealplanner</code></a></h4>
+<h4 id="display-meal-planner-code-mealplanner-code"><a class="link" href="#display-meal-planner-code-mealplanner-code">3.1.7. Display meal planner: <code>-mealplanner</code></a></h4>
 <div class="paragraph">
 <p>Display current meal plan. shows the planned meals for breakfast,
 lunch and dinner. Displays the calorie count for each meal, as well as the total calorie count
@@ -209,7 +184,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.9. Exit application: <code>-exit</code></a></h4>
+<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.8. Exit application: <code>-exit</code></a></h4>
 <div class="paragraph">
 <p>Format:<br>
 <code>-exit</code></p>
@@ -219,7 +194,7 @@ Format:<br>
 <div class="sect2">
 <h3 id="recipes-favourite-list-commands"><a class="link" href="#recipes-favourite-list-commands">3.2. Recipes/Favourite List Commands</a></h3>
 <div class="sect3">
-<h4 id="add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-i-instruction-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-i-instruction-end-code">3.2.1. Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203; i/INSTRUCTION&#8230;&#8203; end</code></a></h4>
+<h4 id="add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code">3.2.1. Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;  cont i/INSTRUCTION&#8230;&#8203; [c/TIME] end</code></a></h4>
 <div class="paragraph">
 <p>Add new recipe.<br></p>
 </div>
@@ -228,7 +203,44 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Multi-line command that ends with <code>end</code>.</p>
+<p>This is a multi-line command.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Command starts with <code>add</code> and should include name, cook time, difficulty and optional tags.</p>
+</li>
+<li>
+<p>Subsequence lines must start with <code>cont</code> and should only include details on one instructional step each.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Details
+to be included are instruction text, instruction exclusive cook time (optional) and ingredients (optional).</p>
+</li>
+<li>
+<p>Ingredients can be embedded into instruction text via <code>#INGREDIENT_NAME AMOUNT UNIT</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Compound INGREDIENT_NAME is acceptable. e.g. Bleached Wheat Flour.</p>
+</li>
+<li>
+<p>AMOUNT accepts both integer and decimal. Decimal must come with a leading 0 for values less than 1. e.g. 0.25</p>
+</li>
+<li>
+<p>UNIT should only come as a single word. e.g. gram, g, ml.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Action will only be completed with a new line command <code>end</code>.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>TIME should come with a PT prefix with H or/and M postfix, e.g. PT1H15M or PT35M.</p>
@@ -239,16 +251,19 @@ Format:<br>
 <li>
 <p><code>i</code> is to be replaced with running numbers for listing of instructions in order.</p>
 </li>
-<li>
-<p>Ingredients can be included in each instruction via <code>#INGREDIENT, QUANTITY UNIT_OF_MEASUREMENT</code>.</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203; i/INSTRUCTION&#8230;&#8203; end</code></p>
+<code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
+cont i/INSTRUCTION&#8230;&#8203; [c/TIME]<br>
+cont&#8230;&#8203;<br>
+end</code><br>
+<br>
+INSTRUCTION:<br>
+<code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT UNIT]&#8230;&#8203;</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -294,15 +309,14 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-and-display-recipes-code-search-keyword-code"><a class="link" href="#search-and-display-recipes-code-search-keyword-code">3.2.4. Search and display recipes: <code>search KEYWORD&#8230;&#8203;</code></a></h4>
+<h4 id="search-and-display-recipes-code-find-keyword-code"><a class="link" href="#search-and-display-recipes-code-find-keyword-code">3.2.4. Search and display recipes: <code>find KEYWORD&#8230;&#8203;</code></a></h4>
 <div class="paragraph">
 <p>Show recipes related to the keyword(s).
 Keywords include but not limited to cuisines (Indian, Japanese),
 dietary types (vegan, Keto),
 ingredients (egg, broccoli),
 preparation time (quick, 30mins)
-and difficulty (easy, simple, challenging).<br>
-Recipes with keyword(s) after <code>x/</code> are restricted.</p>
+and difficulty (easy, simple, challenging).<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -314,16 +328,13 @@ Recipes with keyword(s) after <code>x/</code> are restricted.</p>
 <li>
 <p>The order of keywords does not matter.</p>
 </li>
-<li>
-<p>However, restrictive keywords must be provided behind <code>x/</code>.</p>
-</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>-search KEYWORD&#8230;&#8203; [x/KEYWORD]&#8230;&#8203;</code></p>
+<code>find KEYWORD&#8230;&#8203;</code></p>
 </div>
 </div>
 </div>
@@ -378,7 +389,7 @@ Recipes with keyword(s) after <code>x/</code> are restricted.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="active-cook-mode-code-cook-code"><a class="link" href="#active-cook-mode-code-cook-code">3.3.3. Active cook-mode: <code>cook</code></a></h4>
+<h4 id="active-cook-mode-coming-in-v2-0-code-cook-code"><a class="link" href="#active-cook-mode-coming-in-v2-0-code-cook-code">3.3.3. Active cook-mode [coming in V2.0]: <code>cook</code></a></h4>
 <div class="paragraph">
 <p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br>
 Format:<br>
@@ -564,60 +575,9 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="cook-mode-commands"><a class="link" href="#cook-mode-commands">3.6. Cook-Mode Commands</a></h3>
+<h3 id="health-planner-command"><a class="link" href="#health-planner-command">3.6. Health-planner Command</a></h3>
 <div class="sect3">
-<h4 id="next-instruction"><a class="link" href="#next-instruction">3.6.1. Next Instruction</a></h4>
-<div class="paragraph">
-<p>Proceed to next instruction.<br>
-Format:<br>
-Hit <kbd>Enter</kbd> key</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="previous-instruction-code-b-code"><a class="link" href="#previous-instruction-code-b-code">3.6.2. Previous Instruction: <code>b</code></a></h4>
-<div class="paragraph">
-<p>Revert to previous instruction.<br>
-Format:<br>
-<code>b</code>/<code>back</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="start-timer-code-s-code"><a class="link" href="#start-timer-code-s-code">3.6.3. Start timer: <code>s</code></a></h4>
-<div class="paragraph">
-<p>Begin countdown timer.<br>
-Format:<br>
-<code>s</code>/<code>start</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="pause-timer-code-p-code"><a class="link" href="#pause-timer-code-p-code">3.6.4. Pause timer: <code>p</code></a></h4>
-<div class="paragraph">
-<p>Pause countdown timer.<br>
-Format:<br>
-<code>p</code>/<code>pause</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="reset-timer-code-r-code"><a class="link" href="#reset-timer-code-r-code">3.6.5. Reset timer: <code>r</code></a></h4>
-<div class="paragraph">
-<p>End/Reset countdown timer.<br>
-Format:<br>
-<code>r</code>/<code>reset</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="end-cook-mode-code-end-code"><a class="link" href="#end-cook-mode-code-end-code">3.6.6. End cook-mode: <code>end</code></a></h4>
-<div class="paragraph">
-<p>To end step-by-step instruction of cook-mode.<br>
-Format:<br>
-<code>end</code></p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="health-planner-command"><a class="link" href="#health-planner-command">3.7. Health-planner Command</a></h3>
-<div class="sect3">
-<h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.7.1. Add plan: <code>add</code></a></h4>
+<h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.6.1. Add plan: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds a health plan under the user.<br>
 Required parameters are GOAL and DURATION<br>
@@ -640,7 +600,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-plan-code-delete-code"><a class="link" href="#delete-plan-code-delete-code">3.7.2. Delete plan: <code>delete</code></a></h4>
+<h4 id="delete-plan-code-delete-code"><a class="link" href="#delete-plan-code-delete-code">3.6.2. Delete plan: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>After listing the list of health plans by user.<br>
 Deletes the plan selected by user.<br>
@@ -649,7 +609,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">3.7.3. Edit plan: <code>edit</code></a></h4>
+<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">3.6.3. Edit plan: <code>edit</code></a></h4>
 <div class="paragraph">
 <p>After listing the list of health plans by User.<br>
 Prompts for edit on the plan selected by the user.<br>
@@ -675,7 +635,7 @@ Format :<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-current-intake-item-code-addintake-code"><a class="link" href="#add-current-intake-item-code-addintake-code">3.7.4. Add current intake item: <code>addIntake</code></a></h4>
+<h4 id="add-current-intake-item-code-addintake-code"><a class="link" href="#add-current-intake-item-code-addintake-code">3.6.4. Add current intake item: <code>addIntake</code></a></h4>
 <div class="paragraph">
 <p>After being shown the recipe list by the system<br>
 User selects to add to intake List<br>
@@ -684,7 +644,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-current-intake-item-code-removeintake-code"><a class="link" href="#remove-current-intake-item-code-removeintake-code">3.7.5. Remove current intake item: <code>removeIntake</code></a></h4>
+<h4 id="remove-current-intake-item-code-removeintake-code"><a class="link" href="#remove-current-intake-item-code-removeintake-code">3.6.5. Remove current intake item: <code>removeIntake</code></a></h4>
 <div class="paragraph">
 <p>After being shown the list of recipe from intake list<br>
 User selects recipe to remove<br>
@@ -693,7 +653,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-overall-intake-code-viewintake-code"><a class="link" href="#view-overall-intake-code-viewintake-code">3.7.6. View overall intake : <code>viewIntake</code></a></h4>
+<h4 id="view-overall-intake-code-viewintake-code"><a class="link" href="#view-overall-intake-code-viewintake-code">3.6.6. View overall intake : <code>viewIntake</code></a></h4>
 <div class="paragraph">
 <p>After shown the list of Recipes by the system<br>
 User enters command to view overall intake<br>
@@ -702,12 +662,63 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="compare-overall-intake-against-code-compareintake-code"><a class="link" href="#compare-overall-intake-against-code-compareintake-code">3.7.7. Compare overall intake against : <code>compareIntake</code></a></h4>
+<h4 id="compare-overall-intake-against-code-compareintake-code"><a class="link" href="#compare-overall-intake-against-code-compareintake-code">3.6.7. Compare overall intake against : <code>compareIntake</code></a></h4>
 <div class="paragraph">
 <p>After being shown list of health plans<br>
 User enters command to compare against set health plan.<br>
 Format:<br>
 <code>compareIntake PLAN_ID</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cook-mode-commands-coming-in-v2-0"><a class="link" href="#cook-mode-commands-coming-in-v2-0">3.7. Cook-Mode Commands [coming in V2.0]</a></h3>
+<div class="sect3">
+<h4 id="next-instruction"><a class="link" href="#next-instruction">3.7.1. Next Instruction</a></h4>
+<div class="paragraph">
+<p>Proceed to next instruction.<br>
+Format:<br>
+Hit <kbd>Enter</kbd> key</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="previous-instruction-code-b-code"><a class="link" href="#previous-instruction-code-b-code">3.7.2. Previous Instruction: <code>b</code></a></h4>
+<div class="paragraph">
+<p>Revert to previous instruction.<br>
+Format:<br>
+<code>b</code>/<code>back</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="start-timer-code-s-code"><a class="link" href="#start-timer-code-s-code">3.7.3. Start timer: <code>s</code></a></h4>
+<div class="paragraph">
+<p>Begin countdown timer.<br>
+Format:<br>
+<code>s</code>/<code>start</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pause-timer-code-p-code"><a class="link" href="#pause-timer-code-p-code">3.7.4. Pause timer: <code>p</code></a></h4>
+<div class="paragraph">
+<p>Pause countdown timer.<br>
+Format:<br>
+<code>p</code>/<code>pause</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reset-timer-code-r-code"><a class="link" href="#reset-timer-code-r-code">3.7.5. Reset timer: <code>r</code></a></h4>
+<div class="paragraph">
+<p>End/Reset countdown timer.<br>
+Format:<br>
+<code>r</code>/<code>reset</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="end-cook-mode-code-end-code"><a class="link" href="#end-cook-mode-code-end-code">3.7.6. End cook-mode: <code>end</code></a></h4>
+<div class="paragraph">
+<p>To end step-by-step instruction of cook-mode.<br>
+Format:<br>
+<code>end</code></p>
 </div>
 </div>
 </div>
@@ -731,16 +742,13 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>View help: <code>-help [local]</code></p>
+<p>View help: <code>-help</code></p>
 </li>
 <li>
-<p>Navigate pages: <code>-back [TIMES]</code>/ <code>-forward [TIMES]</code></p>
+<p>Search and display recipes: <code>find KEYWORD&#8230;&#8203;</code></p>
 </li>
 <li>
-<p>Search and display recipes: <code>-search KEYWORD&#8230;&#8203;</code></p>
-</li>
-<li>
-<p>Display all recipe: '-recipe'</p>
+<p>Display all recipe: <code>-recipe</code></p>
 </li>
 <li>
 <p>Display recipe suggestion: <code>-suggest</code></p>
@@ -768,13 +776,23 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a recipe: <code>add n/NAME c/TIME [t/TAG]&#8230;&#8203; i/INSTRUCTION&#8230;&#8203; end</code></p>
+<p>Add a recipe: <code>add n/NAME c/TIME [t/TAG]&#8230;&#8203;<br>
+cont i/INSTRUCTION [c/TIME]<br>
+cont&#8230;&#8203;<br>
+end</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Instruction: <code>[TEXT]&#8230;&#8203; [#INGREDIENT_NAME AMOUNT UNIT]&#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Display recipe details: <code>select INDEX</code></p>
 </li>
 <li>
-<p>Activate cook-mode: <code>cook INDEX</code></p>
+<p>Activate cook-mode [coming in V2.0]: <code>cook INDEX</code></p>
 </li>
 </ul>
 </div>
@@ -837,7 +855,7 @@ KEYWORD… end</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Cook-Mode Commands</strong></p>
+<p><strong>Cook-Mode Commands [coming in V2.0]</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -862,4 +880,4 @@ KEYWORD… end</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 08:00:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-28 08:21:11 UTC</div></div></div></body></html>
