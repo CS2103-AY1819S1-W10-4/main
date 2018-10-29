@@ -25,8 +25,18 @@ public class Ingredient extends IngredientPortion {
 
     @Override
     public Ingredient addAmount(Object other) {
+        if (other instanceof Ingredient) {
+            //throw new ParseException("Attempted to add between different ingredients!");
+        }
         Ingredient otherIngredient = (Ingredient) other;
+
+        if (!(otherIngredient.getName().equals(getName()) && otherIngredient.getUnit().equals(getUnit())
+                && otherIngredient.getDate().equals(getDate()))) {
+            //throw new ParseException("Attempted to add between different ingredients!");
+        }
+
         Double total = this.getAmount().getValue() + otherIngredient.getAmount().getValue();
+
         return new Ingredient(getName(), new IngredientAmount(total), getUnit(), getDate());
     }
 

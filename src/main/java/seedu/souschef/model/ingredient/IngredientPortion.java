@@ -38,11 +38,20 @@ public class IngredientPortion extends IngredientDefinition {
     }
 
     /**
-     * Add amount between ingredients
+     * Add amount between ingredients of same unit
      */
     public IngredientPortion addAmount(Object other) {
+        if (other instanceof IngredientPortion) {
+            //throw new ParseException("Attempted to add between different ingredients!");
+        }
         IngredientPortion otherIngredient = (IngredientPortion) other;
+
+        if (!(otherIngredient.getName().equals(getName()) && otherIngredient.getUnit().equals(getUnit()))) {
+            //throw new ParseException("Attempted to add between different ingredients!");
+        }
+
         Double total = this.getAmount().getValue() + otherIngredient.getAmount().getValue();
+
         return new IngredientPortion(getName(), getUnit(), new IngredientAmount(total));
     }
 
