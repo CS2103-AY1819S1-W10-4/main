@@ -51,7 +51,6 @@ public class IngredientPortion extends IngredientDefinition {
         }
 
         double total = this.getAmount().getValue() + otherIngredient.getAmount().getValue();
-        
         return new IngredientPortion(getName(), getUnit(), new IngredientAmount(total));
     }
 
