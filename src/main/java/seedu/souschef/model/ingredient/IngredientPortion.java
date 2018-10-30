@@ -41,7 +41,7 @@ public class IngredientPortion extends IngredientDefinition {
      * Add amount between ingredients of same unit
      */
     public IngredientPortion addAmount(Object other) {
-        if (other instanceof IngredientPortion) {
+        if (!(other instanceof IngredientPortion)) {
             //throw new ParseException("Attempted to add between different ingredients!");
         }
         IngredientPortion otherIngredient = (IngredientPortion) other;

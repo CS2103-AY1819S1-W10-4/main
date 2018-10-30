@@ -25,7 +25,7 @@ public class Ingredient extends IngredientPortion {
 
     @Override
     public Ingredient addAmount(Object other) {
-        if (other instanceof Ingredient) {
+        if (!(other instanceof Ingredient)) {
             //throw new ParseException("Attempted to add between different ingredients!");
         }
         Ingredient otherIngredient = (Ingredient) other;
