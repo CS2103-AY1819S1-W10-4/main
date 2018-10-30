@@ -50,9 +50,29 @@ public class IngredientPortion extends IngredientDefinition {
             //throw new ParseException("Attempted to add between different ingredients!");
         }
 
-        Double total = this.getAmount().getValue() + otherIngredient.getAmount().getValue();
-
+        double total = this.getAmount().getValue() + otherIngredient.getAmount().getValue();
+        
         return new IngredientPortion(getName(), getUnit(), new IngredientAmount(total));
+    }
+
+    /**
+     * Subtract amount between ingredients
+     */
+    public IngredientPortion subtractAmount(Object other) {
+        IngredientPortion otherIngredient = (IngredientPortion) other;
+        double total = this.getAmount().getValue() - otherIngredient.getAmount().getValue();
+        if (total <= 0) {
+            total = 0.0;
+        }
+        return new IngredientPortion(getName(), getUnit(), new IngredientAmount(total));
+    }
+
+    /**
+     * multiply double to ingredient amount
+     */
+    public IngredientPortion multiplyAmount(double numberOfServings) {
+        double amount = getAmount().getValue() * numberOfServings;
+        return new IngredientPortion(getName(), getUnit(), new IngredientAmount(amount));
     }
 
     /**
@@ -63,7 +83,7 @@ public class IngredientPortion extends IngredientDefinition {
         IngredientName ingredientName = getName();
         IngredientServingUnit ingredientUnit = new IngredientServingUnit(definition.getCommonUnit());
         IngredientAmount ingredientAmount =
-                new IngredientAmount(amount.getValue() * definition.getConversionValue());
+                new IngredientAmount(amount.getValue().doubleValue() * definition.getConversionValue().doubleValue());
 
         return new IngredientPortion(ingredientName, ingredientUnit, ingredientAmount);
     }
