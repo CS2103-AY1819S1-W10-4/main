@@ -538,7 +538,8 @@ Format:<br>
 <div class="sect3">
 <h4 id="list-all-ingredients-code-list-code"><a class="link" href="#list-all-ingredients-code-list-code">3.3.2. List all ingredients: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of user’s ingredients.<br>
+<p>Shows a list of user’s ingredients. Ingredients are sorted by entered date, so that the ingredients entered earlier
+are placed high in order.<br>
 Format:<br>
 <code>list</code></p>
 </div>
@@ -579,7 +580,7 @@ Format:<br>
 <div class="sect3">
 <h4 id="delete-ingredient-code-delete-code"><a class="link" href="#delete-ingredient-code-delete-code">3.3.5. Delete ingredient: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Delete ingredient(s) added by user.
+<p>Delete ingredient added by user according to its index in last shown list.
 Format:<br>
 <code>delete INDEX</code></p>
 </div>
@@ -599,8 +600,9 @@ Format:<br>
 <div class="sect3">
 <h4 id="view-recipe-based-on-ingredients"><a class="link" href="#view-recipe-based-on-ingredients">3.4.1. View Recipe based on Ingredients</a></h4>
 <div class="paragraph">
-<p>By default, the list has recipes that are stored in normal recipe list. User can filter, sort the recipe list with
-based on ingredients.<br>
+<p>By default, the list has recipes that are stored in normal recipe list. User can filter, sort the recipe list
+based on ingredients. Also, needed amount of ingredients is calculated based on the number of serving unit so that
+user can check it with select command later.<br>
 Format:<br>
 <code>recipe NUMBER_OF_SERVINGS include [inventory] KEYWORD&#8230;&#8203; prioritize [inventory] KEYWORD&#8230;&#8203;</code><br></p>
 </div>
@@ -609,19 +611,21 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>"include" keyword filters the recipes based on following ingredients.<br></p>
+<p>"include" keyword filters the list, leaving the recipes that includes all of following ingredients on the list.<br></p>
 </li>
 <li>
-<p>"prioritize" keyword sorts the recipes based on number of following ingredients it contains. Recipe containing the
+<p>"prioritize" keyword sorts the recipes based on number of following ingredients it contains. Recipes containing the
 most number of following ingredients would placed high in order.<br></p>
 </li>
 <li>
-<p>"inventory" keyword either following "include" or "prioritize", provides all the ingreident in Ingredient
+<p>"inventory" keyword either follows "include" or "prioritize", provides all the ingreident in Ingredient
 Manager
-as parameter to keyword it follows.<br></p>
+as parameter to the keyword that it follows.<br></p>
 </li>
 <li>
-<p>"inventory" keyword is optional, but it should directly follow "include" keyword or "prioritize" keyword.</p>
+<p>"inventory" keyword is optional, but cannot appear more than once. Also, it should
+directly
+follow "include" or "prioritize" keyword.</p>
 </li>
 </ul>
 </div>
@@ -631,8 +635,9 @@ as parameter to keyword it follows.<br></p>
 <div class="sect3">
 <h4 id="view-needed-amount-of-ingredients-for-a-recipe"><a class="link" href="#view-needed-amount-of-ingredients-for-a-recipe">3.4.2. View needed amount of ingredients for a Recipe</a></h4>
 <div class="paragraph">
-<p>For specific recipe, user can view how much ingredient she should prepare additionally, with select command following
- cross find command. It refers to Ingredient Manager to get the amount of ingredients the user currently have.<br>
+<p>For a recipe on the list resulting from cross find command, user can view amount of respective ingredients that
+needs to be prepared additionally. It
+refers to Ingredient Manager to get the amount of ingredients the user currently have.<br>
 Format:<br>
 <code>select INDEX</code><br></p>
 </div>
@@ -641,9 +646,9 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Amount of needed ingredients is calculated based on the information in Ingredient Manager.<br>
-e.g. Number of Servings *
- Total Amount in Recipe - Amount that user already have(in Ingredient Manager)</p>
+<p>Amount of necessary ingredients is calculated based on the information in Ingredient Manager.<br>
+e.g. If positive, (Number of Servings *
+ Total Amount needed for a Recipe - Amount that the user currently have). Otherwise, 0.</p>
 </li>
 </ul>
 </div>
@@ -653,7 +658,7 @@ e.g. Number of Servings *
 <div class="sect3">
 <h4 id="list-all-recipes-code-list-code"><a class="link" href="#list-all-recipes-code-list-code">3.4.3. List all recipes: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of recipes.<br>
+<p>Shows a list of recipes. The list restores the default mode, erasing the result of cross find command.<br>
 Format:<br>
 <code>list</code></p>
 </div>
@@ -1041,4 +1046,4 @@ KEYWORD…​</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 13:38:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-30 15:07:57 UTC</div></div></div></body></html>
