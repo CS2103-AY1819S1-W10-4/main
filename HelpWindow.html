@@ -183,7 +183,16 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.8. Exit application: <code>-exit</code></a></h4>
+<h4 id="display-health-plan-code-healthplan-code"><a class="link" href="#display-health-plan-code-healthplan-code">3.1.8. Display health plan: <code>-healthplan</code></a></h4>
+<div class="paragraph">
+<p>Display the current health plan, shows health plan set by the user and the days added into the plan
+which is tied to meal plans<br>
+Format:<br>
+<code>-healthplan</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.9. Exit application: <code>-exit</code></a></h4>
 <div class="paragraph">
 <p>Format:<br>
 <code>-exit</code></p>
@@ -713,19 +722,34 @@ Format:<br>
 <h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.6.1. Add plan: <code>add</code></a></h4>
 <div class="paragraph">
 <p>Adds a health plan under the user.<br>
-Required parameters are GOAL and DURATION<br>
-Format:<br>
-<code>add GOAL DURATION</code><br></p>
+Required parameters are NAME, AGE, CURRENT HEIGHT, CURRENT WEIGHT,<br>
+TARGET WEIGHT, DURATION AND SCHEME<br></p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>add n/NAME a/AGE h/HEIGHT w/CURRENTWEIGHT t/TARGETWEIGHT d/DURATION s/SCHEME</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
+<p>Height is numeric and input is of centimetre units</p>
+</li>
+<li>
+<p>Current weight is numeric and input is of Kilogram units</p>
+</li>
+<li>
+<p>Target Weight is numeric and input is of Kilogram units</p>
+</li>
+<li>
+<p>AGE must be numeric</p>
+</li>
+<li>
 <p>GOAL specifies a string input of "GAIN", "LOSS" or "MAINTAIN"</p>
 </li>
 <li>
-<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL</p>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL, has to be numeric and more than 0</p>
 </li>
 </ul>
 </div>
@@ -740,27 +764,12 @@ Deletes the plan selected by user.<br>
 Format:<br>
 <code>delete INDEX</code></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">3.6.3. Edit plan: <code>edit</code></a></h4>
-<div class="paragraph">
-<p>After listing the list of health plans by User.<br>
-Prompts for edit on the plan selected by the user.<br>
-Format :<br>
-<code>edit INDEX GOAL DURATION</code><br></p>
-</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>INDEX specifies an integer input for entry to edit</p>
-</li>
-<li>
-<p>GOAL specifies a string input of "GAIN", "LOSS" or "MAINTAIN"</p>
-</li>
-<li>
-<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL</p>
+<p>INDEX has to be numeric and more than 0</p>
 </li>
 </ul>
 </div>
@@ -768,34 +777,119 @@ Format :<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-current-intake-item-code-addintake-code"><a class="link" href="#add-current-intake-item-code-addintake-code">3.6.4. Add current intake item: <code>addIntake</code></a></h4>
+<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">3.6.3. Edit plan: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>After being shown the recipe list by the system<br>
+<p>After listing the list of health plans by User.<br>
+Prompts for edit on the plan selected by the user.<br>
+Format :<br>
+<code>edit INDEX [n/NAME] [a/AGE] [t/TARGETWEIGHT] [h/HEIGHT] [w/CURRENTWEIGHT] [d/DURATION] [s/SCHEME]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX specifies the entry to edit, has to be numeric and more than 0</p>
+</li>
+<li>
+<p>Height is numeric, be more than 0 and input is of centimetre units</p>
+</li>
+<li>
+<p>Current weight is numeric, be more than 0 and input is of Kilogram units</p>
+</li>
+<li>
+<p>Target Weight is numeric, be more than 0 and input is of Kilogram units</p>
+</li>
+<li>
+<p>AGE must be numeric and more than 0</p>
+</li>
+<li>
+<p>GOAL specifies a string input of "GAIN", "LOSS" or "MAINTAIN"</p>
+</li>
+<li>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL, has to be numeric and more than 0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-current-intake-item-code-addday-code"><a class="link" href="#add-current-intake-item-code-addday-code">3.6.4. Add current intake item: <code>addDay</code></a></h4>
+<div class="paragraph">
+<p>After being shown the meal planner list by the system<br>
 User selects to add to intake List<br>
 Format:<br>
-<code>addIntake RECIPE_INDEX</code></p>
+`addDay p/PlanIndex d/DayIndex'</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Plan Index specifies the plan to add to, has to be more than 0 and be a valid index on the list</p>
+</li>
+<li>
+<p>Day index specifies the day to add into the specified plan, has to be more than 0 and be a valid index on the list</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="remove-current-intake-item-code-removeintake-code"><a class="link" href="#remove-current-intake-item-code-removeintake-code">3.6.5. Remove current intake item: <code>removeIntake</code></a></h4>
+<h4 id="remove-current-intake-item-code-deleteday-code"><a class="link" href="#remove-current-intake-item-code-deleteday-code">3.6.5. Remove current intake item: <code>deleteDay</code></a></h4>
 <div class="paragraph">
-<p>After being shown the list of recipe from intake list<br>
-User selects recipe to remove<br>
+<p>After being shown the list of days from intake list<br>
+User selects day to remove and also the plan to remove from<br>
 Format:<br>
-<code>removeIntake INDEX_OF_ITEM</code></p>
+<code>deleteDay p/PlanIndex d/DayIndex</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Plan Index specifies the plan to delete from, has to be more than 0 and be a valid index on the list</p>
+</li>
+<li>
+<p>Day index specifies the day to delete from the specified plan, has to be more than 0 and be a valid index on the list</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-overall-intake-code-viewintake-code"><a class="link" href="#view-overall-intake-code-viewintake-code">3.6.6. View overall intake : <code>viewIntake</code></a></h4>
+<h4 id="show-meal-planner-list-beside-health-plan-list-showmeal"><a class="link" href="#show-meal-planner-list-beside-health-plan-list-showmeal">3.6.6. Show Meal Planner list beside Health Plan List : 'showMeal'</a></h4>
 <div class="paragraph">
-<p>After shown the list of Recipes by the system<br>
-User enters command to view overall intake<br>
+<p>User enters command to view the full list of meals beside the health plan list
 Format:<br>
-<code>viewIntake</code></p>
+'showMeal'</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="compare-overall-intake-against-code-compareintake-code"><a class="link" href="#compare-overall-intake-against-code-compareintake-code">3.6.7. Compare overall intake against : <code>compareIntake</code></a></h4>
+<h4 id="view-plan-details-code-showdetails-code"><a class="link" href="#view-plan-details-code-showdetails-code">3.6.7. View plan details : <code>showDetails</code></a></h4>
+<div class="paragraph">
+<p>After shown the list of health plans by the system<br>
+User enters command to see the details of the plan specified<br>
+Format:<br>
+<code>showDetails INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX is the target plan to view details, needs to be numeric more than 0 and be a valid index found on the list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="compare-overall-intake-against-code-compareintake-code-coming-in-v2-0"><a class="link" href="#compare-overall-intake-against-code-compareintake-code-coming-in-v2-0">3.6.8. Compare overall intake against : <code>compareIntake</code> [coming in V2.0]</a></h4>
 <div class="paragraph">
 <p>After being shown list of health plans<br>
 User enters command to compare against set health plan.<br>
@@ -1045,4 +1139,4 @@ KEYWORD…​</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 05:30:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-10-31 05:35:04 UTC</div></div></div></body></html>
