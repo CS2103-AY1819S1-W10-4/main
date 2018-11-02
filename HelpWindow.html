@@ -16,7 +16,7 @@
 <li><a href="#universal-commands">3.1. Universal Commands</a></li>
 <li><a href="#recipes-commands">3.2. Recipes Commands</a></li>
 <li><a href="#ingredient-manager-commands">3.3. Ingredient Manager Commands</a></li>
-<li><a href="#recipe-ingredient-query-commands">3.4. Recipe-Ingredient Query Commands</a></li>
+<li><a href="#ingredient-recipe-query-commands">3.4. Ingredient-Recipe Query Commands</a></li>
 <li><a href="#meal-planner-commands">3.5. Meal Planner Commands</a></li>
 <li><a href="#health-planner-command">3.6. Health-planner Command</a></li>
 <li><a href="#cook-mode-commands-coming-in-v2-0">3.7. Cook-Mode Commands [coming in V2.0]</a></li>
@@ -167,8 +167,8 @@ Format:<br>
 <div class="sect3">
 <h4 id="display-ingredient-manager-code-ingredient-code"><a class="link" href="#display-ingredient-manager-code-ingredient-code">3.1.6. Display ingredient manager: <code>-ingredient</code></a></h4>
 <div class="paragraph">
-<p>Ingredient manager is an inventory manager that helps stock
-tracking of existing ingredient available at home.<br>
+<p>Display ingredient manager, which helps stock
+tracking of ingredient that the user currently have.<br>
 Format:<br>
 <code>-ingredient</code></p>
 </div>
@@ -521,7 +521,7 @@ and difficulty (easy, simple, challenging).<br></p>
 <div class="sect3">
 <h4 id="add-an-ingredient-code-add-code"><a class="link" href="#add-an-ingredient-code-add-code">3.3.1. Add an ingredient: <code>add</code></a></h4>
 <div class="paragraph">
-<p>Adds an ingredient to the ingredient manager.
+<p>Adds an ingredient to the ingredient manager.<br>
 Format:<br>
 <code>add NAME AMOUNT SERVING_UNIT DATE</code></p>
 </div>
@@ -530,13 +530,24 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>If there are more than 1 words for name, ‘_’ is used to separate words</p>
+<p>For compound word, ‘_’ is used to separate words.</p>
 </li>
 <li>
-<p>Serving Unit: follows the recipe book&#8217;s standard</p>
+<p>Serving units are pre-defined in the serving unit dictionary. Those undefined in the dictionary are not available.</p>
 </li>
 <li>
-<p>Entered Date: mm-dd-yyyy</p>
+<p>Currently available serving units are gram(g), kilogram(kg), pinch, piece, whole, clove, cm3, ml, l, tablespoon,
+teaspoon and cup.</p>
+</li>
+<li>
+<p>Amounts are converted with common serving unit(e.g. gram and cm3).</p>
+</li>
+<li>
+<p>Format for date should be MM-dd-yyyy</p>
+</li>
+<li>
+<p>Date is meant to be the date of input, but it is up to user to tweak its usage. For example, it can be used to show
+expire date.</p>
 </li>
 </ul>
 </div>
@@ -546,7 +557,8 @@ Format:<br>
 <div class="sect3">
 <h4 id="list-all-ingredients-code-list-code"><a class="link" href="#list-all-ingredients-code-list-code">3.3.2. List all ingredients: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of user’s ingredients. Ingredients are sorted by entered date, so that the ingredients entered earlier
+<p>Shows a list of ingredients in ingredient manager. Ingredients are sorted by date, so that the ingredients with
+earlier date
 are placed high in order.<br>
 Format:<br>
 <code>list</code></p>
@@ -555,30 +567,41 @@ Format:<br>
 <div class="sect3">
 <h4 id="edit-ingredient-info-code-edit-code"><a class="link" href="#edit-ingredient-info-code-edit-code">3.3.3. Edit ingredient info: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edit an existing ingredient in the ingredient manager.<br>
+<p>Edit an existing ingredient in ingredient manager.<br>
 Format:<br>
-<code>edit INDEX FIELD_NAME NEW_INFO (FIELD_NAME NEW_INFO)… end</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="find-ingredient-code-find-code"><a class="link" href="#find-ingredient-code-find-code">3.3.4. Find ingredient: <code>find</code></a></h4>
-<div class="paragraph">
-<p>Find ingredients whose name contains any of the given keywords.
-Format:<br>
-<code>find KEYWORD…</code></p>
+<code>edit INDEX FIELD_NAME NEW_INFO [MORE FIELD_NAME NEW_INFO]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Keywords are case insensitive</p>
+<p>Field name is either name, amount, or date.</p>
 </li>
 <li>
-<p>Only the name is searched</p>
+<p>Restrictions for respective field&#8217;s input are same as in add command(3.3.1.).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="find-ingredient-code-find-code"><a class="link" href="#find-ingredient-code-find-code">3.3.4. Find ingredient: <code>find</code></a></h4>
+<div class="paragraph">
+<p>Find ingredients in ingredient manager whose name contains any of the given keywords.<br>
+Format:<br>
+<code>find KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only the name is searched.</p>
 </li>
 <li>
-<p>Match only full words</p>
+<p>Match by full words.</p>
 </li>
 </ul>
 </div>
@@ -588,7 +611,7 @@ Format:<br>
 <div class="sect3">
 <h4 id="delete-ingredient-code-delete-code"><a class="link" href="#delete-ingredient-code-delete-code">3.3.5. Delete ingredient: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Delete ingredient added by user according to its index in last shown list.
+<p>Delete ingredient in ingredient manager according to its index in the last shown list.<br>
 Format:<br>
 <code>delete INDEX</code></p>
 </div>
@@ -596,44 +619,56 @@ Format:<br>
 <div class="sect3">
 <h4 id="clear-ingredients-code-clear-code"><a class="link" href="#clear-ingredients-code-clear-code">3.3.6. Clear ingredients: <code>clear</code></a></h4>
 <div class="paragraph">
-<p>Clears all ingredients.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>clear</code></p>
+<p>Clears all ingredients in ingredient manager.<br>
+Format:<br>
+<code>clear</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recipe-ingredient-query-commands"><a class="link" href="#recipe-ingredient-query-commands">3.4. Recipe-Ingredient Query Commands</a></h3>
+<h3 id="ingredient-recipe-query-commands"><a class="link" href="#ingredient-recipe-query-commands">3.4. Ingredient-Recipe Query Commands</a></h3>
 <div class="sect3">
-<h4 id="view-recipe-based-on-ingredients"><a class="link" href="#view-recipe-based-on-ingredients">3.4.1. View Recipe based on Ingredients</a></h4>
+<h4 id="view-recipes-based-on-ingredients"><a class="link" href="#view-recipes-based-on-ingredients">3.4.1. View Recipes based on Ingredients</a></h4>
 <div class="paragraph">
-<p>By default, the list has recipes that are stored in normal recipe list. User can filter, sort the recipe list
-based on ingredients. Also, needed amount of ingredients is calculated based on the number of serving unit so that
-user can check it with select command later.<br>
+<p>By default, the list shows recipes that are stored in application&#8217;s recipe list. User can filter or sort the recipes
+based on ingredients contained in recipes. Also, needed amounts of ingredients are calculated by considering the number
+ of
+serving units and ingredients stored in ingredient manager, so
+that
+user can take a look by applying select command later.<br>
 Format:<br>
-<code>recipe NUMBER_OF_SERVINGS include [inventory] KEYWORD&#8230;&#8203; prioritize [inventory] KEYWORD&#8230;&#8203;</code><br></p>
+<code>view NUMBER_OF_SERVINGS include [inventory] KEYWORD [MORE_KEYWORDS]&#8230;&#8203; prioritize [inventory] KEYWORD [MORE_KEYWORDS]&#8230;&#8203;</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>"include" keyword filters the list, leaving the recipes that includes all of following ingredients on the list.<br></p>
+<p>Number of servings can be a floating point value.</p>
 </li>
 <li>
-<p>"prioritize" keyword sorts the recipes based on number of following ingredients it contains. Recipes containing the
-most number of following ingredients would placed high in order.<br></p>
+<p>Names of ingredients are used as keywords. If the keyword is a compound word, '_' is used to separate between the
+words.
+(For example,
+spring_onion)</p>
 </li>
 <li>
-<p>"inventory" keyword either follows "include" or "prioritize", provides all the ingreident in Ingredient
+<p>"include" keyword filters the list, only leaving the recipes that includes all of following ingredients in the list.<br></p>
+</li>
+<li>
+<p>"prioritize" keyword sorts the recipes based on number of the following ingredients contained. Recipes containing
+ the
+most number of following ingredients would be placed high in order.<br></p>
+</li>
+<li>
+<p>"inventory" keyword provides all the ingreident in Ingredient
 Manager
-as parameter to the keyword that it follows.<br></p>
+as parameter to the keyword it follows.<br></p>
 </li>
 <li>
-<p>"inventory" keyword is optional, but cannot appear more than once. Also, it should
+<p>"inventory" keyword is optional, but cannot appear more than once. It
 directly
-follow "include" or "prioritize" keyword.</p>
+follows either "include" keyword or "prioritize" keyword.</p>
 </li>
 </ul>
 </div>
@@ -641,10 +676,12 @@ follow "include" or "prioritize" keyword.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-needed-amount-of-ingredients-for-a-recipe"><a class="link" href="#view-needed-amount-of-ingredients-for-a-recipe">3.4.2. View needed amount of ingredients for a Recipe</a></h4>
+<h4 id="view-needed-amounts-of-ingredients-for-a-recipe"><a class="link" href="#view-needed-amounts-of-ingredients-for-a-recipe">3.4.2. View needed amounts of ingredients for a Recipe</a></h4>
 <div class="paragraph">
-<p>For a recipe on the list resulting from cross find command, user can view amount of respective ingredients that
-needs to be prepared additionally. It
+<p>For a recipe in the list shown as a result of above command(3.4.1.), user can view amounts of respective ingredient
+in the recipe
+that
+needs to be additionally prepared. It reflects number of serving units and
 refers to Ingredient Manager to get the amount of ingredients the user currently have.<br>
 Format:<br>
 <code>select INDEX</code><br></p>
@@ -654,9 +691,9 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>Amount of necessary ingredients is calculated based on the information in Ingredient Manager.<br>
-e.g. If positive, (Number of Servings *
- Total Amount needed for a Recipe - Amount that the user currently have). Otherwise, 0.</p>
+<p>Amounts of necessary ingredients are calculated based on the information in Ingredient Manager.<br>
+e.g. If positive, (Number of Servings ×
+ Total Amount of an ingredient for a Recipe - Amount of an ingredient stored in ingredient manager). Otherwise, 0.</p>
 </li>
 </ul>
 </div>
@@ -666,7 +703,9 @@ e.g. If positive, (Number of Servings *
 <div class="sect3">
 <h4 id="list-all-recipes-code-list-code"><a class="link" href="#list-all-recipes-code-list-code">3.4.3. List all recipes: <code>list</code></a></h4>
 <div class="paragraph">
-<p>Shows a list of recipes. The list restores the default mode, erasing the result of cross find command.<br>
+<p>Shows a list of recipes. It restores the default state of the list, undoing the calculation resulting from 'view
+recipes based on ingredients'
+command(3.4.1.).<br>
 Format:<br>
 <code>list</code></p>
 </div>
@@ -1086,7 +1125,7 @@ or<br>
 <div class="ulist">
 <ul>
 <li>
-<p>View Recipe based on Ingredients: <code>recipe NUMBER_OF_SERVINGS include [inventory] KEYWORD…​ prioritize [inventory]
+<p>View Recipe based on Ingredients: <code>view NUMBER_OF_SERVINGS include [inventory] KEYWORD…​ prioritize [inventory]
 KEYWORD…​</code></p>
 </li>
 <li>
@@ -1139,4 +1178,4 @@ KEYWORD…​</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 03:01:36 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-02 03:06:11 UTC</div></div></div></body></html>
