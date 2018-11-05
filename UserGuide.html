@@ -18,7 +18,7 @@
 <li><a href="#ingredient-manager-commands">3.3. Ingredient Manager Commands</a></li>
 <li><a href="#ingredient-recipe-query-commands">3.4. Ingredient-Recipe Query Commands</a></li>
 <li><a href="#meal-planner-commands">3.5. Meal Planner Commands</a></li>
-<li><a href="#health-planner-command">3.6. Health-planner Command</a></li>
+<li><a href="#health-planner-commands">3.6. Health Planner Commands</a></li>
 <li><a href="#cook-mode-commands-coming-in-v2-0">3.7. Cook-Mode Commands [coming in V2.0]</a></li>
 </ul>
 </li>
@@ -74,13 +74,10 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>-search KEYWORD&#8230;&#8203; [x/KEYWORD]&#8230;&#8203;</code></strong> : search for recipes related and excluded from the keywords</p>
+<p><strong><code>find KEYWORD&#8230;&#8203;</code></strong> : search for recipes related and excluded from the keywords (only within recipe context)</p>
 </li>
 <li>
-<p><strong><code>-favorite</code></strong> : display personal favorited recipes</p>
-</li>
-<li>
-<p><strong><code>-plannerlist</code></strong> : display personal meal schedule</p>
+<p><strong><code>-mealplanner</code></strong> : Switch to meal planner context and display personal meal schedule</p>
 </li>
 <li>
 <p><strong><code>-exit</code></strong> : exits the app</p>
@@ -98,10 +95,20 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 <div class="sect1">
 <h2 id="Features"><a class="link" href="#Features">3. Features</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In Sous Chef, there are 2 types of command: universal commands and context-unique commands.<br>
+<br>
+The universal commands can be used throughout the application and perform application-wide action. You can identify a
+ universal command from its "-" convention followed by a keyword (e.g. -exit).<br>
+<br>
+ The context-unique commands on the other hand are only valid for that context. (e.g. <a href="#recipes-commands">Section 3.2, &#8220;Recipes Commands&#8221;</a> can only be
+ used in -recipe context). These commands contains only a action key word followed by the required parameters, if any
+ . (e.g. select INDEX)</p>
+</div>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Command Format</strong></p>
+<p><strong>Command Format Convention</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -120,97 +127,71 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 </div>
 <div class="sect2">
 <h3 id="universal-commands"><a class="link" href="#universal-commands">3.1. Universal Commands</a></h3>
-<div class="sidebarblock">
-<div class="content">
-<div class="paragraph">
-<p>For the following features in section 3, each feature&#8217;s commands will only be recognised when the application is
-within the context of the respective feature. In order to switch to the desired feature context, the respective
-universal command has to be entered first.</p>
-</div>
-</div>
-</div>
 <div class="sect3">
 <h4 id="view-help-code-help-code"><a class="link" href="#view-help-code-help-code">3.1.1. View help: <code>-help</code></a></h4>
 <div class="paragraph">
-<p>To view the help menu containing all the universal commands.<br></p>
-</div>
-<div class="paragraph">
-<p>Format:<br>
+<p>To view the help menu containing all the universal commands.<br>
+Format:<br>
 <code>-help</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipes-database-code-recipe-code"><a class="link" href="#display-recipes-database-code-recipe-code">3.1.2. Display recipes database: <code>-recipe</code></a></h4>
+<h4 id="view-history-code-history-code"><a class="link" href="#view-history-code-history-code">3.1.2. View history: <code>-history</code></a></h4>
 <div class="paragraph">
-<p>Display all recipes records.<br>
+<p>To view previous commands entered.<br>
+Format:<br>
+<code>-history</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="switch-to-recipe-context-code-recipe-code"><a class="link" href="#switch-to-recipe-context-code-recipe-code">3.1.3. Switch to recipe context: <code>-recipe</code></a></h4>
+<div class="paragraph">
+<p>Switch to recipe context and display recipes.<br>
+See <a href="#recipes-commands">Section 3.2, &#8220;Recipes Commands&#8221;</a> to view commands for recipe context.<br>
 Format:<br>
 <code>-recipe</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipe-suggestion-code-suggest-code-coming-in-v1-4"><a class="link" href="#display-recipe-suggestion-code-suggest-code-coming-in-v1-4">3.1.3. Display recipe suggestion: <code>-suggest</code> [coming in V1.4]</a></h4>
+<h4 id="switch-to-ingredient-manager-context-code-ingredient-code"><a class="link" href="#switch-to-ingredient-manager-context-code-ingredient-code">3.1.4. Switch to ingredient manager context: <code>-ingredient</code></a></h4>
 <div class="paragraph">
-<p>Display system suggestions based on user&#8217;s past navigation history
-and favorites.<br>
-Format:<br>
-<code>-suggest</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="display-new-recipe-code-surprise-code-coming-in-v1-4"><a class="link" href="#display-new-recipe-code-surprise-code-coming-in-v1-4">3.1.4. Display new recipe: <code>-surprise</code> [coming in V1.4]</a></h4>
-<div class="paragraph">
-<p>Display a random recipe for the user who wants to try something bold
-and new but has no idea what they want.<br>
-Format:<br>
-<code>-surprise</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="display-favorites-code-favourite-code"><a class="link" href="#display-favorites-code-favourite-code">3.1.5. Display favorites: <code>-favourite</code></a></h4>
-<div class="paragraph">
-<p>List all the bookmarked favourite recipes of the user.<br>
-Format:<br>
-<code>-favourite</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="display-ingredient-manager-code-ingredient-code"><a class="link" href="#display-ingredient-manager-code-ingredient-code">3.1.6. Display ingredient manager: <code>-ingredient</code></a></h4>
-<div class="paragraph">
-<p>Display ingredient manager, which helps stock
+<p>Switch to ingredient manager context and display ingredient manager, which helps stock
 tracking of ingredient that the user currently have.<br>
+See <a href="#ingredient-manager-commands">Section 3.3, &#8220;Ingredient Manager Commands&#8221;</a> to view commands for ingredient manager context.<br>
 Format:<br>
 <code>-ingredient</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-ingredient-recipe-query-page-code-cross-code"><a class="link" href="#display-ingredient-recipe-query-page-code-cross-code">3.1.7. Display ingredient-recipe query page: <code>-cross</code></a></h4>
+<h4 id="switch-to-ingredient-recipe-query-context-code-cross-code"><a class="link" href="#switch-to-ingredient-recipe-query-context-code-cross-code">3.1.5. Switch to ingredient-recipe query context: <code>-cross</code></a></h4>
 <div class="paragraph">
-<p>Display the page where you can sort, filter the recipe list by name of ingredients includes and get information of
-needed amounts of ingredients.<br>
+<p>Switch to ingredient-recipe query context and where you can sort, filter the recipe list by name of ingredients includes and get information of needed amounts of ingredients.<br>
+See <a href="#ingredient-recipe-query-commands">Section 3.4, &#8220;Ingredient-Recipe Query Commands&#8221;</a> to view commands for ingredient-recipe query context.<br>
 Format:<br>
 <code>-cross</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-meal-planner-code-mealplanner-code"><a class="link" href="#display-meal-planner-code-mealplanner-code">3.1.8. Display meal planner: <code>-mealplanner</code></a></h4>
+<h4 id="switch-to-meal-planner-context-code-mealplanner-code"><a class="link" href="#switch-to-meal-planner-context-code-mealplanner-code">3.1.6. Switch to meal planner context: <code>-mealplanner</code></a></h4>
 <div class="paragraph">
-<p>Display current Meal Planner. Shows the planned meals for breakfast,
-lunch and dinner for previously planned days.<br>
+<p>Switch to meal planner context and display the planned meals for breakfast, lunch and dinner for previously planned days.<br>
+See <a href="#meal-planner-commands">Section 3.5, &#8220;Meal Planner Commands&#8221;</a> to view commands for meal planner context.<br>
 Format:<br>
 <code>-mealplanner</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-health-plan-code-healthplan-code"><a class="link" href="#display-health-plan-code-healthplan-code">3.1.9. Display health plan: <code>-healthplan</code></a></h4>
+<h4 id="switch-to-health-plan-context-code-healthplan-code"><a class="link" href="#switch-to-health-plan-context-code-healthplan-code">3.1.7. Switch to health plan context: <code>-healthplan</code></a></h4>
 <div class="paragraph">
-<p>Display the current health plan, shows health plan set by the user and the days added into the plan
-which is tied to meal plans<br>
+<p>Switch to health planner context and display health plan set by the user and the days added into the plan which is tied
+ to meal plans.<br>
+See <a href="#health-planner-commands">Section 3.6, &#8220;Health Planner Commands&#8221;</a> to view commands for health planner context.<br>
 Format:<br>
 <code>-healthplan</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.10. Exit application: <code>-exit</code></a></h4>
+<h4 id="exit-application-code-exit-code"><a class="link" href="#exit-application-code-exit-code">3.1.8. Exit application: <code>-exit</code></a></h4>
 <div class="paragraph">
 <p>Format:<br>
 <code>-exit</code></p>
@@ -220,7 +201,15 @@ Format:<br>
 <div class="sect2">
 <h3 id="recipes-commands"><a class="link" href="#recipes-commands">3.2. Recipes Commands</a></h3>
 <div class="sect3">
-<h4 id="add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code">3.2.1. Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;  cont i/INSTRUCTION&#8230;&#8203; [c/TIME] end</code></a></h4>
+<h4 id="list-recipes-code-list-code"><a class="link" href="#list-recipes-code-list-code">3.2.1. List recipes: <code>list</code></a></h4>
+<div class="paragraph">
+<p>Show all recipes.<br>
+Format:<br>
+<code>list</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code">3.2.2. Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;  cont i/INSTRUCTION&#8230;&#8203; [c/TIME] end</code></a></h4>
 <div class="paragraph">
 <p>Add new recipe.<br></p>
 </div>
@@ -229,7 +218,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>This is a multi-line command.</p>
+<p>This is a multi-line command. (i.e. <code>add</code>, <code>cont</code> and <code>end</code> must be in a seperate command entry)</p>
 </li>
 <li>
 <p>Command starts with <code>add</code> and should include name, cook time and difficulty. Tags can be added as required.</p>
@@ -281,7 +270,17 @@ to be included are instruction text, instruction exclusive cook time (optional) 
 </div>
 </li>
 <li>
-<p>Action will only be completed with a new line command <code>end</code>.</p>
+<p>Action will only be completed (added) with a valid <code>end</code> command.</p>
+</li>
+<li>
+<p>Recipe without at least one instruction and 'end' command will not be added.</p>
+</li>
+<li>
+<p>User can perform other commands and continue adding instructions as required. Command need not be continuous.</p>
+</li>
+<li>
+<p>To overwrite existing recipe that has yet been added (i.e. <code>end</code> command not used), simply use the <code>add</code> command
+and enter a new recipe details as desired.</p>
 </li>
 </ul>
 </div>
@@ -299,7 +298,7 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code"><a class="link" href="#edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code">3.2.2. Edit a recipe: <code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code></a></h4>
+<h4 id="edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code"><a class="link" href="#edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code">3.2.3. Edit a recipe: <code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code></a></h4>
 <div class="paragraph">
 <p>Edit new recipe.<br></p>
 </div>
@@ -370,7 +369,7 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipe-details-code-select-index-code"><a class="link" href="#display-recipe-details-code-select-index-code">3.2.3. Display recipe details: <code>select INDEX</code></a></h4>
+<h4 id="display-recipe-details-code-select-index-code"><a class="link" href="#display-recipe-details-code-select-index-code">3.2.4. Display recipe details: <code>select INDEX</code></a></h4>
 <div class="paragraph">
 <p>View a recipe and its details from the list.<br></p>
 </div>
@@ -391,14 +390,14 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-recipes-code-find-keyword-code"><a class="link" href="#search-recipes-code-find-keyword-code">3.2.4. Search recipes: <code>find KEYWORD&#8230;&#8203;</code></a></h4>
+<h4 id="search-recipes-code-find-keyword-code"><a class="link" href="#search-recipes-code-find-keyword-code">3.2.5. Search recipes: <code>find KEYWORD&#8230;&#8203;</code></a></h4>
 <div class="paragraph">
 <p>Show recipes related to the keyword(s).
 Keywords include but not limited to cuisines (Indian, Japanese),
 dietary types (vegan, Keto),
 ingredients (egg, broccoli),
-preparation time (quick, 30mins)
-and difficulty (easy, simple, challenging).<br></p>
+preparation time (PT30M, PT1H40M)
+and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -420,7 +419,7 @@ and difficulty (easy, simple, challenging).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-recipe-code-delete-index-code"><a class="link" href="#delete-recipe-code-delete-index-code">3.2.5. Delete recipe: <code>delete INDEX</code></a></h4>
+<h4 id="delete-recipe-code-delete-index-code"><a class="link" href="#delete-recipe-code-delete-index-code">3.2.6. Delete recipe: <code>delete INDEX</code></a></h4>
 <div class="paragraph">
 <p>Delete a recipe and its details from the list.<br></p>
 </div>
@@ -441,7 +440,7 @@ and difficulty (easy, simple, challenging).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="activate-cook-mode-coming-in-v2-0-code-cook-index-code"><a class="link" href="#activate-cook-mode-coming-in-v2-0-code-cook-index-code">3.2.6. Activate cook-mode [coming in V2.0]: <code>cook INDEX</code></a></h4>
+<h4 id="activate-cook-mode-coming-in-v2-0-code-cook-index-code"><a class="link" href="#activate-cook-mode-coming-in-v2-0-code-cook-index-code">3.2.7. Activate cook-mode [coming in V2.0]: <code>cook INDEX</code></a></h4>
 <div class="paragraph">
 <p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br></p>
 </div>
@@ -462,7 +461,7 @@ and difficulty (easy, simple, challenging).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-recipe-to-favourite-code-favourite-code"><a class="link" href="#add-recipe-to-favourite-code-favourite-code">3.2.7. Add recipe to favourite: <code>favourite</code></a></h4>
+<h4 id="add-recipe-to-favourite-code-favourite-code"><a class="link" href="#add-recipe-to-favourite-code-favourite-code">3.2.8. Add recipe to favourite: <code>favourite</code></a></h4>
 <div class="paragraph">
 <p>Add a recipe to their favourites list.<br></p>
 </div>
@@ -483,7 +482,7 @@ and difficulty (easy, simple, challenging).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-to-meal-plan-code-plan-index-date-meal-code"><a class="link" href="#add-to-meal-plan-code-plan-index-date-meal-code">3.2.8. Add to meal plan: <code>plan INDEX DATE MEAL</code></a></h4>
+<h4 id="add-to-meal-plan-code-plan-index-date-meal-code"><a class="link" href="#add-to-meal-plan-code-plan-index-date-meal-code">3.2.9. Add to meal plan: <code>plan INDEX DATE MEAL</code></a></h4>
 <div class="paragraph">
 <p>Add a specified recipe to meal plan.<br></p>
 </div>
@@ -510,7 +509,7 @@ and difficulty (easy, simple, challenging).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-to-review-coming-in-v2-0-code-review-comment-rating-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-comment-rating-code">3.2.9. Add to review [coming in V2.0]: <code>review [Comment] RATING</code></a></h4>
+<h4 id="add-to-review-coming-in-v2-0-code-review-comment-rating-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-comment-rating-code">3.2.10. Add to review [coming in V2.0]: <code>review [Comment] RATING</code></a></h4>
 <div class="paragraph">
 <p>Add comment and rating to current recipe.<br></p>
 </div>
@@ -778,7 +777,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="health-planner-command"><a class="link" href="#health-planner-command">3.6. Health-planner Command</a></h3>
+<h3 id="health-planner-commands"><a class="link" href="#health-planner-commands">3.6. Health Planner Commands</a></h3>
 <div class="sect3">
 <h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.6.1. Add plan: <code>add</code></a></h4>
 <div class="paragraph">
@@ -1200,4 +1199,4 @@ KEYWORD…​</code></p>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-05 06:31:53 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-05 12:32:37 UTC</div></div></div></body></html>
