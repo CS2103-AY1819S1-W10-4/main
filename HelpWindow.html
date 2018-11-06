@@ -14,11 +14,11 @@
 <li><a href="#Features">3. Features</a>
 <ul class="sectlevel2">
 <li><a href="#universal-commands">3.1. Universal Commands</a></li>
-<li><a href="#recipes-commands">3.2. Recipes Commands</a></li>
-<li><a href="#ingredient-manager-commands-only-applicable-in-ingredient-context">3.3. Ingredient Manager Commands [Only applicable in ingredient context]</a></li>
-<li><a href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">3.4. Ingredient-Recipe Query Commands [Only applicable in cross context]</a></li>
-<li><a href="#meal-planner-commands-only-applicable-in-meal-planner-context">3.5. Meal Planner Commands [Only applicable in meal planner context]</a></li>
-<li><a href="#health-planner-commands-only-applicable-in-health-plan-context">3.6. Health Planner Commands [Only applicable in health plan context]</a></li>
+<li><a href="#recipes-commands-only-applicable-in-recipe-context">3.2. Recipes Commands (Only applicable in recipe context)</a></li>
+<li><a href="#ingredient-manager-commands-only-applicable-in-ingredient-context">3.3. Ingredient Manager Commands (Only applicable in ingredient context)</a></li>
+<li><a href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">3.4. Ingredient-Recipe Query Commands (Only applicable in cross context)</a></li>
+<li><a href="#meal-planner-commands-only-applicable-in-meal-planner-context">3.5. Meal Planner Commands (Only applicable in meal planner context)</a></li>
+<li><a href="#health-planner-commands-only-applicable-in-health-plan-context">3.6. Health Planner Commands (Only applicable in health plan context)</a></li>
 <li><a href="#cook-mode-commands-coming-in-v2-0">3.7. Cook-Mode Commands [coming in V2.0]</a></li>
 </ul>
 </li>
@@ -101,7 +101,7 @@ e.g. typing <strong><code>-help</code></strong> and pressing <kbd>Enter</kbd> wi
 The universal commands can be used throughout the application and perform application-wide action. You can identify a
  universal command from its "-" convention followed by a keyword (e.g. -exit).<br>
 <br>
- The context-unique commands on the other hand are only valid for that context. (e.g. <a href="#recipes-commands">Section 3.2, &#8220;Recipes Commands&#8221;</a> can only be
+ The context-unique commands on the other hand are only valid for that context. (e.g. <a href="#recipes-commands-only-applicable-in-recipe-context">Section 3.2, &#8220;Recipes Commands (Only applicable in recipe context)&#8221;</a> can only be
  used in -recipe context). These commands contains only a action key word followed by the required parameters, if any
  . (e.g. select INDEX)</p>
 </div>
@@ -147,7 +147,7 @@ Format:<br>
 <h4 id="switch-to-recipe-context-code-recipe-code"><a class="link" href="#switch-to-recipe-context-code-recipe-code">3.1.3. Switch to recipe context: <code>-recipe</code></a></h4>
 <div class="paragraph">
 <p>Switch to recipe context and display recipes.<br>
-See <a href="#recipes-commands">Section 3.2, &#8220;Recipes Commands&#8221;</a> to view commands for recipe context.<br>
+See <a href="#recipes-commands-only-applicable-in-recipe-context">Section 3.2, &#8220;Recipes Commands (Only applicable in recipe context)&#8221;</a> to view commands for recipe context.<br>
 Format:<br>
 <code>-recipe</code></p>
 </div>
@@ -157,7 +157,8 @@ Format:<br>
 <div class="paragraph">
 <p>Switch to ingredient manager context and display ingredient manager, which helps stock
 tracking of ingredient that the user currently have.<br>
-See <a href="#Ingredient Manager Commands">[Ingredient Manager Commands]</a> to view commands for ingredient manager context.<br>
+See <a href="#ingredient-manager-commands-only-applicable-in-ingredient-context">Section 3.3, &#8220;Ingredient Manager Commands (Only applicable in ingredient context)&#8221;</a> to view commands for ingredient manager
+context.<br>
 Format:<br>
 <code>-ingredient</code></p>
 </div>
@@ -166,7 +167,8 @@ Format:<br>
 <h4 id="switch-to-ingredient-recipe-query-context-code-cross-code"><a class="link" href="#switch-to-ingredient-recipe-query-context-code-cross-code">3.1.5. Switch to ingredient-recipe query context: <code>-cross</code></a></h4>
 <div class="paragraph">
 <p>Switch to ingredient-recipe query context and where you can sort, filter the recipe list by name of ingredients includes and get information of needed amounts of ingredients.<br>
-See <a href="#Ingredient-Recipe Query Commands">[Ingredient-Recipe Query Commands]</a> to view commands for ingredient-recipe query context.<br>
+See <a href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">Section 3.4, &#8220;Ingredient-Recipe Query Commands (Only applicable in cross context)&#8221;</a> to view commands for ingredient-recipe
+query context.<br>
 Format:<br>
 <code>-cross</code></p>
 </div>
@@ -175,7 +177,7 @@ Format:<br>
 <h4 id="switch-to-meal-planner-context-code-mealplanner-code"><a class="link" href="#switch-to-meal-planner-context-code-mealplanner-code">3.1.6. Switch to meal planner context: <code>-mealplanner</code></a></h4>
 <div class="paragraph">
 <p>Switch to meal planner context and display the planned meals for breakfast, lunch and dinner for previously planned days.<br>
-See <a href="#Meal Planner Commands">[Meal Planner Commands]</a> to view commands for meal planner context.<br>
+See <a href="#meal-planner-commands-only-applicable-in-meal-planner-context">Section 3.5, &#8220;Meal Planner Commands (Only applicable in meal planner context)&#8221;</a> to view commands for meal planner context.<br>
 Format:<br>
 <code>-mealplanner</code></p>
 </div>
@@ -185,7 +187,7 @@ Format:<br>
 <div class="paragraph">
 <p>Switch to health planner context and display health plan set by the user and the days added into the plan which is tied
  to meal plans.<br>
-See <a href="#Health Planner Commands">[Health Planner Commands]</a> to view commands for health planner context.<br>
+See <a href="#health-planner-commands-only-applicable-in-health-plan-context">Section 3.6, &#8220;Health Planner Commands (Only applicable in health plan context)&#8221;</a> to view commands for health planner context.<br>
 Format:<br>
 <code>-healthplan</code></p>
 </div>
@@ -199,7 +201,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="recipes-commands"><a class="link" href="#recipes-commands">3.2. Recipes Commands</a></h3>
+<h3 id="recipes-commands-only-applicable-in-recipe-context"><a class="link" href="#recipes-commands-only-applicable-in-recipe-context">3.2. Recipes Commands (Only applicable in recipe context)</a></h3>
 <div class="sect3">
 <h4 id="list-recipes-code-list-code"><a class="link" href="#list-recipes-code-list-code">3.2.1. List recipes: <code>list</code></a></h4>
 <div class="paragraph">
@@ -209,7 +211,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code"><a class="link" href="#add-a-recipe-code-add-n-name-c-time-d-difficulty-t-tag-cont-i-instruction-c-time-end-code">3.2.2. Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;  cont i/INSTRUCTION&#8230;&#8203; [c/TIME] end</code></a></h4>
+<h4 id="add-a-recipe-code-add-code-code-cont-code-code-end-code"><a class="link" href="#add-a-recipe-code-add-code-code-cont-code-code-end-code">3.2.2. Add a recipe: <code>add</code> <code>cont</code> <code>end</code></a></h4>
 <div class="paragraph">
 <p>Add new recipe.<br></p>
 </div>
@@ -228,7 +230,8 @@ Format:<br>
 <p>NAME should come with any alphanumeric characters.</p>
 </li>
 <li>
-<p>TIME should come with a PT prefix with H or/and M postfix, e.g. PT1H15M or PT35M.</p>
+<p>TIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H
+&amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
 </li>
 <li>
 <p>DIFFICULTY should range from 1 to 5.</p>
@@ -298,7 +301,7 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code"><a class="link" href="#edit-a-recipe-code-edit-index-n-name-c-time-d-difficulty-t-tag-code">3.2.3. Edit a recipe: <code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code></a></h4>
+<h4 id="edit-a-recipe-code-edit-code"><a class="link" href="#edit-a-recipe-code-edit-code">3.2.3. Edit a recipe: <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Edit new recipe.<br></p>
 </div>
@@ -326,7 +329,7 @@ and tags.</p>
 <p>NAME should come with any alphanumeric characters.</p>
 </li>
 <li>
-<p>TIME should come with a PT prefix with H or/and M postfix, e.g. PT1H15M or PT35M.</p>
+<p>TIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H &amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
 </li>
 <li>
 <p>DIFFICULTY should range from 1 to 5.</p>
@@ -369,7 +372,7 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="display-recipe-details-code-select-index-code"><a class="link" href="#display-recipe-details-code-select-index-code">3.2.4. Display recipe details: <code>select INDEX</code></a></h4>
+<h4 id="display-recipe-details-code-select-code"><a class="link" href="#display-recipe-details-code-select-code">3.2.4. Display recipe details: <code>select</code></a></h4>
 <div class="paragraph">
 <p>View a recipe and its details from the list.<br></p>
 </div>
@@ -390,13 +393,13 @@ INSTRUCTION:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="search-recipes-code-find-keyword-code"><a class="link" href="#search-recipes-code-find-keyword-code">3.2.5. Search recipes: <code>find KEYWORD&#8230;&#8203;</code></a></h4>
+<h4 id="search-recipes-code-find-code"><a class="link" href="#search-recipes-code-find-code">3.2.5. Search recipes: <code>find</code></a></h4>
 <div class="paragraph">
 <p>Show recipes related to the keyword(s).
 Keywords include but not limited to cuisines (Indian, Japanese),
 dietary types (vegan, Keto),
 ingredients (egg, broccoli),
-preparation time (PT30M, PT1H40M)
+preparation time (30M, 1H40M)
 and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 <div class="sidebarblock">
@@ -419,7 +422,7 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-recipe-code-delete-index-code"><a class="link" href="#delete-recipe-code-delete-index-code">3.2.6. Delete recipe: <code>delete INDEX</code></a></h4>
+<h4 id="delete-recipe-code-delete-code"><a class="link" href="#delete-recipe-code-delete-code">3.2.6. Delete recipe: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>Delete a recipe and its details from the list.<br></p>
 </div>
@@ -440,7 +443,7 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="activate-cook-mode-coming-in-v2-0-code-cook-index-code"><a class="link" href="#activate-cook-mode-coming-in-v2-0-code-cook-index-code">3.2.7. Activate cook-mode [coming in V2.0]: <code>cook INDEX</code></a></h4>
+<h4 id="activate-cook-mode-coming-in-v2-0-code-cook-code"><a class="link" href="#activate-cook-mode-coming-in-v2-0-code-cook-code">3.2.7. Activate cook-mode [coming in V2.0]: <code>cook</code></a></h4>
 <div class="paragraph">
 <p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br></p>
 </div>
@@ -482,7 +485,7 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-to-meal-plan-code-plan-index-date-meal-code"><a class="link" href="#add-to-meal-plan-code-plan-index-date-meal-code">3.2.9. Add to meal plan: <code>plan INDEX DATE MEAL</code></a></h4>
+<h4 id="add-to-meal-plan-code-plan-code"><a class="link" href="#add-to-meal-plan-code-plan-code">3.2.9. Add to meal plan: <code>plan</code></a></h4>
 <div class="paragraph">
 <p>Add a specified recipe to meal plan.<br></p>
 </div>
@@ -509,7 +512,7 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="add-to-review-coming-in-v2-0-code-review-comment-rating-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-comment-rating-code">3.2.10. Add to review [coming in V2.0]: <code>review [Comment] RATING</code></a></h4>
+<h4 id="add-to-review-coming-in-v2-0-code-review-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-code">3.2.10. Add to review [coming in V2.0]: <code>review</code></a></h4>
 <div class="paragraph">
 <p>Add comment and rating to current recipe.<br></p>
 </div>
@@ -529,12 +532,12 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>review [Comment] RATING</code></p>
+<code>review [COMMENT] RATING</code></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ingredient-manager-commands-only-applicable-in-ingredient-context"><a class="link" href="#ingredient-manager-commands-only-applicable-in-ingredient-context">3.3. Ingredient Manager Commands [Only applicable in ingredient context]</a></h3>
+<h3 id="ingredient-manager-commands-only-applicable-in-ingredient-context"><a class="link" href="#ingredient-manager-commands-only-applicable-in-ingredient-context">3.3. Ingredient Manager Commands (Only applicable in ingredient context)</a></h3>
 <div class="sect3">
 <h4 id="add-an-ingredient-code-add-code"><a class="link" href="#add-an-ingredient-code-add-code">3.3.1. Add an ingredient: <code>add</code></a></h4>
 <div class="paragraph">
@@ -643,9 +646,9 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ingredient-recipe-query-commands-only-applicable-in-cross-context"><a class="link" href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">3.4. Ingredient-Recipe Query Commands [Only applicable in cross context]</a></h3>
+<h3 id="ingredient-recipe-query-commands-only-applicable-in-cross-context"><a class="link" href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">3.4. Ingredient-Recipe Query Commands (Only applicable in cross context)</a></h3>
 <div class="sect3">
-<h4 id="view-recipes-based-on-ingredients"><a class="link" href="#view-recipes-based-on-ingredients">3.4.1. View Recipes based on Ingredients</a></h4>
+<h4 id="view-recipes-based-on-ingredients-code-view-code"><a class="link" href="#view-recipes-based-on-ingredients-code-view-code">3.4.1. View Recipes based on Ingredients <code>view</code></a></h4>
 <div class="paragraph">
 <p>By default, the list shows recipes that are stored in application&#8217;s recipe list. User can filter or sort the recipes
 based on ingredients contained in recipes. Also, needed amounts of ingredients are calculated by considering the number
@@ -693,7 +696,7 @@ follows either "include" keyword or "prioritize" keyword.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-needed-amounts-of-ingredients-for-a-recipe"><a class="link" href="#view-needed-amounts-of-ingredients-for-a-recipe">3.4.2. View needed amounts of ingredients for a Recipe</a></h4>
+<h4 id="view-needed-amounts-of-ingredients-for-a-recipe-code-select-code"><a class="link" href="#view-needed-amounts-of-ingredients-for-a-recipe-code-select-code">3.4.2. View needed amounts of ingredients for a Recipe <code>select</code></a></h4>
 <div class="paragraph">
 <p>For a recipe in the list shown as a result of above command(3.4.1.), user can view amounts of respective ingredient
 in the recipe
@@ -729,7 +732,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="meal-planner-commands-only-applicable-in-meal-planner-context"><a class="link" href="#meal-planner-commands-only-applicable-in-meal-planner-context">3.5. Meal Planner Commands [Only applicable in meal planner context]</a></h3>
+<h3 id="meal-planner-commands-only-applicable-in-meal-planner-context"><a class="link" href="#meal-planner-commands-only-applicable-in-meal-planner-context">3.5. Meal Planner Commands (Only applicable in meal planner context)</a></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
@@ -745,7 +748,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="delete-recipe-code-delete-code"><a class="link" href="#delete-recipe-code-delete-code">3.5.1. Delete recipe: <code>delete</code></a></h4>
+<h4 id="delete-recipe-code-delete-code-2"><a class="link" href="#delete-recipe-code-delete-code-2">3.5.1. Delete recipe: <code>delete</code></a></h4>
 <div class="paragraph">
 <p>After displaying the meal planner, deletes the specified day.</p>
 </div>
@@ -770,7 +773,7 @@ Format:<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="health-planner-commands-only-applicable-in-health-plan-context"><a class="link" href="#health-planner-commands-only-applicable-in-health-plan-context">3.6. Health Planner Commands [Only applicable in health plan context]</a></h3>
+<h3 id="health-planner-commands-only-applicable-in-health-plan-context"><a class="link" href="#health-planner-commands-only-applicable-in-health-plan-context">3.6. Health Planner Commands (Only applicable in health plan context)</a></h3>
 <div class="sect3">
 <h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">3.6.1. Add plan: <code>add</code></a></h4>
 <div class="paragraph">
@@ -1025,28 +1028,22 @@ Format:<br>
 <p>View help: <code>-help</code></p>
 </li>
 <li>
-<p>Display all recipe: <code>-recipe</code></p>
+<p>View history: <code>-history</code></p>
 </li>
 <li>
-<p>Display recipe suggestion: <code>-suggest</code> [coming in V1.4]</p>
+<p>Switch to recipe context: <code>-recipe</code></p>
 </li>
 <li>
-<p>Display new recipe: <code>-surprise</code> [coming in V1.4]</p>
+<p>Switch to ingredient manager context: <code>-ingredient</code></p>
 </li>
 <li>
-<p>Display favorites: <code>-favourite</code></p>
+<p>Switch to ingredient-recipe query context: <code>-cross</code></p>
 </li>
 <li>
-<p>Display ingredient manager: <code>-ingredient</code></p>
+<p>Switch to meal planner context: <code>-mealplanner</code></p>
 </li>
 <li>
-<p>Display ingredient-recipe query context: <code>-ingredient</code></p>
-</li>
-<li>
-<p>Display meal planner: <code>-mealplanner</code></p>
-</li>
-<li>
-<p>Display health plan: <code>-healthplan</code></p>
+<p>Switch to health plan context: <code>-healthplan</code></p>
 </li>
 <li>
 <p>Exit application: <code>-exit</code></p>
@@ -1054,12 +1051,15 @@ Format:<br>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Recipes Commands</strong></p>
+<p><strong>Recipes Commands (Only applicable in recipe context)</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Add a recipe: <code>add n/NAME c/TIME [t/TAG]&#8230;&#8203;<br>
+<p>List recipes: <code>list</code><br></p>
+</li>
+<li>
+<p>Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
 cont i/INSTRUCTION [c/TIME]<br>
 cont&#8230;&#8203;<br>
 end</code></p>
@@ -1096,13 +1096,6 @@ or<br>
 <li>
 <p>Activate cook-mode [coming in V2.0]: <code>cook INDEX</code></p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Recipe Details Commands</strong></p>
-</div>
-<div class="ulist">
-<ul>
 <li>
 <p>Add recipe to favourite: <code>favourite</code></p>
 </li>
@@ -1110,12 +1103,12 @@ or<br>
 <p>Add to meal plan: <code>plan INDEX DATE MEAL</code></p>
 </li>
 <li>
-<p>Active cook-mode: <code>cook</code></p>
+<p>Add to review [Coming in V2.0]: <code>review [COMMENT] RATING</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Ingredient Manager Commands</strong></p>
+<p><strong>Ingredient Manager Commands (Only applicable in ingredient context)</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1140,7 +1133,7 @@ or<br>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Recipe-Ingredient Query Commands</strong></p>
+<p><strong>Recipe-Ingredient Query Commands (Only applicable in cross context)</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1156,7 +1149,7 @@ or<br>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Meal Planner Commands</strong></p>
+<p><strong>Meal Planner Commands (Only applicable in meal planner context)</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1197,4 +1190,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 04:06:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-06 04:47:12 UTC</div></div></div></body></html>
