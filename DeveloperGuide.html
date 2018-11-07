@@ -89,7 +89,10 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-recipe">F.2. Deleting a recipe</a></li>
+<li><a href="#adding-of-recipe">F.2. Adding of recipe</a></li>
+<li><a href="#editing-a-recipe">F.3. Editing a recipe</a></li>
+<li><a href="#deleting-a-recipe">F.4. Deleting a recipe</a></li>
+<li><a href="#finding-a-recipe">F.5. Finding a recipe</a></li>
 </ul>
 </li>
 </ul>
@@ -905,59 +908,162 @@ list in the favourites model.</p>
 <div class="sect2">
 <h3 id="recipe-management"><a class="link" href="#recipe-management">3.4. Recipe Management</a></h3>
 <div class="sect3">
-<h4 id="all-field-search"><a class="link" href="#all-field-search">3.4.1. All-field search</a></h4>
-<div class="paragraph">
-<p>The all-field search matches keywords with details of <code>Recipe</code>.
-Each keyword searches through the <code>Name</code>, <code>Tag</code> and even <code>Difficulty</code> and <code>CookTime</code> of every recipes. Such search feature provides a complex querying, rather than a superficial search on merely recipes' name.</p>
-</div>
+<h4 id="multi-line-recipe-adding"><a class="link" href="#multi-line-recipe-adding">3.4.1. Multi-line Recipe Adding</a></h4>
 <div class="sect4">
 <h5 id="current-implementation-2"><a class="link" href="#current-implementation-2">Current Implementation</a></h5>
 <div class="paragraph">
-<p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in of a predicate to
-filter away recipes that does not meet the requirement.</p>
+<p>As the adding of recipes deal with lengthy input parameters from the basic details such as name to a list of
+instructions, single-line add command proves to be inefficient and often providing an inconvenient user experience.
+To allow flexibility, adding of recipes have been implemented as a multi-line command fitting into this CLI application.</p>
 </div>
 <div class="paragraph">
-<p>The desired search keywords, once parsed as <code>List</code> of <code>String</code> will be turned to <code>Stream</code> checking for matching words
- in the a recipe <code>Name</code>, complete matching of <code>CookTime</code>, matching of <code>Difficulty</code> and finally exact matching of any
- one <code>Tag</code> in a <code>Stream</code> of tags. This ultimately returns a <code>boolean</code> that decides whether a <code>Recipe</code> stays or remain
-  in
- the <code>FilteredList</code>.</p>
+<p>Multi-line add function consists of 3 main commands: <code>add</code> <code>cont</code> <code>end</code>. The <code>add</code> command requires user input of the
+recipe basic information such as <code>Name</code>, <code>Difficulty</code>, <code>CookTime</code> and the optional <code>Tag</code>. The <code>cont</code> command requires
+ user input of the recipe <code>Instruction</code>. Each <code>cont</code> command allows only 1 <code>Instruction</code>. Again this is to
+ break down the lengthy input parameter of <code>Instruction</code>.  Lastly, with the <code>end</code> command the <code>Recipe</code> is being
+ recognised and is added to the <code>Model</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The following is the sequence diagram of the <code>add</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/recipe_search_seq.png" alt="recipe search seq" width="800">
+<img src="images/recipe_add_add.png" alt="recipe add add" width="1000">
 </div>
+</div>
+<div class="paragraph">
+<p>Once user&#8217;s input is being parsed, a <code>RecipeBuilder</code> is created instead of a <code>Recipe</code> instance. This <code>RecipeBuilder</code>
+will be stored in <code>History</code> when the command is being executed.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Repeating use of <code>add</code> will replace existing <code>RecipeBuilder</code> rendering the previous data unsaved.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The following is the sequence diagram of the <code>cont</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recipe_add_cont.png" alt="recipe add cont" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon parsing the user&#8217;s input that contains <code>Instruction</code>, a <code>Instruction</code> instance will be created. This
+<code>Instruction</code> is to be passed to the command for execution. The execution process once again make use of the <code>History</code>
+to append the <code>Instruction</code> into <code>RecipeBuilder</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following is the sequence diagram of the <code>end</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recipe_add_end.png" alt="recipe add end" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>Upon receiving the <code>end</code> command, <code>Recipe</code> will be built from the <code>RecipeBuilder</code>. The parsing process checks to
+ensure that the <code>Recipe</code> built contains at least a single <code>Instruction</code> to prevent adding of <code>Recipe</code> without
+<code>Instruction</code>. With a valid <code>Recipe</code>, a <code>AddCommand</code> will be created and the <code>RecipeBuilder</code> in <code>History</code> will be
+cleared (i.e. set to null). This <code>AddCommand</code> when executed will add the <code>Recipe</code> into <code>Model</code>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="why-it-is-implemented-that-way"><a class="link" href="#why-it-is-implemented-that-way">Why it is implemented that way:</a></h5>
+<div class="paragraph">
+<p>Due to the nature of a multi-line add command where the <code>Recipe</code> is incomplete together with the inability to execute
+ the add
+ function immediately, 2 mechanisms namely, a builder and a historical storage, have to be put
+  in place. The builder works effectively in managing the data of a partial <code>Recipe</code> while allowing continuous
+  modification. The historical storage, <code>History</code> in this context, ensures that lossless partial
+  <code>Recipe</code> data. Moreover, since <code>History</code> interaction with commands has already been well establish in Logic
+  component and a partial <code>Recipe</code> is indeed a representation the historical commands, storing in <code>History</code>
+  becomes a dominant choice.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="alternatives"><a class="link" href="#alternatives">Alternatives:</a></h5>
+<div class="paragraph">
+<p>Adding of incomplete recipe to the model and edit that recipe with the subsequent commands.
+Pros - Make use of existing add and edit command without the need of additional implementation.
+Cons - Model contains incomplete recipe that violates the validity of recipe data. This might be exploited and in the
+ process the application can be filled with incomplete recipes.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="all-field-recipe-search"><a class="link" href="#all-field-recipe-search">3.4.2. All-field Recipe Search</a></h4>
+<div class="paragraph">
+<p>The all-field recipe search matches keywords with details of <code>Recipe</code>.
+Each keyword goes through the matching process against the <code>Name</code>, <code>Tag</code>, <code>Difficulty</code>, <code>CookTime</code> and even
+<code>Ingredient</code> from each <code>Instruction</code> of every recipe.
+Such search feature provides a complex querying, rather than a superficial search on merely recipes' name.</p>
+</div>
+<div class="sect4">
+<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<div class="paragraph">
+<p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in a predicate to
+filter away recipes that does not meet the requirement.</p>
+</div>
+<div class="paragraph">
+<p>The desired search keywords, once parsed as <code>List</code> of <code>String</code> will be turned to <code>Stream</code>. Each keyword is checked
+against a recipe <code>Name</code> for any matching word, <code>Difficult</code> for exact matching value, <code>Tag</code> for any matching
+word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</code>. All keywords must return true (i.e. matching at least
+ one attribute of the recipe) before the recipe is deemed fit to be kept in the <code>FilteredList</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippet shows how the predict determines each recipe:<br></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>public boolean test(Recipe recipe) {
+    if (keywords.size() == 0) {
+        return false;
+    }
+    return (keywords.stream()
+            .allMatch(keyword -&gt; {
+                return StringUtil.containsWordIgnoreCase(recipe.getName().fullName, keyword)
+                        || recipe.getCookTime().toString().toLowerCase().equalsIgnoreCase(keyword.toLowerCase())
+                        || recipe.getDifficulty().toString().equals(keyword)
+                        || recipe.getTags().stream()
+                        .anyMatch(tag -&gt; StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
+                        || recipe.getIngredients().containsKey(new IngredientDefinition(keyword));
+            }
+            ));
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how the keywords are being parsed to feed into the predicate:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recipe_search_seq.png" alt="recipe search seq" width="1000">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="why-it-is-implemented-that-way-2"><a class="link" href="#why-it-is-implemented-that-way-2">Why it is implemented that way:</a></h5>
 <div class="paragraph">
 <p>Due to the existing data structure implemented by model, to access the attributes within a recipe, the system needs
 to use its getter and perform matching with its keywords. Hence, a filter via predicate testing is deemed fit.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="alternatives"><a class="link" href="#alternatives">Alternatives:</a></h5>
+<h5 id="alternatives-2"><a class="link" href="#alternatives-2">Alternatives:</a></h5>
 <div class="paragraph">
 <p>Tag saving recipes that uses it.<br>
 Pros - Search done more effectively as the system only need to display all recipes stored in a tag<br>
 Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="cook-mode"><a class="link" href="#cook-mode">3.4.2. Cook-mode</a></h4>
-<div class="paragraph">
-<p>The cook-mode is a feature on its own with its individual feature <code>Ui</code> and commands. The switch to cook-mode can be triggered by choosing a <code>Recipe</code> listed.</p>
-</div>
-<div class="sect4">
-<h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
-<div class="paragraph">
-<p>Upon <code>Command</code> execution, logic identify the context, which in this case cook-mode, of the application and perform a
-switch. Subsequent commands will be parse further by a parser unique to cook-mode. These commands allows the
-navigation between instructions, possibility controlling of a real-time timer is specified by the <code>Instruction</code>. A
-<code>ArrayList</code> is stored with the current index being saved to track and allow movement forward/backward between
-instructions.</p>
 </div>
 </div>
 </div>
@@ -2617,7 +2723,79 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-recipe"><a class="link" href="#deleting-a-recipe">F.2. Deleting a recipe</a></h3>
+<h3 id="adding-of-recipe"><a class="link" href="#adding-of-recipe">F.2. Adding of recipe</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding of a non-duplicate recipe</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Switched to <code>-recipe</code> context and recipe to be added is not in SousChef.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Chicken Rice d/3 c/20M</code> <code>cont i/Remove skin from #chicken 500 gram.</code> <code>cont i/Boil chicken in
+#water 700 ml for 20m c/20M</code> <code>end</code><br>
+Expected: Recipe added to the end of recipes list. Details of the added recipe shown in the status message. Timestamp
+ in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Tuna Roll d/3 c/10M</code> <code>end</code><br>
+Expected: No recipe is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding of a duplicate recipe</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Switched to <code>-recipe</code> context.</p>
+</li>
+<li>
+<p>Test case: <code>add n/Egg Roll d/2 c/10M</code> <code>cont i/Spread #rice 100 gram on the mat.</code> <code>cont i/Put #egg 1 piece on top
+of the rice.</code> <code>cont i/Roll the rice.</code> <code>end</code> <code>add n/Egg Roll d/2 c/10M</code><br>
+Expected: No recipe is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-recipe"><a class="link" href="#editing-a-recipe">F.3. Editing a recipe</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing a recipe while all recipes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Switched to <code>-recipe</code> context and list all recipes using the <code>list</code> command. Multiple recipes in the
+list.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>edit 1 n/Chicken Burger</code><br>
+Expected: First recipe is updated with a new name. Details of the edited recipe shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>edit 1</code><br>
+Expected: No recipe is edited. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-recipe"><a class="link" href="#deleting-a-recipe">F.4. Deleting a recipe</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2625,7 +2803,8 @@ Expected: The most recent window size and location is retained.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all recipes using the <code>list</code> command. Multiple recipes in the list.</p>
+<p>Prerequisites: Switched to <code>-recipe</code> context and list all recipes using the <code>list</code> command. Multiple recipes in the
+list.</p>
 </li>
 <li>
 <p>Test case: <code>delete 1</code><br>
@@ -2638,7 +2817,7 @@ in the status bar is updated.</p>
 Expected: No recipe is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -2647,5 +2826,31 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="finding-a-recipe"><a class="link" href="#finding-a-recipe">F.5. Finding a recipe</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finding a recipe while all recipes are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: Switched to <code>-recipe</code> context and list all recipes using the <code>list</code> command. Multiple recipes in the
+lsit.</p>
+</li>
+<li>
+<p>Test case: <code>find vegetarian noodles 1 20M</code><br>
+Expected: Recipes meeting all the keywords is listed. Number of listed recipes shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Test case: <code>find</code><br>
+Expected: No recipe listed. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 21:14:51 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 23:01:27 UTC</div></div></div></body></html>
