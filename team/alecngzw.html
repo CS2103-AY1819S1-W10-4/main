@@ -10,7 +10,12 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SousChef is a desktop recipe The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<p>Souschef is a desktop smart cooking sidekick, offering personalised guidance every step of the way. From recipe
+recommendations just for you, to meal planning and inventory management, SousChef has everything you need to improve
+life in the kitchen.<br></p>
+</div>
+<div class="paragraph">
+<p>Our users interact via CLI and GUI created with JavaFX. Written in Java, experience what many are enjoying.</p>
 </div>
 </div>
 </div>
@@ -32,80 +37,69 @@
 <li>
 <p>Highlights: Without this the other components will not have functionalities to access their individual xml file.</p>
 </li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/52">PR#52</a></p>
+</li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Major enhancement</strong>: Health plan segment of Souschef</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This change allows new added on functionality and usage for the users of Souschef as the users are now able to view their
+calories intake based on the meals they planned for themselves. Allowing them to make more informed decisions about
+their food choices.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p>Justification: This improve the product with the newly added on functionality.</p>
+</li>
+<li>
+<p>Highlights: Allow users to view their calories overview with a simple command along with graphic for easy understanding.</p>
+</li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/72">PR#72</a>, <a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/77">PR#77</a>
+,https://github.com/CS2103-AY1819S1-W10-4/main/pull/139[PR#139], <a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/213">PR#213</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Bug fix</strong> : solved bug issue when system will function when xml files are not found</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This change allows the system to bootup normally when any of the xml files are not found. Uses sampleData to start up.</p>
+</li>
+<li>
+<p>Justification: This improves the user experience</p>
+</li>
+<li>
+<p>Highlights: Without this change, the user experience would be drastically different as the system will not function properly.</p>
+</li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/135">PR#135</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Project management:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments):
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/58">#58</a>,
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/151">#151</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Reported bugs and suggestions for other teams in the class
+(examples: <a href="https://github.com/CS2103-AY1819S1-T13-3/main/issues/82">1</a>)</p>
 </li>
 </ul>
 </div>
@@ -114,9 +108,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -148,14 +139,112 @@
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
+<div class="sect2">
+<h3 id="health-plan"><a class="link" href="#health-plan">Health Plan</a></h3>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>This is a feature that users can access to have health plans to manage their diet and health due to dietary
+needs of their choice. Users are able to add a health list to based on their specifications:
+whether they intend to gain/lose/maintain weight from their
+set age, current weight and also their current height. this will then tell them what is the required calories to
+eat per day to hit their target.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">Current implementation</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Users are able to add to the list based on their personal settings: name, age, height, weight, target weight,
+duration, scheme (gain/loss/maintain)</p>
+</li>
+<li>
+<p>Users are able to delete entries that they do not want to keep anymore.</p>
+</li>
+<li>
+<p>Users are aso able to edit entries which information is incorrect.</p>
+</li>
+<li>
+<p>Users are able to add days of the meal planner segment into chosen health plan</p>
+</li>
+<li>
+<p>Users are able to display all days of the meal planner segment concurrently with the health plan lists</p>
+</li>
+<li>
+<p>Users are able to display the details of a health plan to see the days stored and also other information</p>
+</li>
+<li>
+<p>Users are able to remove days of the health plan they added.</p>
+</li>
+<li>
+<p>Users are now able to view the calories count from the meals they included into the healthplan and when the details of
+the health plan is shown the target to hit will be shown to the user, in value and also bar chart. Along with such info,
+there is also a percentage met to show how much of the target is already achieved.</p>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 23:49:30 UTC</div></div></div></body></html>
+<div class="sect3">
+<h4 id="ongoing-implementation-implementing-plan-comparisons"><a class="link" href="#ongoing-implementation-implementing-plan-comparisons">Ongoing implementation (Implementing plan comparisons)</a></h4>
+<div class="paragraph">
+<p>This new implementation of this feature will allow the users to select 2 plans of their choice and compare
+with a side by side comparison of the calories consumed. This information will be displayed to the user much like the show
+details command that is available with slight tweaks. There will not be a percentage met but instead the feature will
+try to cover breakdown of the calories intake by day using the set duration of the targetted plans.
+This will provided clarity of the day by day consumption of calories of the user across 2 plans.
+The information will be in calculated values and then displayed in a series of bar graphs for quick understanding of the
+information by just looking at the graphs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ongoing-implementation-expiry-of-health-plans"><a class="link" href="#ongoing-implementation-expiry-of-health-plans">Ongoing implementation (Expiry of health plans)</a></h4>
+<div class="paragraph">
+<p>The new implementation of this feature should have an expiry feature that counts down the system base on the app&#8217;s date
+ against the duration set by the user.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">Storage component</a></h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/StorageClassDiagramRevamp.png" alt="StorageClassDiagramRevamp" width="800">
+</div>
+<div class="title">Figure 1. Structure of the Storage Component (The given diagram only shows the extensions of 2 functions.)</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/souschef/storage/Storage.java"><code>Storage.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Storage</code> component,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>can save <code>UserPref</code> objects in json format and read it back.</p>
+</li>
+<li>
+<p>can save the various xml files from each of the different functions. Namely recipe.xml, ingredients.xml and healthplan.xml</p>
+</li>
+<li>
+<p>can do a context switch for storing information into the correct xml file for the function.</p>
+</li>
+<li>
+<p>generalized in its implementation for easy extension</p>
+</li>
+<li>
+<p>controls information by passing a single appContent unit around the system.</p>
+</li>
+<li>
+<p>With the new implementation of the storage component, calls at the upper layers are generalized and all components shares
+common calls for load and saving.</p>
+</li>
+<li>
+<p>The new storage component introduces a new abstract parent (XmlFeatureStorage) and also a new interface
+(XmlSerializableGeneric) to make all the calls of load and save to be generic to allow easy functional implementation
+without much creation of new methods at the storage level. Just by calling the context switch and also the save and load
+calls the intended result will be achieved.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-07 23:59:14 UTC</div></div></div></body></html>
