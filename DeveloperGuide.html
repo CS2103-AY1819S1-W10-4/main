@@ -785,12 +785,25 @@ within the Meal Planner.</p>
 </div>
 </li>
 <li>
-<p><strong>Meal</strong>: encapsulates a <strong>Optional&lt;Recipe&gt;</strong> <em>recipe</em> and an int <em>slot</em> indicating which
-meal slot each <strong>Meal</strong> object is (0 for breakfast, 1 for lunch, 2 for dinner).</p>
+<p><strong>Meal</strong>: abstract class which encapsulates a <strong>Optional&lt;Recipe&gt;</strong> <em>recipe</em>, an <strong>int</strong> <em>index</em>
+indicating which meal index each <strong>Meal</strong> object is (0 for breakfast, 1 for lunch, 2 for dinner),
+and a <strong>String</strong> <em>slot</em> containing its corresponding name.</p>
+</li>
+<li>
+<p><strong>Breakfast</strong>: inherits from <strong>Meal</strong> class and represents the breakfast meal slot of the day.
+Contains a predefined integer index of 0 and a predefined String slot name of "breakfast".</p>
+</li>
+<li>
+<p><strong>Lunch</strong>: inherits from <strong>Meal</strong> class and represents the lunch meal slot of the day.
+Contains a predefined integer index of 1 and a predefined String slot name of "lunch".</p>
+</li>
+<li>
+<p><strong>Dinner</strong>: inherits from <strong>Meal</strong> class and represents the dinner meal slot of the day.
+Contains a predefined integer index of 2 and a predefined String slot name of "dinner".</p>
 <div class="ulist">
 <ul>
 <li>
-<p>An empty <strong>Meal</strong> is defined having no recipe, i.e. empty <strong>Optional</strong>.</p>
+<p>An empty <strong>Meal</strong> is defined as having no recipe, i.e. empty <strong>Optional</strong>.</p>
 </li>
 </ul>
 </div>
@@ -859,8 +872,8 @@ target <em>day</em> is then added to mealPlannerModel.</p>
 <p>The select command selects a recipe of a specified meal of a specified day and displays the details
 of the recipe (ingredients, instructions, etc) in the DetailPanel.<br>
 <strong>MealPlannerParser</strong> invokes the parseMealRecipe() command of <strong>SelectCommandParser</strong>. The desired
-index and meal slot are parsed from the user input and used to extract the <em>recipe</em> from the
-specified day&#8217;s desired meal slot. Using this <em>recipe</em>, the <em>recipeModel</em> is searched and the
+index and meal index are parsed from the user input and used to extract the <em>recipe</em> from the
+specified day&#8217;s desired meal index. Using this <em>recipe</em>, the <em>recipeModel</em> is searched and the
 index of the matching recipe is returned.<br>
 The index and the <em>recipeModel</em> are then passed to
 a <strong>SelectCommand</strong> which executes the displaying of the recipe details in the same manner as
@@ -2048,10 +2061,10 @@ search online</p></td>
 <p>System shows list of available recipes.</p>
 </li>
 <li>
-<p>User selects desired recipe and adds it to the desired meal slot.</p>
+<p>User selects desired recipe and adds it to the desired meal index.</p>
 </li>
 <li>
-<p>System shows the recipe listed under the indicated meal slot.</p>
+<p>System shows the recipe listed under the indicated meal index.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2074,7 +2087,7 @@ search online</p></td>
 <p>User requests to delete unwanted recipe.</p>
 </li>
 <li>
-<p>System shows specified meal slot as empty.</p>
+<p>System shows specified meal index as empty.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2105,10 +2118,10 @@ search online</p></td>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>User requests to view recipe for a specific meal slot.</p>
+<p>User requests to view recipe for a specific meal index.</p>
 </li>
 <li>
-<p>System shows the full recipe of the specified meal slot.</p>
+<p>System shows the full recipe of the specified meal index.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2831,4 +2844,4 @@ Expected: No recipe listed. Error details shown in the status message. Status ba
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-08 13:53:08 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-09 01:02:39 UTC</div></div></div></body></html>
