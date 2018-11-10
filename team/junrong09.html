@@ -33,30 +33,54 @@ code</a>]</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Allows the user to list recipes via search and view the details of individual recipe.</p>
+<p>Multi-line Add Recipe Functionality</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allow users to add a recipe in progression using multi-line command .</p>
 </li>
 <li>
-<p>Justification: This is a core feature of the application which allow user to search and view recipes.</p>
+<p>Justification: The multi-line add recipe command improves the product by providing a intuitive yet convenient way
+to create a recipe entry as opposite to forcing users to input a lengthy recipe entry containing a number of instructions into a single command.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects the existing data structure of the application. As the existing data
-structure only supports managing of single core data, the Model Component has to be revamp to take in different data
-for multiple features to be implement in time to come. Since there are common functions such as add, delete, edit and
- search, this requires design of classes that are generic to reduce duplication in code.</p>
+<p>Highlights: This enhancement requires the handling of a incomplete recipe data when the add is being executed in
+progression by the user. The challenges faced include morphing address book into a nested recipe data structure that
+stores instructions which stores ingredients. Secondly, the analysis and design to create a in-progress recipe
+instance that allows the appending of more recipe details when the user contributes to the incomplete recipe. Thirdly,
+the retention and accessing of this incomplete recipe in order to appending the details and ultimately create an
+actual recipe instance to be stored in the model.</p>
+</li>
+<li>
+<p>Other Associated Functionality implemented: Edit Recipe</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p>All-field Recipe Search</p>
 <div class="ulist">
 <ul>
+<li>
+<p>What it does: Retrieve recipes with name, difficulty, cooktime or ingredients that matches the keywords by the user.</p>
+</li>
+<li>
+<p>Justification: This feature improves the application because users can now narrow down their wanted recipes based other parameters such as difficulty, cooktime and ingredients rather than restricting their search to just the name of
+the recipe.</p>
+</li>
+<li>
+<p>Highlights: Ingredients are being stored in each instructions of a recipe, as such to support the search of
+ingredients, the design of a recipe data to provide ease of access to all ingredients is required.</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>Project management:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Setting up of GitHub, Travis, AppVeyor, coveralls, codacy.</p>
+<p>Setting up of GitHub, Travis, AppVeyor, coveralls, codacy</p>
 </li>
 <li>
 <p>Managed releases <code>v1.1</code> - <code>v1.4</code> (4 releases) on GitHub</p>
@@ -728,8 +752,24 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
 <div class="paragraph">
 <p>The following code snippet shows how the predict determines each recipe:<br></p>
 </div>
-<div class="paragraph">
-<p>Unresolved directive in /home/travis/build/CS2103-AY1819S1-W10-4/main/docs/DeveloperGuide.adoc - include::../src/main/java/seedu/souschef/model/recipe/NameContainsKeywordsPredicate.java[lines=20..34]</p>
+<div class="literalblock">
+<div class="content">
+<pre>public boolean test(Recipe recipe) {
+    if (keywords.size() == 0) {
+        return false;
+    }
+    return (keywords.stream()
+            .allMatch(keyword -&gt; {
+                return StringUtil.containsWordIgnoreCase(recipe.getName().fullName, keyword)
+                        || recipe.getCookTime().toString().toLowerCase().equalsIgnoreCase(keyword.toLowerCase())
+                        || recipe.getDifficulty().toString().equals(keyword)
+                        || recipe.getTags().stream()
+                        .anyMatch(tag -&gt; StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
+                        || recipe.getIngredients().containsKey(new IngredientDefinition(keyword));
+            }
+            ));
+}</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram shows how the keywords are being parsed to feed into the predicate:</p>
@@ -758,4 +798,4 @@ Cons - Bi-directional association, increase difficulty in maintaining data integ
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 05:32:12 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 05:38:54 UTC</div></div></div></body></html>
