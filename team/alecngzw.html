@@ -66,11 +66,11 @@ their food choices.</p>
 </div>
 </li>
 <li>
-<p><strong>Bug fix</strong> : solved bug issue when system will function when xml files are not found</p>
+<p><strong>Major bug fix</strong> : solved bug issue when system will function when xml files are not found</p>
 <div class="ulist">
 <ul>
 <li>
-<p>This change allows the system to bootup normally when any of the xml files are not found. Uses sampleData to start up.</p>
+<p>This change allows the system to boot up normally when any of the xml files are not found. Uses sampleData to start up.</p>
 </li>
 <li>
 <p>Justification: This improves the user experience</p>
@@ -124,6 +124,190 @@ their food choices.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="health-plan-commands-only-applicable-in-health-plan-context"><a class="link" href="#health-plan-commands-only-applicable-in-health-plan-context">Health Plan Commands (Only applicable in health plan context)</a></h3>
+<div class="sect3">
+<h4 id="add-plan-code-add-code"><a class="link" href="#add-plan-code-add-code">Add plan: <code>add</code></a></h4>
+<div class="paragraph">
+<p>Adds a health plan under the user.<br>
+Required parameters are NAME, AGE, CURRENT HEIGHT, CURRENT WEIGHT,<br>
+TARGET WEIGHT, AND DURATION+</p>
+</div>
+<div class="paragraph">
+<p>Format:<br>
+<code>add n/NAME a/AGE h/HEIGHT w/CURRENT_WEIGHT t/TARGET_WEIGHT d/DURATION</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Height is numeric and input is of centimetre units</p>
+</li>
+<li>
+<p>Current weight is numeric and input is of Kilogram units</p>
+</li>
+<li>
+<p>Target Weight is numeric and input is of Kilogram units</p>
+</li>
+<li>
+<p>AGE must be numeric</p>
+</li>
+<li>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL, has to be numeric and more than 0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="delete-plan-code-delete-code"><a class="link" href="#delete-plan-code-delete-code">Delete plan: <code>delete</code></a></h4>
+<div class="paragraph">
+<p>After listing the list of health plans by user.<br>
+Deletes the plan selected by user.<br>
+Format:<br>
+<code>delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX has to be numeric and more than 0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-plan-code-edit-code"><a class="link" href="#edit-plan-code-edit-code">Edit plan: <code>edit</code></a></h4>
+<div class="paragraph">
+<p>After listing the list of health plans by User.<br>
+Prompts for edit on the plan selected by the user.<br>
+Format :<br>
+<code>edit INDEX [n/NAME] [a/AGE] [t/TARGET_WEIGHT] [h/HEIGHT] [w/CURRENT_WEIGHT] [d/DURATION]</code><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX specifies the entry to edit, has to be numeric and more than 0</p>
+</li>
+<li>
+<p>Height is numeric, be more than 0 and input is of centimetre units</p>
+</li>
+<li>
+<p>Current weight is numeric, be more than 0 and input is of Kilogram units</p>
+</li>
+<li>
+<p>Target Weight is numeric, be more than 0 and input is of Kilogram units</p>
+</li>
+<li>
+<p>AGE must be numeric and more than 0</p>
+</li>
+<li>
+<p>DURATION specifies an integer input of time in days desired by user to achieve said GOAL, has to be numeric and more than 0</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="add-current-intake-item-code-addday-code"><a class="link" href="#add-current-intake-item-code-addday-code">Add current intake item: <code>addDay</code></a></h4>
+<div class="paragraph">
+<p>After being shown the meal planner list by the system<br>
+User selects to add to intake List<br>
+Format:<br>
+`addDay p/PLAN_INDEX d/DAY_INDEX'</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Plan Index specifies the plan to add to, has to be more than 0 and be a valid index on the list</p>
+</li>
+<li>
+<p>Day index specifies the day to add into the specified plan, has to be more than 0 and be a valid index on the list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-current-intake-item-code-deleteday-code"><a class="link" href="#remove-current-intake-item-code-deleteday-code">Remove current intake item: <code>deleteDay</code></a></h4>
+<div class="paragraph">
+<p>After being shown the list of days from intake list<br>
+User selects day to remove and also the plan to remove from<br>
+Format:<br>
+<code>deleteDay p/PLAN_INDEX d/DAY_INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Plan Index specifies the plan to delete from, has to be more than 0 and be a valid index on the list</p>
+</li>
+<li>
+<p>Day index specifies the day to delete from the specified plan, has to be more than 0 and be a valid index on the list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="show-meal-planner-list-beside-health-plan-list-showmeal"><a class="link" href="#show-meal-planner-list-beside-health-plan-list-showmeal">Show Meal Planner list beside Health Plan List : 'showMeal'</a></h4>
+<div class="paragraph">
+<p>User enters command to view the full list of meals beside the health plan list
+Format:<br>
+'showMeal'</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="hide-view-on-the-right-hidemeal"><a class="link" href="#hide-view-on-the-right-hidemeal">Hide view on the right : 'hideMeal'</a></h4>
+<div class="paragraph">
+<p>User enters command to hide any view that is currently displayed on the right
+Format:<br>
+'hideMeal'</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-plan-details-code-showdetails-code"><a class="link" href="#view-plan-details-code-showdetails-code">View plan details : <code>showDetails</code></a></h4>
+<div class="paragraph">
+<p>After shown the list of health plans by the system<br>
+User enters command to see the details of the plan specified<br>
+Format:<br>
+<code>showDetails INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX is the target plan to view details, needs to be numeric more than 0 and be a valid index found on the list</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="compare-overall-intake-against-code-compareintake-code-coming-in-v2-0"><a class="link" href="#compare-overall-intake-against-code-compareintake-code-coming-in-v2-0">Compare overall intake against : <code>compareIntake</code> [coming in V2.0]</a></h4>
+<div class="paragraph">
+<p>After being shown list of health plans<br>
+User enters command to compare against set health plan.<br>
+Format:<br>
+<code>compareIntake PLAN_ID</code></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -247,4 +431,4 @@ calls the intended result will be achieved.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 09:13:49 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 11:38:19 UTC</div></div></div></body></html>
