@@ -476,6 +476,9 @@ INSTRUCTION:<br>
 <li>
 <p><code>INDEX</code> should be as displayed in the list.</p>
 </li>
+<li>
+<p>Common serving unit "gram" is being displayed.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -490,7 +493,7 @@ INSTRUCTION:<br>
 <div class="paragraph">
 <p>Show recipes related to the keyword(s).
 Keywords include but not limited to cuisines (Indian, Japanese),
-dietary types (vegan, Keto),
+dietary types (Vegetarian, Halal),
 ingredients (egg, broccoli),
 preparation time (30M, 1H40M)
 and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
@@ -754,8 +757,7 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>public boolean test(Recipe recipe) {
-    if (keywords.size() == 0) {
+<pre>    if (keywords.size() == 0) {
         return false;
     }
     return (keywords.stream()
@@ -765,9 +767,9 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
                         || recipe.getDifficulty().toString().equals(keyword)
                         || recipe.getTags().stream()
                         .anyMatch(tag -&gt; StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
-                        || recipe.getIngredients().containsKey(new IngredientDefinition(keyword));
-            }
-            ));
+                        || recipe.getIngredients().keySet().stream().anyMatch(ingredientDefinition -&gt; StringUtil
+                        .containsWordIgnoreCase(ingredientDefinition.toString(), keyword));
+            }));
 }</pre>
 </div>
 </div>
@@ -798,4 +800,4 @@ Cons - Bi-directional association, increase difficulty in maintaining data integ
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 17:13:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 17:33:31 UTC</div></div></div></body></html>

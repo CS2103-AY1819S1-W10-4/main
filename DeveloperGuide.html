@@ -1087,8 +1087,7 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>public boolean test(Recipe recipe) {
-    if (keywords.size() == 0) {
+<pre>    if (keywords.size() == 0) {
         return false;
     }
     return (keywords.stream()
@@ -1098,9 +1097,9 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
                         || recipe.getDifficulty().toString().equals(keyword)
                         || recipe.getTags().stream()
                         .anyMatch(tag -&gt; StringUtil.containsWordIgnoreCase(tag.tagName, keyword))
-                        || recipe.getIngredients().containsKey(new IngredientDefinition(keyword));
-            }
-            ));
+                        || recipe.getIngredients().keySet().stream().anyMatch(ingredientDefinition -&gt; StringUtil
+                        .containsWordIgnoreCase(ingredientDefinition.toString(), keyword));
+            }));
 }</pre>
 </div>
 </div>
@@ -2910,4 +2909,4 @@ Expected: No recipe listed. Error details shown in the status message. Status ba
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 17:13:31 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-10 17:33:31 UTC</div></div></div></body></html>
