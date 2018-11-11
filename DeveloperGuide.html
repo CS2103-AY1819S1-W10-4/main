@@ -1054,11 +1054,23 @@ cleared (i.e. set to null). This <code>AddCommand</code> when executed will add 
 </div>
 <div class="sect4">
 <h5 id="alternatives"><a class="link" href="#alternatives">Alternatives:</a></h5>
-<div class="paragraph">
-<p>Adding of incomplete recipe to the model and edit that recipe with the subsequent commands.
-Pros - Make use of existing add and edit command without the need of additional implementation.
-Cons - Model contains incomplete recipe that violates the validity of recipe data. This might be exploited and in the
- process the application can be filled with incomplete recipes.</p>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>Adding of incomplete recipe to the model and edit that recipe with the subsequent commands.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros - Make use of existing add and edit command without the need of additional implementation.<br></p>
+</li>
+<li>
+<p>Cons - Model contains incomplete recipe that violates the validity of recipe data. This might be exploited and in the
+process the application can be filled with incomplete recipes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1067,11 +1079,29 @@ Cons - Model contains incomplete recipe that violates the validity of recipe dat
 <div class="paragraph">
 <p>The all-field recipe search matches keywords with details of <code>Recipe</code>.
 Each keyword goes through the matching process against the <code>Name</code>, <code>Tag</code>, <code>Difficulty</code>, <code>CookTime</code> and even
-<code>Ingredient</code> from each <code>Instruction</code> of every recipe.
+<code>IngredientPortion</code> from each <code>Instruction</code> of every recipe.
 Such search feature provides a complex querying, rather than a superficial search on merely recipes' name.</p>
 </div>
 <div class="sect4">
 <h5 id="current-implementation-3"><a class="link" href="#current-implementation-3">Current Implementation</a></h5>
+<div class="paragraph">
+<p>The following recipe class diagram shows the data structure of <code>Recipe</code> to support searching:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/recipe_class_diagram.png" alt="recipe class diagram" width="1000">
+</div>
+</div>
+<div class="paragraph">
+<p>Other than the basic <code>Recipe</code> details accessible via the <code>getters()</code>, nested attribute such as <code>IngredientPortion</code>
+can post difficulty for the search function since <code>Recipe</code> and <code>IngredientPortion</code> is not associated initially. To
+allow direct access to all <code>IngredientPortion</code> of that recipe, a <code>tabulateIngredients()</code> method is added. This method
+stores all
+<code>IngredientPortion</code> in the <code>HashMap</code> of <code>ingredients</code>
+ attribute by searching through all <code>Instruction</code>. As <code>Recipe</code> is immutable, the generating of the <code>ingredients</code> is
+ done in the constructor of <code>Recipe</code> (i.e. <code>tabulateIngredients()</code> is called in the constructor). This allow the
+ direct accessing all attributes required for the search to completed.</p>
+</div>
 <div class="paragraph">
 <p>To implement this feature, recipe <code>Model</code> is implemented with <code>FilteredList</code>. This list takes in a predicate to
 filter away recipes that does not meet the requirement.</p>
@@ -1087,7 +1117,8 @@ word, and <code>Ingredient</code> for any matching <code>IngredientDefinition</c
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>    if (keywords.size() == 0) {
+<pre>public boolean test(Recipe recipe) {
+    if (keywords.size() == 0) {
         return false;
     }
     return (keywords.stream()
@@ -1121,10 +1152,38 @@ to use its getter and perform matching with its keywords. Hence, a filter via pr
 </div>
 <div class="sect4">
 <h5 id="alternatives-2"><a class="link" href="#alternatives-2">Alternatives:</a></h5>
-<div class="paragraph">
-<p>Tag saving recipes that uses it.<br>
-Pros - Search done more effectively as the system only need to display all recipes stored in a tag<br>
-Cons - Bi-directional association, increase difficulty in maintaining data integrity</p>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p>Tag saving recipes that uses it.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros - Search done more effectively as the system only need to display all recipes stored in a tag<br></p>
+</li>
+<li>
+<p>Cons - Bi-directional association, increase difficulty in maintaining data integrity<br></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Saving IngredientPortion directly in recipe instead of individual instruction.<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros - Remove the need to search through the initial every instruction to gather the ingredients for every new
+instance of recipe. Speed up the recipe add and read process.<br></p>
+</li>
+<li>
+<p>Cons - Since ingredients are aggregated from instruction, by allowing IngredientPortion to be a direct attribute of
+recipe imply a possibility of mismatch between the ingredients in the instruction and the ingredients in the recipe.
+(e.g. User entering ingredients that are not used by any instruction)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1654,7 +1713,7 @@ e.g. <code>seedu.souschef.logic.LogicManagerTest</code></p>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: innovate, plan and guide health-conscious occupied working adults in preparing home-cooked meals</p>
+<p><strong>Value proposition</strong>: Plan and guide health-conscious occupied working adults in preparing home-cooked meals</p>
 </div>
 </div>
 </div>
@@ -2273,12 +2332,6 @@ search online</p></td>
 </li>
 <li>
 <p>System displays recipes.</p>
-</li>
-<li>
-<p>User enters keywords.</p>
-<div class="paragraph">
-<p>Steps 3 – 5 are repeated until search result becomes too narrow or user choose to look at existing result.</p>
-</div>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2305,7 +2358,7 @@ search online</p></td>
 </li>
 </ol>
 </div>
-<h4 id="use-case-uc44-navigate-recipe" class="discrete">Use case: UC44 – Navigate Recipe</h4>
+<h4 id="use-case-uc44-navigate-recipe-coming-up-in-v2-0" class="discrete">Use case: UC44 – Navigate Recipe [Coming up in V2.0]</h4>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2909,4 +2962,4 @@ Expected: No recipe listed. Error details shown in the status message. Status ba
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 15:54:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 17:49:21 UTC</div></div></div></body></html>

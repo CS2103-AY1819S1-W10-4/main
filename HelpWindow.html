@@ -212,7 +212,15 @@ Format:<br>
 <div class="sect3">
 <h4 id="add-a-recipe-code-add-code-code-cont-code-code-end-code"><a class="link" href="#add-a-recipe-code-add-code-code-cont-code-code-end-code">3.2.2. Add a recipe: <code>add</code> <code>cont</code> <code>end</code></a></h4>
 <div class="paragraph">
-<p>Add new recipe.<br></p>
+<p>Add new recipe.<br>
+Format:<br>
+<code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
+cont i/INSTRUCTION&#8230;&#8203; [c/TIME]<br>
+cont&#8230;&#8203;<br>
+end</code><br>
+<br>
+INSTRUCTION:<br>
+<code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT SERVING_UNIT]&#8230;&#8203;</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -314,20 +322,32 @@ and enter a new recipe details as desired.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
-cont i/INSTRUCTION&#8230;&#8203; [c/TIME]<br>
-cont&#8230;&#8203;<br>
-end</code><br>
-<br>
-INSTRUCTION:<br>
-<code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT SERVING_UNIT]&#8230;&#8203;</code></p>
+<p>Examples:<br></p>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p><code>add n/Chicken Rice d/2 c/45M</code><br>
+<code>cont i/Clean and cut #chicken 1.2 kg.</code><br>
+<code>cont i/Put the chicken in #boiled water 900 ml for 10 mins. c/10M</code><br>
+<code>cont i/Remove the chicken and put #soy sauce 100 ml.</code><br>
+<code>cont i/Cook for another 20 mins. c/20M</code><br>
+<code>end</code><br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="edit-a-recipe-code-edit-code"><a class="link" href="#edit-a-recipe-code-edit-code">3.2.3. Edit a recipe: <code>edit</code></a></h4>
 <div class="paragraph">
-<p>Edit new recipe.<br></p>
+<p>Edit new recipe.<br>
+Format:<br>
+<code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
+or<br>
+<code>edit INDEX s/STEP i/INSTRUCTION [c/TIME]</code><br>
+<br>
+INSTRUCTION:<br>
+<code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT SERVING_UNIT]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -388,19 +408,25 @@ replace.)</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
-or<br>
-<code>edit INDEX s/STEP i/INSTRUCTION [c/TIME]</code><br>
-<br>
-INSTRUCTION:<br>
-<code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT SERVING_UNIT]&#8230;&#8203;</code></p>
+<p>Examples:<br></p>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p><code>edit 1 c/20M t/Asian t/Staple</code><br></p>
+</li>
+<li>
+<p><code>edit 1 s/2 i/Pour #water 300 ml into the mix.</code><br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="display-recipe-details-code-select-code"><a class="link" href="#display-recipe-details-code-select-code">3.2.4. Display recipe details: <code>select</code></a></h4>
 <div class="paragraph">
-<p>View a recipe and its details from the list.<br></p>
+<p>View a recipe and its details from the list.<br>
+Format:<br>
+<code>select INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -410,15 +436,11 @@ INSTRUCTION:<br>
 <p><code>INDEX</code> should be as displayed in the list.</p>
 </li>
 <li>
-<p>Common serving unit "gram" is being displayed.</p>
+<p>All serving unit will be converted (approximately) to our common serving unit "gram" for display.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>select INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -429,7 +451,9 @@ Keywords include but not limited to cuisines (Indian, Japanese),
 dietary types (Vegetarian, Halal),
 ingredients (egg, broccoli),
 preparation time (30M, 1H40M)
-and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
+and difficulty (1, 2, &#8230;&#8203;, 5).<br>
+Format:<br>
+<code>find KEYWORD&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -446,14 +470,25 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 <div class="paragraph">
-<p>Format:<br>
-<code>find KEYWORD&#8230;&#8203;</code></p>
+<p>Examples:<br></p>
+</div>
+<div class="ulist disc">
+<ul class="disc">
+<li>
+<p><code>find rice asian 3</code><br></p>
+</li>
+<li>
+<p><code>find korean kimchi staple</code><br></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="delete-recipe-code-delete-code"><a class="link" href="#delete-recipe-code-delete-code">3.2.6. Delete recipe: <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Delete a recipe and its details from the list.<br></p>
+<p>Delete a recipe and its details from the list.<br>
+Format:<br>
+<code>delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -465,16 +500,14 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>delete INDEX</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="activate-cook-mode-coming-in-v2-0-code-cook-code"><a class="link" href="#activate-cook-mode-coming-in-v2-0-code-cook-code">3.2.7. Activate cook-mode [coming in V2.0]: <code>cook</code></a></h4>
 <div class="paragraph">
-<p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br></p>
+<p>A cook mode that provides step-by-step guidance to aid real-time cooking.<br>
+Format:<br>
+<code>cook INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -487,15 +520,13 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Format:<br>
-<code>cook INDEX</code></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="add-recipe-to-favourite-code-favourite-code"><a class="link" href="#add-recipe-to-favourite-code-favourite-code">3.2.8. Add recipe to favourite: <code>favourite</code></a></h4>
 <div class="paragraph">
-<p>Add a recipe to their favourites list.<br></p>
+<p>Add a recipe to their favourites list.<br>
+Format:<br>
+<code>favourite INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -508,15 +539,13 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Format:<br>
-<code>favourite INDEX</code></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="add-to-meal-plan-code-plan-code"><a class="link" href="#add-to-meal-plan-code-plan-code">3.2.9. Add to meal plan: <code>plan</code></a></h4>
 <div class="paragraph">
-<p>Add a specified recipe to meal plan.<br></p>
+<p>Add a specified recipe to meal plan.<br>
+Format:<br>
+<code>plan INDEX DATE MEAL</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -535,15 +564,13 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </div>
 </div>
 </div>
-<div class="paragraph">
-<p>Format:<br>
-<code>plan INDEX DATE MEAL</code></p>
-</div>
 </div>
 <div class="sect3">
 <h4 id="add-to-review-coming-in-v2-0-code-review-code"><a class="link" href="#add-to-review-coming-in-v2-0-code-review-code">3.2.10. Add to review [coming in V2.0]: <code>review</code></a></h4>
 <div class="paragraph">
-<p>Add comment and rating to current recipe.<br></p>
+<p>Add comment and rating to current recipe.<br>
+Format:<br>
+<code>review [COMMENT] RATING</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -558,10 +585,6 @@ and difficulty (1, 2, &#8230;&#8203;, 5).<br></p>
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>Format:<br>
-<code>review [COMMENT] RATING</code></p>
 </div>
 </div>
 </div>
@@ -1258,4 +1281,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 15:54:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-11 17:49:21 UTC</div></div></div></body></html>
