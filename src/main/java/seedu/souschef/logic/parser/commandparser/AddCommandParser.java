@@ -141,7 +141,7 @@ public class AddCommandParser {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddFavouriteCommand
+     * Parses the given {@code String} of arguments in the context of the AddFCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */

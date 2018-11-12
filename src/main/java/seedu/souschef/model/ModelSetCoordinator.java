@@ -15,6 +15,7 @@ import seedu.souschef.commons.events.model.RecipeDeletedEvent;
 import seedu.souschef.commons.events.model.RecipeEditedEvent;
 import seedu.souschef.commons.events.storage.SwitchFeatureStorageEvent;
 import seedu.souschef.logic.parser.Context;
+import seedu.souschef.model.favourite.Favourites;
 import seedu.souschef.model.healthplan.HealthPlan;
 import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.planner.Day;
@@ -32,7 +33,7 @@ public class ModelSetCoordinator implements ModelSet {
     private final Model<Day> mealPlannerModel;
     private final Model<Ingredient> ingredientModel;
     private final Model<CrossRecipe> crossRecipeModel;
-    private final Model<Recipe> favouriteModel;
+    private final Model<Favourites> favouriteModel;
     private final VersionedAppContent versionedAppContent;
     /**
      * Initializes all ModelManagers with the given appContent and userPrefs.
@@ -106,7 +107,7 @@ public class ModelSetCoordinator implements ModelSet {
     }
 
     @Override
-    public Model<Recipe> getFavouriteModel() {
+    public Model<Favourites> getFavouriteModel() {
         return favouriteModel;
     }
 
@@ -135,9 +136,7 @@ public class ModelSetCoordinator implements ModelSet {
     protected void handleRecipeDeletedEvent(RecipeDeletedEvent event) {
         Recipe toDelete = event.recipe;
         mealPlannerModel.updateFilteredList(Model.PREDICATE_SHOW_ALL);
-        favouriteModel.updateFilteredList(Model.PREDICATE_SHOW_ALL);
         List<Day> mealPlanList = mealPlannerModel.getFilteredList();
-        List<Recipe> favouriteList = favouriteModel.getFilteredList();
 
         for (Day d : mealPlanList) {
             for (Meal m : d.getMeals()) {
@@ -151,18 +150,10 @@ public class ModelSetCoordinator implements ModelSet {
             }
         }
 
-        for (Recipe r : favouriteList) {
-            if (r.isSame(toDelete)) {
-                favouriteModel.delete(r);
-            }
-        }
-
         setFeatureStorage(Context.MEAL_PLAN);
         mealPlannerModel.indicateAppContentChanged();
         setFeatureStorage(Context.HEALTH_PLAN);
         healthPlanModel.indicateAppContentChanged();
-        setFeatureStorage(Context.FAVOURITES);
-        favouriteModel.indicateAppContentChanged();
         setFeatureStorage(Context.RECIPE);
     }
 
@@ -183,9 +174,7 @@ public class ModelSetCoordinator implements ModelSet {
     @Subscribe
     protected void handleRecipeEditedEvent(RecipeEditedEvent event) {
         mealPlannerModel.updateFilteredList(Model.PREDICATE_SHOW_ALL);
-        favouriteModel.updateFilteredList(Model.PREDICATE_SHOW_ALL);
         List<Day> mealPlanList = mealPlannerModel.getFilteredList();
-        List<Recipe> favouriteList = favouriteModel.getFilteredList();
         Recipe oldRecipe = event.oldRecipe;
         Recipe newRecipe = event.newRecipe;
 
@@ -197,18 +186,10 @@ public class ModelSetCoordinator implements ModelSet {
             }
         }
 
-        for (Recipe r : favouriteList) {
-            if (r.isSame(oldRecipe)) {
-                favouriteModel.update(oldRecipe, newRecipe);
-            }
-        }
-
         setFeatureStorage(Context.MEAL_PLAN);
         mealPlannerModel.indicateAppContentChanged();
         setFeatureStorage(Context.HEALTH_PLAN);
         healthPlanModel.indicateAppContentChanged();
-        setFeatureStorage(Context.FAVOURITES);
-        favouriteModel.indicateAppContentChanged();
         setFeatureStorage(Context.RECIPE);
     }
 }

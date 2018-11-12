@@ -11,27 +11,26 @@ import javafx.scene.control.ListView;
 import seedu.souschef.commons.core.LogsCenter;
 import seedu.souschef.commons.events.ui.FavouritesPanelSelectionChangedEvent;
 import seedu.souschef.commons.events.ui.JumpToListRequestEvent;
-import seedu.souschef.model.recipe.Recipe;
+import seedu.souschef.model.favourite.Favourites;
 
 /**
  * Panel containing the list of recipes.
  */
-
-public class FavouritesPanel extends GenericListPanel<Recipe> {
+public class FavouritesPanel extends GenericListPanel<Favourites> {
     private static final String FXML = "FavouritesPanel.fxml";
     @FXML
-    protected ListView<Recipe> favouritesListView;
+    protected ListView<Favourites> favouritesListView;
     private final Logger logger = LogsCenter.getLogger(RecipeListPanel.class);
 
 
-    public FavouritesPanel(ObservableList<Recipe> recipeList) {
+    public FavouritesPanel(ObservableList<Favourites> recipeList) {
         super(FXML);
         setConnections(recipeList);
         registerAsAnEventHandler(this);
     }
 
     @Override
-    protected void setConnections(ObservableList<Recipe> recipeList) {
+    protected void setConnections(ObservableList<Favourites> recipeList) {
         favouritesListView.setItems(recipeList);
         favouritesListView.setCellFactory(listView -> new FavouritesListViewCell());
         setEventHandlerForSelectionChangeEvent();
@@ -52,7 +51,6 @@ public class FavouritesPanel extends GenericListPanel<Recipe> {
      * Scrolls to the {@code Card} at the {@code index} and selects it.
      * To be used in handleJumpToListRequestEvent().
      */
-
     @Override
     protected void scrollTo(int index) {
         Platform.runLater(() -> {
@@ -71,10 +69,10 @@ public class FavouritesPanel extends GenericListPanel<Recipe> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Recipe} using a {@code RecipeCard}.
      */
-    class FavouritesListViewCell extends ListViewCell<Recipe> {
+    class FavouritesListViewCell extends ListViewCell<Favourites> {
 
         @Override
-        protected void updateItem(Recipe favourites, boolean empty) {
+        protected void updateItem(Favourites favourites, boolean empty) {
             super.updateItem(favourites, empty);
 
             if (empty || favourites == null) {
@@ -85,4 +83,5 @@ public class FavouritesPanel extends GenericListPanel<Recipe> {
             }
         }
     }
+
 }
