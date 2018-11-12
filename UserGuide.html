@@ -165,7 +165,8 @@ Format:<br>
 <div class="sect3">
 <h4 id="switch-to-ingredient-recipe-query-context-code-cross-code"><a class="link" href="#switch-to-ingredient-recipe-query-context-code-cross-code">3.1.5. Switch to ingredient-recipe query context: <code>-cross</code></a></h4>
 <div class="paragraph">
-<p>Switch to ingredient-recipe query context and where you can sort, filter the recipe list by name of ingredients includes and get information of needed amounts of ingredients.<br>
+<p>Switch to ingredient-recipe query context and where you can sort, filter the recipe list by name of ingredients
+included and get information of needed amounts of ingredients.<br>
 See <a href="#ingredient-recipe-query-commands-only-applicable-in-cross-context">Section 3.4, &#8220;Ingredient-Recipe Query Commands (Only applicable in cross context)&#8221;</a> to view commands for ingredient-recipe
 query context.<br>
 Format:<br>
@@ -615,11 +616,11 @@ teaspoon and cup.</p>
 <p>Amounts are converted with common serving unit(e.g. gram).</p>
 </li>
 <li>
-<p>Format for date should be MM-dd-yyyy</p>
+<p>Format for date should be MM-dd-yyyy.</p>
 </li>
 <li>
 <p>Date is meant to be the date of input, but it is up to user to tweak its usage. For example, it can be used to show
-expire date.</p>
+expiry date.</p>
 </li>
 </ul>
 </div>
@@ -627,7 +628,7 @@ expire date.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-ingredients-code-list-code"><a class="link" href="#list-all-ingredients-code-list-code">3.3.2. List all ingredients: <code>list</code></a></h4>
+<h4 id="sort-and-list-all-ingredients-code-list-code"><a class="link" href="#sort-and-list-all-ingredients-code-list-code">3.3.2. Sort and list all ingredients: <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of ingredients in ingredient manager. Ingredients are sorted by date, so that the ingredients with
 earlier date
@@ -735,8 +736,10 @@ most number of following ingredients would be placed high in order.<br></p>
 </li>
 <li>
 <p>"include" part and "prioritize" part is optional. It is possible that only one of either part is provided. (For
-example, "view 1 prioritize onion"). If both are not provided, recipe list remains the same and only the number of
-servings are considered for calculation of needed amounts ingredients later.</p>
+example, "view 1 prioritize onion") If both are not provided(For
+                                                             example, "view 4"), recipe list remains the same and
+                                                             only the number of
+servings are considered for calculation of needed amounts ingredients.</p>
 </li>
 <li>
 <p>"inventory" keyword provides all the ingreident in Ingredient
@@ -779,7 +782,7 @@ e.g. If positive, (Number of Servings ×
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-recipes-code-list-code"><a class="link" href="#list-all-recipes-code-list-code">3.4.3. List all recipes: <code>list</code></a></h4>
+<h4 id="list-all-recipes-and-undo-calculation-code-list-code"><a class="link" href="#list-all-recipes-and-undo-calculation-code-list-code">3.4.3. List all recipes and undo calculation: <code>list</code></a></h4>
 <div class="paragraph">
 <p>Shows a list of recipes. It restores the default state of the list, undoing the calculation resulting from 'view
 recipes based on ingredients'
@@ -1176,13 +1179,13 @@ or<br>
 <p>Add an ingredient: <code>add NAME AMOUNT SERVING_UNIT DATE</code></p>
 </li>
 <li>
-<p>List all ingredients: <code>list</code></p>
+<p>Sort and list all ingredients: <code>list</code></p>
 </li>
 <li>
-<p>Edit ingredient info:`edit INDEX FIELD_NAME NEW_INFO [MORE FIELD_NAME NEW_INFO]…​`</p>
+<p>Edit ingredient info: <code>edit INDEX FIELD_NAME NEW_INFO [MORE FIELD_NAME NEW_INFO]…​</code></p>
 </li>
 <li>
-<p>Search ingredient: <code>find KEYWORD [MORE_KEYWORDS]…​</code></p>
+<p>Find ingredient: <code>find KEYWORD [MORE_KEYWORDS]…​</code></p>
 </li>
 <li>
 <p>Delete ingredient: <code>delete INDEX</code></p>
@@ -1198,13 +1201,14 @@ or<br>
 <div class="ulist">
 <ul>
 <li>
-<p>View Recipe based on Ingredients: <code>view NUMBER_OF_SERVINGS include [inventory] KEYWORD [MORE_KEYWORDS]…​ prioritize [inventory] KEYWORD [MORE_KEYWORDS]…​</code></p>
+<p>View Recipe based on Ingredients: <code>view NUMBER_OF_SERVINGS [include [inventory] KEYWORD [MORE_KEYWORDS]…​]
+[prioritize [inventory] KEYWORD [MORE_KEYWORDS]…​]</code></p>
 </li>
 <li>
 <p>View needed amount of ingredients for a Recipe: <code>select INDEX</code></p>
 </li>
 <li>
-<p>List all recipes: <code>list</code></p>
+<p>List all recipes and undo calculation: <code>list</code></p>
 </li>
 </ul>
 </div>
@@ -1281,4 +1285,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:19:19 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:24:28 UTC</div></div></div></body></html>
