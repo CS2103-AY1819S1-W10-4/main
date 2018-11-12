@@ -1,6 +1,7 @@
 package seedu.souschef.model;
 
 import javafx.collections.ObservableList;
+import seedu.souschef.model.favourite.Favourites;
 import seedu.souschef.model.healthplan.HealthPlan;
 import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.planner.Day;
@@ -46,6 +47,6 @@ public interface ReadOnlyAppContent {
      * Returns an unmodifiable view of the favourite list.
      * This list will not contain any duplicate favourite recipes.
      */
-    ObservableList<Recipe> getObservableFavouritesList();
+    ObservableList<Favourites> getObservableFavouritesList();
 
 }
