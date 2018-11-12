@@ -63,8 +63,7 @@ public class AppContentParser {
                     .parseCommand(modelSet.getMealPlannerModel(), modelSet.getRecipeModel(), userInput, history);
         case FAVOURITES:
             setFeatureStorage(context);
-            return new FavouritesParser().parseCommand(modelSet.getFavouriteModel(), modelSet.getRecipeModel(),
-                    userInput);
+            return new FavouritesParser().parseCommand(modelSet.getFavouriteModel(), userInput);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -84,8 +83,7 @@ public class AppContentParser {
         if (FavouritesParser.isCrossContextCommand(userInput)) {
             // Consider to use Favorite command instead and remove history from param
             setFeatureStorage(Context.FAVOURITES);
-            command = new FavouritesParser().parseCommand(modelSet.getFavouriteModel(),
-                    modelSet.getRecipeModel(), userInput);
+            command = new RecipeParser().parseCommand(modelSet.getFavouriteModel(), userInput, history);
         } else if (MealPlannerParser.isCrossContextCommand(userInput)) {
             setFeatureStorage(Context.MEAL_PLAN);
             command = new MealPlannerParser().parseCommand(modelSet.getMealPlannerModel(),

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import seedu.souschef.logic.commands.CommandResult;
 import seedu.souschef.logic.commands.exceptions.CommandException;
 import seedu.souschef.logic.parser.exceptions.ParseException;
+import seedu.souschef.model.favourite.Favourites;
 import seedu.souschef.model.healthplan.HealthPlan;
 import seedu.souschef.model.ingredient.Ingredient;
 import seedu.souschef.model.planner.Day;
@@ -40,7 +41,7 @@ public interface Logic {
     ObservableList<Day> getMealPlanList();
 
     /** Returns an unmodifiable view of the filtered lists of favourite */
-    ObservableList<Recipe> getFilteredFavouritesList();
+    ObservableList<Favourites> getFilteredFavouritesList();
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();
