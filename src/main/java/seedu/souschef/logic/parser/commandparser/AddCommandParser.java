@@ -153,11 +153,10 @@ public class AddCommandParser {
         }
 
         int index = Integer.parseInt(args.trim()) - 1;
-        Recipe recipe = recipes.getFilteredList().get(index);
+        Recipe recipe = recipes.getAppContent().getObservableRecipeList().get(index);
 
 
-
-        int size = recipes.getFilteredList().size();
+        int size = fav.getAppContent().getObservableRecipeList().size();
         if (index < 0 || index >= size) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ADD_FAVOURITE_USAGE));
         }
