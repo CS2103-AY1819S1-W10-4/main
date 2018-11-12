@@ -58,7 +58,54 @@ UI and allowed easy switching between different feature panels through the use o
 Universal Commands.</p>
 </li>
 <li>
-<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/65">PR#65</a></p>
+<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/65">#65</a>,
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/243">#243</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: Implemented cross-model deletion and clearing in order to maintain
+data consistency across the different models.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Justification: There are some scenarios to consider where modifying one model has to affect
+one or more other models.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Recipe that is already planned in the Meal Planner is deleted from the recipe model.<br>
+In this scenario, the deleted recipe will now also be removed from the days in the Meal
+Planner where it was previously planned.</p>
+</li>
+<li>
+<p>3 recipes that have been planned in a single day are deleted from the recipe model.<br>
+In this scenario, the day in the Meal Planner which has had all its recipes removed will also
+be deleted from the Meal Planner. This then cascades on to the Health Planner, and the deleted
+day will be removed from any health plans where it was previously added to.</p>
+</li>
+<li>
+<p>A day from the Meal Planner that has been added to a health plan in the Health Planner is deleted from
+the Meal Planner.<br>
+In this scenario, the deleted day will now also be removed from the health plans in the Health
+Planner where it was previously added.</p>
+</li>
+<li>
+<p>Clearing the Meal Planner while days have been added to health plans in the Health Planner.<br>
+In this scenario, all the health plans in the Health Planner will now have all their previously
+added days removed.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Highlights: This ensures that the different types of data across the different models in
+SousChef all remain in synchronization and logically correct.</p>
+</li>
+<li>
+<p><a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/256">#256</a>,
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/265">#265</a></p>
 </li>
 </ul>
 </div>
@@ -73,8 +120,8 @@ Universal Commands.</p>
 <ul>
 <li>
 <p>Clean up code by decoupling Storage and Ui components from Logic component
-(<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/243">PR#243</a>
-<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/256">PR#256</a>).</p>
+(<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/243">#243</a>
+<a href="https://github.com/CS2103-AY1819S1-W10-4/main/pull/256">#256</a>).</p>
 </li>
 </ul>
 </div>
@@ -536,4 +583,4 @@ and then raising the event by posting it to the <strong>EventsCenter</strong>.</
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:10:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:57:13 UTC</div></div></div></body></html>
