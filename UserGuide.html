@@ -620,11 +620,15 @@ teaspoon and cup.</p>
 <p>Amounts are converted with common serving unit(e.g. gram).</p>
 </li>
 <li>
-<p>Format for date should be MM-dd-yyyy.</p>
+<p>Format for date should be MONTH-DAY-YEAR.</p>
 </li>
 <li>
 <p>Date is meant to be the date of input, but it is up to user to tweak its usage. For example, it can be used to show
 expiry date.</p>
+</li>
+<li>
+<p>It is not allowed add ingredients with same name and same date. To add in more amount, edit function should be used
+instead.</p>
 </li>
 </ul>
 </div>
@@ -646,7 +650,7 @@ Format:<br>
 <div class="paragraph">
 <p>Edit an existing ingredient in ingredient manager.<br>
 Format:<br>
-<code>edit INDEX FIELD_NAME NEW_INFO [MORE FIELD_NAME NEW_INFO]&#8230;&#8203;</code></p>
+<code>edit INDEX FIELD_NAME NEW_VALUE [MORE FIELD_NAME NEW_VALUE]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -746,14 +750,13 @@ example, "view 1 prioritize onion") If both are not provided(For
 servings are considered for calculation of needed amounts ingredients.</p>
 </li>
 <li>
-<p>"inventory" keyword provides all the ingreident in Ingredient
+<p>"inventory" keyword provides all the ingredients in Ingredient
 Manager
 as parameter to the keyword it follows.<br></p>
 </li>
 <li>
-<p>"inventory" keyword is optional, but cannot appear more than once. It
-directly
-follows either "include" keyword or "prioritize" keyword.</p>
+<p>It is not allowed to provide same ingredient as a parameter for both "include" and "prioritize" part. This is also
+applicable for "inventory" parameter because it is also a set of ingredients.</p>
 </li>
 </ul>
 </div>
@@ -1313,4 +1316,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 10:57:13 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 11:13:27 UTC</div></div></div></body></html>
