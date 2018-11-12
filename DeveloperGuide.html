@@ -864,7 +864,8 @@ within the Meal Planner.</p>
 <p><strong>Meal</strong>: abstract class which encapsulates a <strong>Optional&lt;Recipe&gt;</strong> <em>recipe</em>, an <strong>int</strong> <em>index</em>
 indicating which meal index each <strong>Meal</strong> object is (0 for breakfast, 1 for lunch, 2 for dinner),
 and a <strong>String</strong> <em>slot</em> containing its corresponding name.</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p><strong>Breakfast</strong>: inherits from <strong>Meal</strong> class and represents the breakfast meal slot of the day.
 Contains a predefined integer index of 0 and a predefined String slot name of "breakfast".</p>
@@ -876,8 +877,7 @@ Contains a predefined integer index of 1 and a predefined String slot name of "l
 <li>
 <p><strong>Dinner</strong>: inherits from <strong>Meal</strong> class and represents the dinner meal slot of the day.
 Contains a predefined integer index of 2 and a predefined String slot name of "dinner".</p>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>An empty <strong>Meal</strong> is defined as having no recipe, i.e. empty <strong>Optional</strong>.</p>
 </li>
@@ -972,6 +972,19 @@ The <strong>Day</strong> is specified by its index as seen on the list panel.<br
 <strong>MealPlannerParser</strong> invokes the parseMealPlan() method of <strong>DeleteCommandParser</strong>. The user input
 is then parsed to get the index of the <strong>Day</strong> to be deleted. The <strong>Day</strong> object at the given index
 of the <em>mealPlannerModel</em> list is then deleted.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="alternative-implementation"><a class="link" href="#alternative-implementation">Alternative implementation</a></h6>
+<div class="paragraph">
+<p>Earlier MealPlanner implementation used a ObservableHashMap with LocalDate and Day as the key and value
+pairs, each LocalDate being the key for the Day with the same LocalDate. Theoretically, this
+would work as well. However, this was scrapped as a simple ObservableList of Days would work
+equally well. In addition, since AB4 already has an implemented UniqueList, using a simple
+List makes it easier to integrate the Meal Planner into the existing infrastructure.<br>
+HashMaps are mainly used as they give a time complexity advantage, having an O(1) time complexity.
+However, that advantage is not present here since our Lists usually access elements by index,
+and thus also have a time complexity of O(1).</p>
 </div>
 </div>
 </div>
@@ -2988,4 +3001,4 @@ Expected: No recipe listed. Error details shown in the status message. Status ba
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 06:24:28 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:15:59 UTC</div></div></div></body></html>
