@@ -620,15 +620,11 @@ teaspoon and cup.</p>
 <p>Amounts are converted with common serving unit(e.g. gram).</p>
 </li>
 <li>
-<p>Format for date should be MONTH-DAY-YEAR.</p>
+<p>Format for date should be MM-dd-yyyy.</p>
 </li>
 <li>
 <p>Date is meant to be the date of input, but it is up to user to tweak its usage. For example, it can be used to show
 expiry date.</p>
-</li>
-<li>
-<p>It is not allowed add ingredients with same name and same date. To add in more amount, edit function should be used
-instead.</p>
 </li>
 </ul>
 </div>
@@ -650,7 +646,7 @@ Format:<br>
 <div class="paragraph">
 <p>Edit an existing ingredient in ingredient manager.<br>
 Format:<br>
-<code>edit INDEX FIELD_NAME NEW_VALUE [MORE FIELD_NAME NEW_VALUE]&#8230;&#8203;</code></p>
+<code>edit INDEX FIELD_NAME NEW_INFO [MORE FIELD_NAME NEW_INFO]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -750,13 +746,14 @@ example, "view 1 prioritize onion") If both are not provided(For
 servings are considered for calculation of needed amounts ingredients.</p>
 </li>
 <li>
-<p>"inventory" keyword provides all the ingredients in Ingredient
+<p>"inventory" keyword provides all the ingreident in Ingredient
 Manager
 as parameter to the keyword it follows.<br></p>
 </li>
 <li>
-<p>It is not allowed to provide same ingredient as a parameter for both "include" and "prioritize" part. This is also
-applicable for "inventory" parameter because it is also a set of ingredients.</p>
+<p>"inventory" keyword is optional, but cannot appear more than once. It
+directly
+follows either "include" keyword or "prioritize" keyword.</p>
 </li>
 </ul>
 </div>
@@ -869,7 +866,7 @@ TARGET WEIGHT, AND DURATION+</p>
 </div>
 <div class="paragraph">
 <p>Format:<br>
-<code>add n/NAME a/AGE h/HEIGHT w/CURRENT_WEIGHT t/TARGET_WEIGHT d/DURATION</code></p>
+<code>add n/NAME a/AGE h/HEIGHT w/CURRENT_WEIGHT t/TARGET_WEIGHT d/DURATION</code><br></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -956,7 +953,7 @@ Format :<br>
 <p>After being shown the meal planner list by the system<br>
 User selects to add to intake List<br>
 Format:<br>
-<code>addDay p/PLAN_INDEX d/DAY_INDEX</code></p>
+`addDay p/PLAN_INDEX d/DAY_INDEX'</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -997,19 +994,19 @@ Format:<br>
 </div>
 </div>
 <div class="sect3">
-<h4 id="show-meal-planner-list-beside-health-plan-list-code-showmeal-code"><a class="link" href="#show-meal-planner-list-beside-health-plan-list-code-showmeal-code">3.6.6. Show Meal Planner list beside Health Plan List : <code>showMeal</code></a></h4>
+<h4 id="show-meal-planner-list-beside-health-plan-list-showmeal"><a class="link" href="#show-meal-planner-list-beside-health-plan-list-showmeal">3.6.6. Show Meal Planner list beside Health Plan List : 'showMeal'</a></h4>
 <div class="paragraph">
 <p>User enters command to view the full list of meals beside the health plan list
 Format:<br>
-<code>showMeal</code></p>
+'showMeal'</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="hide-view-on-the-right-code-hidemeal-code"><a class="link" href="#hide-view-on-the-right-code-hidemeal-code">3.6.7. Hide view on the right : <code>hideMeal</code></a></h4>
+<h4 id="hide-view-on-the-right-hidemeal"><a class="link" href="#hide-view-on-the-right-hidemeal">3.6.7. Hide view on the right : 'hideMeal'</a></h4>
 <div class="paragraph">
 <p>User enters command to hide any view that is currently displayed on the right
 Format:<br>
-<code>hideMeal</code></p>
+'hideMeal'</p>
 </div>
 </div>
 <div class="sect3">
@@ -1316,4 +1313,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:21:01 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 13:34:41 UTC</div></div></div></body></html>
