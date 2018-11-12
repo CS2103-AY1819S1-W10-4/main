@@ -112,13 +112,15 @@ The universal commands can be used throughout the application and perform applic
 <div class="ulist">
 <ul>
 <li>
-<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME</code>, <code>NAME</code> is a parameter which can be used as <code>add n/Chicken Rice</code>.</p>
+<p>Words in <code>UPPER_CASE</code> are the parameters to be supplied by the user e.g. in <code>add n/NAME c/COOKTIME d/DIFFICULTY [t/TAG]</code>,
+<code>NAME</code>, <code>COOKTIME</code> and <code>DIFFICULTY</code> and <code>TAG</code> are parameters are to be replaced: <code>add n/Fried Chicken d/2 c/20M
+t/Fastfood</code>.</p>
 </li>
 <li>
-<p>Items in square brackets are optional.</p>
+<p>Items in square brackets are optional (i.e. can be omitted).</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/Japanese</code>, <code>t/Halal t/Seafood</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used 1 or more: <code>t/Japanese</code>, <code>t/Halal t/Seafood</code> etc. With <code>[]</code> it can also be omitted totally too.</p>
 </li>
 </ul>
 </div>
@@ -215,8 +217,8 @@ Format:<br>
 <div class="paragraph">
 <p>Add new recipe.<br>
 Format:<br>
-<code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
-cont i/INSTRUCTION&#8230;&#8203; [c/TIME]<br>
+<code>add n/NAME c/COOKTIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
+cont i/INSTRUCTION&#8230;&#8203; [c/COOKTIME]<br>
 cont&#8230;&#8203;<br>
 end</code><br>
 <br>
@@ -231,7 +233,7 @@ INSTRUCTION:<br>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Full set of commands <code>add</code> <code>cont</code> <code>end</code> should be performed for the addition of recipe to be completed.</p>
+<p>Full set of commands <code>add</code> <code>cont</code> <code>end</code> must be performed for the adding of recipe to be completed.</p>
 </div>
 </td>
 </tr>
@@ -252,7 +254,7 @@ INSTRUCTION:<br>
 <p>NAME should come with any alphanumeric characters.</p>
 </li>
 <li>
-<p>TIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H
+<p>COOKTIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H
 &amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
 </li>
 <li>
@@ -273,7 +275,7 @@ INSTRUCTION:<br>
 to be included are instruction text, instruction exclusive cook time (optional) and ingredients (optional).</p>
 </li>
 <li>
-<p><code>i</code> is to be replaced with running numbers for listing of instructions in order.</p>
+<p>Instruction will be saved in the same sequence as it is inputted.</p>
 </li>
 <li>
 <p>Ingredients can be embedded into instruction text via <code>#INGREDIENT_NAME AMOUNT SERVING_UNIT</code>.</p>
@@ -286,16 +288,13 @@ to be included are instruction text, instruction exclusive cook time (optional) 
 <p>AMOUNT accepts both integer and decimal. Decimal must come with a leading 0 for values less than 1. e.g. 0.25</p>
 </li>
 <li>
-<p>SERVING_UNIT should only come as a single word. e.g. gram, g, ml.</p>
+<p>SERVING_UNIT should be single-worded. e.g. gram, g, ml.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Recipe without at least one instruction and 'end' command will not be added.</p>
 </li>
 <li>
 <p>User can perform other commands and continue adding instructions as required. <code>cont</code> command need not be continuous.</p>
@@ -303,6 +302,9 @@ to be included are instruction text, instruction exclusive cook time (optional) 
 <li>
 <p>To overwrite existing recipe that has yet been added (i.e. <code>end</code> command not used), simply use the <code>add</code> command
 and enter a new recipe details as desired.</p>
+</li>
+<li>
+<p>The <code>end</code> command record and save the recipe.</p>
 </li>
 </ul>
 </div>
@@ -314,7 +316,7 @@ and enter a new recipe details as desired.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Recipes containing the same name, difficulty and cooktime are considered as duplicates and should not be allowed.</p>
+<p>Recipes containing the same name, difficulty and cooktime are considered as duplicates and is not be allowed.</p>
 </div>
 </td>
 </tr>
@@ -343,9 +345,9 @@ and enter a new recipe details as desired.</p>
 <div class="paragraph">
 <p>Edit new recipe.<br>
 Format:<br>
-<code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
+<code>edit INDEX [n/NAME] [c/COOKTIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
 or<br>
-<code>edit INDEX s/STEP i/INSTRUCTION [c/TIME]</code><br>
+<code>edit INDEX s/STEP i/INSTRUCTION [c/COOKTIME]</code><br>
 <br>
 INSTRUCTION:<br>
 <code>TEXT&#8230;&#8203; [#INGREDIENT_NAME AMOUNT SERVING_UNIT]&#8230;&#8203;</code></p>
@@ -359,7 +361,7 @@ INSTRUCTION:<br>
 added)</p>
 </li>
 <li>
-<p>INDEX of the recipe to be edited should reflect the displayed recipe on the panel.</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 <li>
 <p>There are 2 types of edit command.</p>
@@ -374,7 +376,8 @@ and tags.</p>
 <p>NAME should come with any alphanumeric characters.</p>
 </li>
 <li>
-<p>TIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H &amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
+<p>COOKTIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2 postfixes are allowed i.e. H
+&amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
 </li>
 <li>
 <p>DIFFICULTY should range from 1 to 5.</p>
@@ -386,17 +389,18 @@ and tags.</p>
 </div>
 </li>
 <li>
-<p>Second: Used to edit a single instruction of that recipe.</p>
+<p>Second: Used to edit/add a single instruction of/to that recipe.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>STEP of the instruction to be replaced as displayed with <code>SELECT INDEX</code> command. Or you can add a new step by
-using a STEP 1 number higher the highest existing step. (e.g. 6 existing steps, use <code>s/7</code> to add instead of
-replace.)</p>
+<p>STEP refers to the instruction number of the recipe. It should be existing instruction to replace the instruction or a number higher than highest existing STEP to add. (e.g. 6 existing instruction steps, use <code>s/7</code> to add instead of replace)</p>
 </li>
 <li>
-<p>INSTRUCTION must be included and should come with any alphanumeric characters. Ingredients can be added using
-<code>#INGREDIENT_NAME AMOUNT SERVING_UNIT</code> as required.</p>
+<p>INSTRUCTION must be included and should come with any alphanumeric characters. Ingredients can be added using <code>#INGREDIENT_NAME AMOUNT SERVING_UNIT</code> as required.</p>
+</li>
+<li>
+<p>COOKTIME should have a integer value each with a postfix of H/M/S. A mixture of up to 2
+postfixes are allowed i.e. H &amp; M or M &amp; S. Valid examples: 1H15M, 30M20S, 35M.</p>
 </li>
 </ul>
 </div>
@@ -434,7 +438,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p><code>INDEX</code> should be as displayed in the list.</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 <li>
 <p>All serving unit will be converted (approximately) to our common serving unit "gram" for display.</p>
@@ -496,7 +500,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p><code>INDEX</code> should be as displayed in the list.</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 </ul>
 </div>
@@ -515,7 +519,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p><code>INDEX</code> should be as displayed in the list.</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 </ul>
 </div>
@@ -534,7 +538,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>INDEX should be the index number of the recipe displayed</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 </ul>
 </div>
@@ -553,7 +557,7 @@ Format:<br>
 <div class="ulist">
 <ul>
 <li>
-<p>INDEX should be the index number of the recipe displayed</p>
+<p>INDEX should be the index number of the recipe displayed.</p>
 </li>
 <li>
 <p>DATE should be entered in the format <strong>yyyy-mm-dd</strong>.</p>
@@ -1140,8 +1144,8 @@ Format:<br>
 <p>List recipes: <code>list</code><br></p>
 </li>
 <li>
-<p>Add a recipe: <code>add n/NAME c/TIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
-cont i/INSTRUCTION [c/TIME]<br>
+<p>Add a recipe: <code>add n/NAME c/COOKTIME d/DIFFICULTY [t/TAG]&#8230;&#8203;<br>
+cont i/INSTRUCTION [c/COOKTIME]<br>
 cont&#8230;&#8203;<br>
 end</code></p>
 <div class="ulist">
@@ -1154,9 +1158,9 @@ end</code></p>
 </li>
 <li>
 <p>Edit a recipe:<br>
-<code>edit INDEX [n/NAME] [c/TIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
+<code>edit INDEX [n/NAME] [c/COOKTIME] [d/DIFFICULTY] [t/TAG]&#8230;&#8203;</code><br>
 or<br>
-<code>edit INDEX s/STEP i/INSTRUCTION [c/TIME]</code><br></p>
+<code>edit INDEX s/STEP i/INSTRUCTION [c/COOKTIME]</code><br></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1309,4 +1313,4 @@ or<br>
 </ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:19:40 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 07:26:33 UTC</div></div></div></body></html>
