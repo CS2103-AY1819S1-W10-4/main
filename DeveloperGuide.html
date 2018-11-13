@@ -997,12 +997,57 @@ and thus also have a time complexity of O(1).</p>
 that they like a lot, or that they cook often to the favourites list. Users are also able to search, display details,
 and remove any entry within the favourites list.</p>
 </div>
+<div class="sect4">
+<h5 id="model-2"><a class="link" href="#model-2">Model</a></h5>
+<div class="paragraph">
+<p>The model is simply a UniqueList of Recipes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="logic-2"><a class="link" href="#logic-2">Logic</a></h5>
+<div class="paragraph">
+<p>To access favourite context commands, context has to be switched to "Favourites" via the command <code>-favourite</code>. From
+there, the Favourite commands can be used and <strong>AppContentParser</strong> will redirect the different commands to their
+respective CommandParsers.<code>favourite</code> command for adding recipes to the Favourites list is done in recipe context.</p>
+</div>
+</div>
 <div class="sect3">
-<h4 id="adding-to-favourites"><a class="link" href="#adding-to-favourites">3.3.1. Adding to Favourites</a></h4>
+<h4 id="adding-to-favourites"><a class="link" href="#adding-to-favourites">3.3.3. Adding to Favourites</a></h4>
 <div class="paragraph">
 <p>While browsing the recipes in the recipe context, and when a user likes a recipe at a particular <code>INDEX</code>, they can
 execute the <code>favourite INDEX</code> command. The recipe selected would be copied from the recipe model, and added to an array
 list in the favourites model.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-favourite-recipe"><a class="link" href="#selecting-a-favourite-recipe">3.3.4. Selecting a Favourite Recipe</a></h4>
+<div class="paragraph">
+<p>While browsing the favourite recipes in the favourite context, if the user wishes to view the details of the recipe,
+they can execute the <code>select INDEX</code> command. From the array list in the favourites model, the 1 based index will be
+accessed, and its details will be displayed in the panel.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="finding-a-favourite-recipe"><a class="link" href="#finding-a-favourite-recipe">3.3.5. Finding a Favourite Recipe</a></h4>
+<div class="paragraph">
+<p>The user can also browse and search favourite recipes by tag. Similar implementation as 'find' command in recipe
+context.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="deleting-a-favourites-recipe"><a class="link" href="#deleting-a-favourites-recipe">3.3.6. Deleting a Favourites Recipe</a></h4>
+<div class="paragraph">
+<p>While browsing the recipes in the recipe context, and when a user wants to remove a recipe at a particular <code>INDEX</code>,
+they can execute the <code>delete INDEX</code> command. From the array list in the favourites model, the index will be accessed,
+and the recipe will be deleted form the favourites model.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clearing-favourites"><a class="link" href="#clearing-favourites">3.3.7. Clearing Favourites</a></h4>
+<div class="paragraph">
+<p>The clear command clears the Favourites List of all Recipes.<br>
+The command replaces the existing UniqueList of <em>favouriteModel</em>
+with a new empty UniqueList.</p>
 </div>
 </div>
 </div>
@@ -3010,4 +3055,4 @@ Expected: No recipe listed. Error details shown in the status message. Status ba
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-12 15:55:06 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2018-11-13 08:40:35 UTC</div></div></div></body></html>
